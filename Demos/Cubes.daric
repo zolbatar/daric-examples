@@ -1,0 +1,69 @@
+Const prop=0
+Const mono=1
+Const serif=2
+Const solid=0
+Const wireframe=1
+
+If @Main Then
+	Mode -1,-1,Banked
+	Cubes()
+End If 
+
+Def Cubes()
+	w=ScreenWidth()
+	h=ScreenHeight()
+	cube_shp=CreateCube()
+	cube1=Object(cube_shp, -2, 0, 0, 0, 0, 0, 2, solid)
+	cube2=Object(cube_shp, 2, 0, 0, 0, 0, 0, 2, wireframe)
+	SetCamera 0,5,10,0,1,0,0,0,0
+	SetFont prop
+	SetFg &FF,&FF,&FF
+	BankedOn
+	For R = 0.0 To 360.0 Step 0.25
+		Cls
+		TextCentre w/2, h/2-30, "This is some text behind 3D objects!!"
+		Rotate cube1, 0, R, 0
+		Rotate cube2, 0, 360.0 - R, 0
+		Render
+		TextCentre w/2, h/2+30, "This is some text on top Of 3D!!"
+		Flip
+		If WaitKey(0) Then
+			DeleteObject cube1
+			DeleteObject cube2
+			DeleteShape cube_shp
+			BankedOff
+			Return
+		End If
+	Next
+	DeleteObject cube1
+	DeleteObject cube2
+	DeleteShape cube_shp
+	GetKey()
+	BankedOff
+End Def
+
+REM ** Create a random RGB colour **
+Def GetRandomColour:Int()
+	Return Colour(Rnd(180)+64,Rnd(180)+64,Rnd(180)+64)
+End Def
+
+Def CreateCube:Int()
+	REM ** Build vertices **
+	VertexColour -0.5,  0.5,  0.5, GetRandomColour()
+	VertexColour  0.5,  0.5,  0.5, GetRandomColour()
+	VertexColour  0.5, -0.5,  0.5, GetRandomColour()
+    VertexColour -0.5, -0.5,  0.5, GetRandomColour()
+	VertexColour -0.5,  0.5, -0.5, GetRandomColour()
+	VertexColour  0.5,  0.5, -0.5, GetRandomColour()
+	VertexColour  0.5, -0.5, -0.5, GetRandomColour()
+	VertexColour -0.5, -0.5, -0.5, GetRandomColour()
+
+	REM ** Build triangle faces **
+	Face 3, 1, 0:Face 3, 2, 1:REM Front
+    Face 5, 6, 7:Face 5, 7, 4:REM Back
+	Face 3, 7, 6:Face 3, 6, 2:REM Top
+	Face 4, 0, 1:Face 5, 1, 4:REM Bottom
+	Face 4, 7, 3:Face 4, 3, 0:REM Left
+	Face 1, 2, 6:Face 1, 6, 5:REM Right
+	Return Shape()
+End Def

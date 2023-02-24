@@ -1,0 +1,9 @@
+Mode -1,-1,0
+Print "What is your name?"
+CursorOn
+a$=""
+Input a$
+Print "Hello there ";
+Print a$
+CursorOff
+GetKey()

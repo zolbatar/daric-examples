@@ -1,0 +1,35 @@
+Const prop=0
+Const c1=-300
+Const ys=20
+ms=100
+
+Def Label(number$:String, text$:String, y:Int, sel:Int)
+    w=ScreenWidth():h=ScreenHeight()
+	SetFont prop
+    If sel Then
+    	SetFg &FF,&FF,0
+	    Text w/2+c1-20, y, ">>"
+	End If
+
+	SetFg 0,0,&FF
+	Text w/2+c1, y, number$
+
+	SetFg &FF,&FF,&FF
+	Text w/2+c1 + 60, -1, text$
+End Def
+
+Def LabelIndent(number$:String, text$:String, y:Int)
+    w=ScreenWidth():h=ScreenHeight()
+	SetFg 0,0,&80
+	SetFont prop
+	Text w/2+c1+30, y, number$
+	SetFg &80,&80,&80
+	Text w/2+c1 + 60 + 30, -1, text$
+End Def
+
+Def Title(title$:String)
+    w=ScreenWidth():h=ScreenHeight()
+	SetFg &FF,&FF,0
+	SetFont prop
+	TextCentre w/2, 20, title$
+End Def

@@ -1,0 +1,62 @@
+OPTION BASE 1
+Import "3D"
+Import "Render"
+
+Record Spreader
+x:FLOAT
+y:FLOAT
+z:FLOAT
+End Record
+Const no_spreaders%=500
+Dim spreaders:Spreader[500]
+spreader_rot#=0
+
+Def CreateSpreaders(height:INT)
+    For I%=1 To no_spreaders%
+        fx=Rnd(terrainsize)
+        fz=Rnd(terrainsize)
+        spreaders[I%].x=fx*scale_x
+        spreaders[I%].z=fz*scale_z
+        h#=dheight_cons[fx,fz]/4*height
+        spreaders[I%].y=h#+3
+    Next
+End Def
+
+Def RenderSpreaders(x:FLOAT,z:FLOAT,tt:FLOAT)
+    For I%=1 To no_spreaders%
+        xx=(x*scale_x)-spreaders[I%].x
+        yy=spreaders[I%].y
+        zz=spreaders[I%].z-(z*scale_z)
+        Object(shape_spreader%,xx,yy,zz+50,0,spreader_rot#,0, 1.0, 0)
+    Next
+    spreader_rot#=spreader_rot#+30*tt
+    If spreader_rot#>360 spreader_rot#=spreader_rot#-360
+End Def
+
+Def RenderObjects(act_x:INT,act_z:INT,half_width#:FLOAT,half_depth#:FLOAT,half_x:INT,half_z:INT,a#:FLOAT)
+	For z = 1 To ext_z
+		For x = 1 To ext_x
+    		map_obj_render[x, z]=0
+		    If ((x+act_x) > 0) And ((x+act_x) < terrainsize-1) And ((z+act_z) > 0) And ((z+act_z) < terrainsize-1) Then
+        		o%=map_obj[x+act_x, z+act_z]
+        	Else
+        	    o%=0
+        	End If
+    		If o%>0 Then
+                h#=dheight_cons[x+act_x, z+act_z]
+                yy=h# * scale_y / 4
+                xx=half_width# - (x * scale_x)
+                zz=z * scale_z
+
+                xx=xx-frac_x + (scale_x / 2)
+                zz=zz+frac_z + (scale_z / 2)
+                Case o% OF
+                    When 1:map_obj_render[x, z]=Object(shape_tree1%,xx,yy,zz, 0, 0, 0, 0.5, 0)
+                    When 2:map_obj_render[x, z]=Object(shape_tree2%,xx,yy,zz, 0, 0, 0, 0.45, 0)
+                    When 3:map_obj_render[x, z]=Object(shape_tree3%,xx,yy,zz, 0, 0, 0, 0.4, 0)
+                End Case
+            End If
+		Next
+    Next
+End Def
+

@@ -1,0 +1,56 @@
+OPTION BASE 1
+Record Vector3D
+    x:Float
+    y:Float
+    z:Float
+End Record
+sq_x=0:sq_z=0
+frac_x=0.0:frac_z=0.0
+shape_tree1%=0:shape_tree2%=0:shape_tree3%=0
+shape_player%=0:shape_spreader%=0
+
+Def Load3DShapes()
+    shape_tree1%=LoadMesh("Shapes/Low_Poly_Tree_Quad.obj")
+    shape_tree2%=LoadMesh("Shapes/Low_Poly_Tree_Triple.obj")
+    shape_tree3%=LoadMesh("Shapes/Low_Poly_Tree_Double.obj")
+    shape_player%=LoadMesh("Shapes/Player.obj")
+    shape_spreader%=LoadMesh("Shapes/Spreader.obj")
+End Def
+
+Def CheckVector(ByRef pos:Vector3D, ByRef rot:Vector3D)
+    If rot.x<-45 rot.x=-45
+    If rot.x>45 rot.x=45
+    If rot.z<0 rot.z=rot.z+1
+    If rot.z>0 rot.z=rot.z-1
+    If rot.y<0 rot.y=rot.y+360
+    If rot.y>360 rot.y=rot.y-360
+End Def
+
+Def CalcMapPosition(ByRef pos:Vector3D)
+    sq_x=Int(Floor(pos.x))
+    sq_z=Int(Floor(pos.z))
+    frac_x=sq_x-pos.x
+    frac_z=sq_z-pos.z
+End Def
+
+Def RotateBasedOnMouse(ByRef rot:Vector3D,dx:Int,dy:Int,tt:Float)
+    rot.x=rot.x+dy
+    If dx>=0 And dx>200*tt dx=200*tt
+    If dx<0 And dx<-200*tt dx=-200*tt
+    rot.y=rot.y+dx
+    If dx>0 And rot.z>-45 rot.z=rot.z-3
+    If dx<0 And rot.z<45 rot.z=rot.z+3
+End Def
+
+Def Rotation(ByRef rot:Vector3D, ByRef out:Vector3D,v#:Float)
+    SetRotate(rot.x,rot.y,rot.z,0,0,v#)
+    out.x=GetRotateX()
+    out.y=-GetRotateY()
+    out.z=GetRotateZ()
+End Def
+
+Def AddVector(ByRef v1:Vector3D,ByRef v2:Vector3D,f#:Float)
+    v1.x=v1.x+(v2.x*f#)
+    v1.y=v1.y+(v2.y*f#)
+    v1.z=v1.z+(v2.z*f#)
+End Def

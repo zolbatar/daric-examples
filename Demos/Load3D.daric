@@ -1,0 +1,229 @@
+Import "Library/Menu"
+number_of_vertices%=0:number_of_faces%=0
+min=1000000.0:max=-1000000.0:A$=""
+
+If @Main
+    Mode 1280,1024,Windowed
+    Load3D()
+End If
+
+Def Load3D()
+    SetFont prop
+    Cls
+    SetCamera 0,5,10,0,1,0,0,0,0
+    Title("Select a 3D Model to Load")
+    Label("1", "Male Head (DARIC importer)", ms+(0*ys),0)
+    Label("2", "Teapot (DARIC importer)", ms+(1*ys),0)
+    Label("3", "911 GT2 Rim", ms+(2*ys),0)
+    Label("4", "Oak Tree", ms+(3*ys),0)
+    Label("5", "Crystal", ms+(4*ys),0)
+    Label("Q", "Back to Welcome", ms+(7*ys),0)
+    A$=GetChar()
+    Case A$ OF
+        When "1":file$="Shapes/MaleHead.obj":SetCamera 0,0,-10,0,1,0,0,0,0
+        When "2":file$="Shapes/Teapot.obj":SetCamera 0,0,-10,0,1,0,0,0,0
+        When "3":file$="Shapes/911-gt2-rim.obj"
+        When "4":file$="Shapes/Oak_Tree.obj"
+        When "5":file$="Shapes/Crystal.obj"
+        When "Q","q":Return
+        Otherwise:Return
+    End Case
+
+    Cls
+    Title("Select a rendering type")
+    Label("1", "Solid flat shaded", ms+(0*ys),0)
+    Label("2", "Wireframe", ms+(1*ys),0)
+    Label("Q", "Back to Welcome", ms+(4*ys),0)
+    B$=GetChar()
+    Case B$ OF
+        When "1","2":obj%=LoadOBJFile(file$,B$)
+        When "Q","q":Return
+        Otherwise:Return
+    End Case
+    ClearEvents
+
+    BankedOn
+    For I=0.0 To 360.0 Step 0.25
+        Cls
+        Rotate obj%, 0, I, 0
+        Render
+        Flip
+		If WaitKey(0) Or AppCloseRequested() Then
+            BankedOff
+            DeleteObject obj%
+            Return
+        End If
+    Next
+    BankedOff
+    DeleteObject obj%
+End Def
+
+Def LoadOBJFile:Int(filename$:String, typ$:String)
+    s1$="":s2$="":s3$="":s4$=""
+    Cls
+
+    sh=0
+    Case typ$ OF
+        When "2":sh=1
+    End Case
+
+    If A$="3" Then
+        obj_shape%=LoadMesh(filename$)
+        obj%=Object(obj_shape%, 0, 0, 0, 0, 0, 0, 0.1, sh)
+        Return obj%
+    End If
+    If A$="4" Then
+        obj_shape%=LoadMesh(filename$)
+        obj%=Object(obj_shape%, 0, -3, 0, 0, 0, 0, 1.0, sh)
+        Return obj%
+    End If
+    If A$="5" Then
+        obj_shape%=LoadMesh(filename$)
+        obj%=Object(obj_shape%, 0, -3, 0, 0, 0, 0, 3.0, sh)
+        Return obj%
+    End If
+    If A$="6" Then
+        obj_shape%=LoadMesh(filename$)
+        obj%=Object(obj_shape%, 0, 0, 0, 0, 0, 0, 0.001, sh)
+        Return obj%
+    End If
+
+    number_of_vertices%=0
+    number_of_faces%=0
+    Print "Loading ";
+    file%=OpenIn(filename$)
+    Print filename$
+    If file%=-1 Then
+        Print "Can't open 3D file"
+        Return
+    End If
+
+    REM First stage is to parse the file and work out how many vertices and faces we have
+    linein$=""
+    Repeat
+        linein$=SGet(file%)
+        ProcessOBJLine(linein$)
+    Until Eof(file%)
+    Print "Vertices: ";
+    Print number_of_vertices%;
+    Print ", Faces: ";
+    Print number_of_faces%
+
+    REM Normalise size to 1
+    Print "Normalising size to 1.0...";
+    linein$=""
+    Seek file%,0
+    Repeat
+        linein$=SGet(file%)
+        NormaliseSize(linein$)
+    Until Eof(file%)
+    Print "adjustment is ";
+    Print min
+
+    REM Now actually start to build our object, vertices first
+    Print "Building vertices..."
+    linein$=""
+    Seek file%,0
+    colour%=Colour(&40,&40,&80)
+    If typ$="4" colour%=Colour(&20,&20,&40)
+    Repeat
+        linein$=SGet(file%)
+        If Len(linein$) >= 1 Then
+            If Left(linein$, 2) = "v " Then
+                Get3OBJValues(linein$, s1$, s2$, s3$)
+                x=Float(s1$) / max
+                y=Float(s2$) / max
+                z=Float(s3$) / max
+	            VertexColour x, y, z, colour%
+            End If
+        End If
+    Until Eof(file%)
+
+    REM Now build faces
+    Print "Building faces..."
+    linein$=""
+    Seek file%,0
+    Repeat
+        linein$=SGet(file%)
+        If Len(linein$) >=1 Then
+            If Left(linein$, 2) = "f " Then
+                Get4OBJValues(linein$, s1$, s2$, s3$, s4$)
+                If Len(s4$)=0 Then
+                    v1%=Int(s1$)-1
+                    v2%=Int(s2$)-1
+                    v3%=Int(s3$)-1
+	                Face v1%, v2%, v3%
+                Else
+                    v1%=Int(s1$)-1
+                    v2%=Int(s2$)-1
+                    v3%=Int(s3$)-1
+                    v4%=Int(s4$)-1
+	                Face v1%, v2%, v3%
+	                Face v1%, v3%, v4%
+                End If
+            End If
+        End If
+    Until Eof(file%)
+    Close file%
+
+    REM Create shape
+    Print "Creating shape..."
+	obj_shape%=Shape()
+	If A$="1" obj%=Object(obj_shape%, 0, 1, 0, 0, 0, 0, 1.5, sh)
+	If A$="2" obj%=Object(obj_shape%, 0, -2, 0, 0, 0, 0, 3, sh)
+    Return obj%
+End Def
+
+Def ProcessOBJLine(linein$:String)
+    s1$="":s2$="":s3$="":s4$=""
+    If Len(linein$) < 1 Return
+    Case Left(linein$, 1) OF
+        When "v":number_of_vertices%=number_of_vertices%+1
+        When "f":Get4OBJValues(linein$, s1$, s2$, s3$, s4$):If Len(s4$)=0 number_of_faces%=number_of_faces%+1 Else number_of_faces%=number_of_faces%+2
+    End Case
+End Def
+
+Def Get3OBJValues(linein$:String, ByRef s1$:String, ByRef s2$:String, ByRef s3$:String)
+    p1%=Instr(linein$, " ", 1)
+    p2%=Instr(linein$, " ", p1% + 1)
+    p3%=Instr(linein$, " ", p2% + 1)
+    p4%=Len(linein$)
+    s1$=Mid(linein$,p1%+1,p2% - p1%-1)
+    s2$=Mid(linein$,p2%+1,p3% - p2%-1)
+    s3$=Mid(linein$,p3%+1,p4% - p3%)
+End Def
+
+Def Get4OBJValues(linein$:String, ByRef s1$:String, ByRef s2$:String, ByRef s3$:String, ByRef s4$:String)
+    p1%=Instr(linein$, " ", 1)
+    p2%=Instr(linein$, " ", p1% + 1)
+    p3%=Instr(linein$, " ", p2% + 1)
+    p4%=Instr(linein$, " ", p3% + 1)
+    p5%=Len(linein$)
+    If p4%=0 p4%=p5%:p5%=0
+    s1$=Mid(linein$,p1%+1,p2% - p1%-1)
+    s2$=Mid(linein$,p2%+1,p3% - p2%-1)
+    If p5%=0 Then 
+        s3$=Mid(linein$,p3%+1,p4% - p3%)
+        s4$=""
+    Else 
+        s3$=Mid(linein$,p3%+1,p4% - p3%-1)
+        s4$=Mid(linein$,p4%+1,p5% - p4%)
+    End If
+End Def
+
+Def NormaliseSize(linein$:String)
+    If Len(linein$) < 1 Return
+    If Left(linein$, 2) <> "v " Return
+    s1$="":s2$="":s3$=""
+    Get3OBJValues(linein$, s1$, s2$, s3$)
+    x=Float(s1$)
+    y=Float(s2$)
+    z=Float(s3$)
+    If x < min min = x
+    If y < min min = y
+    If z < min min = z
+
+    If x > max max = x
+    If y > max max = y
+    If z > max max = z
+End Def

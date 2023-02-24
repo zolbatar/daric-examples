@@ -1,0 +1,62 @@
+Import "Library/Menu"
+sample=0
+
+If @Main Then
+	Mode 1024,768,Windowed
+    sample=LoadSample("Cooldown.wav")
+    AudioMenu()
+End If
+
+Def AudioMenu()
+    Repeat
+        Cls:I=0
+        Title("Welcome to the Daric 'Audio Studio'!")
+        Label("", "Samples", ms+(I*ys),0):I=I+1
+            LabelIndent("0", "Play overlapping samples", ms+(I*ys)):I=I+1
+        Label("", "Play some MIDI music", ms+(I*ys),0):I=I+1
+            LabelIndent("1", "Titanic", ms+(I*ys)):I=I+1
+            LabelIndent("2", "Africa", ms+(I*ys)):I=I+1
+            LabelIndent("3", "We Are The World", ms+(I*ys)):I=I+1
+        Label("", "Play some ModTracker music", ms+(I*ys),0):I=I+1
+            LabelIndent("4", "2nd PM", ms+(I*ys)):I=I+1
+            LabelIndent("5", "Space Debris", ms+(I*ys)):I=I+1
+            LabelIndent("6", "Dead Lock", ms+(I*ys)):I=I+1
+            LabelIndent("7", "Hymn To Aurora", ms+(I*ys)):I=I+1
+        A$=GetChar()
+        Case A$ OF
+            When "0":WavAudio()
+            When "1":Music("MIDI/Titanic.mid")
+            When "2":Music("MIDI/Africa.mid")
+            When "3":Music("MIDI/WeAreTheWorld.mid")
+            When "4":Music("ModTracker/2ND_PM.S3M")
+            When "5":Music("ModTracker/space_debris.mod")
+            When "6":Music("ModTracker/DEADLOCK.XM")
+            When "7":Music("ModTracker/hymn_to_aurora.mod")
+        End Case
+    Until A$="Z" OR A$="z" Or AppCloseRequested()
+    WavAudio()
+End Def
+
+Def WavAudio()
+    SetVolume(0,1.0)
+    SetVolume(1,0.75)
+    SetVolume(2,0.25)
+    PlaySample(-1,sample)
+    Sleep 1
+    PlaySample(-1,sample)
+    Sleep 1
+    PlaySample(-1,sample)
+    Sleep 1
+End Def
+
+Def Music(filename:String)
+    music=LoadMusic(filename)
+    SetMusicVolume(1.0)
+    PlayMusic(music,0)
+    Repeat Until WaitKey(0)
+    StopMusic(500)
+End Def
+
+
+
+

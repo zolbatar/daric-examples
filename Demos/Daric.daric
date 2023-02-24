@@ -1,0 +1,91 @@
+Import "Library/Perlin"
+Import "Library/Colour"
+Import "Library/TerrainLib"
+
+If @Main Then
+	InitPerlin()
+    Mode 1280,1024,Windowed
+    Daric()
+End If
+
+Def Sky()
+    w=ScreenWidth():h=ScreenHeight()
+    level#=1.0
+    For Y=0 To h // 2
+        SetBg 0,&6 * level#,&30 * level#
+        RectangleFilled 0, Y, w-1, Y+3
+        level#=level#+0.0025
+    Next
+End Def
+
+Def Sun()
+    w=ScreenWidth():h=ScreenHeight()
+    radius = h / 2
+    yss=radius * Sin(RAD(180))
+    ye=radius * Sin(RAD(270))
+    ym = ye-yss
+    For angle=180.0 To 270.0 Step 0.1
+        If angle>270.0 Return
+        x=radius * Cos(RAD(angle))
+        y=radius * Sin(RAD(angle))
+        ratio=(y-yss) / ym * 0.4
+        r_ratio=1.0-ratio
+        SetFg (&80*ratio)+(&F0*r_ratio),(&80*ratio)+(&A5*ratio),&00
+        Line (w / 2) - x, y + (h * 0.7), (w / 2) + x, y + (h * 0.7)
+    Next
+End Def
+
+Def Lines()
+    w=ScreenWidth():h=ScreenHeight()
+    hh=Int((h-1)/3)*3
+    For Y=0 To hh Step 3
+        SetAlpha 20
+        SetFg 255, 255, 255
+        Line 0,Y,w-1,Y
+        SetFg 0, 0, 0
+        Line 0,Y+1,w-1,Y+1
+        SetAlpha 255
+    Next
+End Def
+
+Def LinesBlackenLogo()
+    w=ScreenWidth():h=ScreenHeight()
+    SetFg 0,0,0
+    For Y=h//2-100 To h//2+70
+        SetAlpha 150
+        SetFg 0, 0, 0
+        Line 0,Y,w-1,Y
+        SetAlpha 255
+    Next
+End Def
+
+Def Daric()
+    Cls
+    w=ScreenWidth():h=ScreenHeight()
+    coolfont=LoadFont("edunline.ttf",80)
+	terrain1=CreateTerrain(terrainsize, terrainsize, 0.25, 2)
+    BankedOn
+'	SetCamera 0,5,-10,0,1,0,0,0,0
+    SetCamera 0,1,5,0,1,0,0,0,0
+    Cls
+    Sky()
+    Sun()
+    Rotate terrain1, 0, 0, 0
+    Translate terrain1,0,-1,0
+    Render
+    Lines()
+    LinesBlackenLogo()
+    SetFg 255,255,255:SetFont coolfont
+    TextCentre w/2-250, h/2-60, "D"
+    TextCentre w/2-125, h/2-60, "A"
+    TextCentre w/2, h/2-60, "R"
+    TextCentre w/2+125, h/2-60, "I"
+    TextCentre w/2+250, h/2-60, "C"
+    SetBg 255,0,0:RectangleFilled w/2-300,h/2+40,w/2-110,h/2+50
+    SetBg 0,255,0:RectangleFilled w/2-100,h/2+40,w/2+100,h/2+50
+    SetBg 0,0,255:RectangleFilled w/2+110,h/2+40,w/2+300,h/2+50
+    Flip
+    GetKey()
+    BankedOff
+    DeleteObject terrain1
+End Def

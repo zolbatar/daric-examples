@@ -1,0 +1,24 @@
+If @Main Then
+	Mode -1,-1,Banked
+	Sierpinski()
+End If
+
+Def Sierpinski() 
+	BankedOn
+	While Not WaitKey(0)
+		DrawTriangle 8,0,0,1000
+		Flip
+	End While
+	BankedOff
+End Def
+
+Def DrawTriangle(l:Int,x:Float,y:Float,s:Float)
+	If l > 0 Then
+		SetFg Rnd(255),Rnd(255),Rnd(255)
+		Triangle x,y,x+s,y,x,y+s
+		s2=s/2
+		DrawTriangle l-1,x,y,s2
+		DrawTriangle l-1,x+s2,y,s2
+		DrawTriangle l-1,x,y+s2,s2
+	End If
+End Def

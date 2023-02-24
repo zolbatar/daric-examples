@@ -1,0 +1,23 @@
+If @Main Then
+    Mode -1,-1,0
+
+    x=0.0:y=0.0:nextX=0.0:nextY=0.0
+    Origin ScreenWidth()/2,0
+    SetFg 144,238,144
+    SetAlpha 24
+    s=Min(ScreenWidth(), ScreenHeight())/10.0
+    For I=1 To 1000000
+        A=RndF(1.0)
+        If A<0.01:              nextX = 0:nextY = 0.16 * y
+        If A>=0.01 And A<=0.08: nextX = 0.2 * x - 0.26 * y:nextY = 0.23 * x + 0.22 * y + 1.6
+        If A>=0.08 And A<=0.15: nextX = -0.15 * x + 0.28 * y:nextY = 0.26 * x + 0.24 * y + 0.44
+        If A>0.15:              nextX = 0.85 * x + 0.04 * y:nextY = -0.04 * x + 0.85 * y + 1.6
+
+        x = nextX
+        y = nextY
+        Plot x*s,ScreenHeight()-y*s
+    Next
+    Repeat Until WaitKey(0) Or AppCloseRequested()
+End If
+
+

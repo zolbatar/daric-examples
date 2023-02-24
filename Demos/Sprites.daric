@@ -1,0 +1,56 @@
+If @Main Then
+    Mode -1,-1,Banked
+    Sprites()
+End If  
+
+Def Sprites()
+    SpriteRenderPoint 0
+    BankedOn
+    w=ScreenWidth():h=ScreenHeight()
+    bg=LoadSprite("Background.png")
+    ship=LoadSprite("BATTLESHIP-TOP.png")
+    explosion=LoadSprite("Exp_type_C.png")
+    sw=128:sh=128:sprites=250
+    Dim sx:Int[sprites]
+    Dim sy:Int[sprites]
+    Dim sdx:Int[sprites]
+    Dim sdy:Int[sprites]
+    For I=1 To sprites:sx[I]=Rnd(w):sy[I]=Rnd(h):sdx[I]=1:sdy[I]=1:Next
+    J=0
+    For loop=0.0 To 250.0 Step 0.25
+        Cls
+        DrawSprite bg,0,ScreenWidth()/2,ScreenHeight()/2,0,1
+        For I=1 To sprites
+            DrawSprite ship,0,sx[I],sy[I],loop,loop/150+0.25
+            'DrawPartSprite ship,0,sx[I],sy[I],loop,loop/150+0.25,Rnd(64),Rnd(64),128,128
+
+            REM Move
+            sx[I]=sx[I]+sdx[I]
+            sy[I]=sy[I]+sdy[I]
+
+            REM Check whether at edge
+            If sx[I]<0 sdx[I]=1
+            If sx[I]>w-sw-1 sdx[I]=-1
+            If sy[I]<0 sdy[I]=1
+            If sy[I]>h-sh-1 sdy[I]=-1
+        Next
+
+        ' Explosion (sprite offset)
+        Line 0,ScreenHeight()/2,ScreenWidth(),ScreenHeight()/2
+        Line ScreenWidth()/2,0,ScreenWidth()/2,ScreenHeight()
+        DrawPartSprite explosion,0,ScreenWidth()/2,ScreenHeight()/2,0,1,J*256,0,256,256
+        J=J+1
+        If J=48 J=0
+
+        Flip
+		If WaitKey(0) Then
+            DeleteSprite ship:DeleteSprite bg
+            BankedOff
+            Return
+        End If
+    Next
+    DeleteSprite ship:DeleteSprite bg
+    BankedOff
+End Def
+
+

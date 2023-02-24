@@ -1,0 +1,69 @@
+OPTION BASE 1
+Import "Terrain"
+
+scale_x = 2.5
+scale_z = 2.5
+scale_y = 0.0
+
+Def RenderTerrain(x:Int,z:Int,frac_x:Float,frac_z:Float,sq_x:Int,sq_z:Int,ry:Float,height:Int)
+	scale_y:Float = height
+    frac_x = frac_x * scale_x
+	frac_z = frac_z * scale_z
+
+    REM Figure out extents to render
+	half_width#=(ext_x * scale_x) / 2.0
+	half_depth#=(ext_z * scale_z) / 2.0
+
+	REM ** Build vertices **
+	half_x=ext_x // 2
+	half_z=ext_z // 2
+
+    REM Co-ord
+    act_x:Int=sq_x-half_x
+	act_z:Int=sq_z-20
+
+	'Print Sys "Render terrain"
+	For z = 1 To ext_z
+		For x = 1 To ext_x
+		    If ((x+act_x) >= 0) And ((x+act_x) < terrainsize) And ((z+act_z) >= 0) And ((z+act_z) < terrainsize) Then
+  			    h#=dheight[x+act_x, z+act_z]
+  			Else
+  			    h#=-1.0
+  			End If
+    	    Vertex half_width# - (x * scale_x), h# * scale_y, (z * scale_z)
+    	Next
+ 	Next
+
+	REM ** Build faces **
+	For z = 1 To ext_z-1
+		For x = 1 To ext_x-1
+		    If ((x+act_x) > 0) And ((x+act_x) < terrainsize-1) And ((z+act_z) > 0) And ((z+act_z) < terrainsize-1) Then
+                h#=dheight_cons[x+act_x, z+act_z]
+  			Else
+  			    h#=-1.0
+  			End If
+            If h#>0.0 r%=dcolours[x+act_x, z+act_z].r:g%=dcolours[x+act_x, z+act_z].g:b%=dcolours[x+act_x, z+act_z].b
+            If h#=0.0 r%=dcolours_water[x+act_x, z+act_z].r:g%=dcolours_water[x+act_x, z+act_z].g:b%=dcolours_water[x+act_x, z+act_z].b
+            If h#>=0.0 colour%=(r% << 16) + (g% << 8) + b%
+            If h#<0.0 colour%=0:h#=0.0
+'			colour%=Colour(Rnd(255),Rnd(255),Rnd(255))
+
+            REM Triangle 1
+            v1% = ((z-1) * ext_x) + x
+            v2% = v1% + 1
+            v3% = v2% + ext_x - 1
+            FaceColour v1%-1, v2%-1, v3%-1,colour%
+
+            REM Triangle 2
+            v1% = ((z-1) * ext_x) + x + 1
+            v2% = v1% + ext_x
+            v3% = v2% - 1
+            FaceColour v1%-1, v2%-1, v3%-1,colour%
+		Next
+	Next
+    terrain%=Shape()
+    terrain1%=Object(terrain%, -frac_x, 0, frac_z, 0, 0, 0, 1, 0)
+'    RenderObjects(act_x,act_z,half_width#,half_depth#,half_x,half_z,RAD(ry))
+End Def
+
+

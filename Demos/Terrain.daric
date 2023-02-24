@@ -1,0 +1,37 @@
+OPTION BASE 1
+Import "Library/Perlin"
+Import "Library/Colour"
+Import "Library/TerrainLib"
+
+If @Main Then
+	InitPerlin()
+	Mode -1,-1,Banked
+	TerrainDemo()
+End If 
+
+Def TerrainDemo()
+	terrain1=CreateTerrain(terrainsize, terrainsize, 1.0, 0)
+	REM Game Loop
+	SetBg &0,0,8
+	Cls
+	frame=0
+	BankedOn
+	SetCamera 0,5,-10,0,1,0,0,0,0
+	For R = 0.0 To 360.0 Step 0.25
+		Cls
+		Rotate terrain1, 0, R, 0
+		Render
+		SetFont 0
+		Text 20,20,"Frame: "+String(frame) + Chr(10)
+		Flip
+		frame=frame+1
+		If WaitKey(0) Then
+			DeleteObject terrain1
+			BankedOff
+            Return
+        End If
+	Next
+	DeleteObject terrain1
+	BankedOff
+	GetKey()
+End Def

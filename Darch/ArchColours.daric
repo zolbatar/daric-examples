@@ -1,0 +1,16 @@
+OPTION BASE 1
+Dim ArchColour:Int[256]
+
+Def CreateArchColours()
+    For I=0 To 255
+        tint=I And 3
+        r = ((I And 16) >> 3) OR ((I And 4) >> 2)
+        g = (I And &60) >> 5
+        b = ((I And 128) >> 6) OR ((I And 8) >> 3)
+        bb=((b*4+tint)*&11)
+        gg=(((g*4+tint)*&11) << 8)
+        rr=(((r*4+tint)*&11) << 16)
+        ArchColour[I+1] = bb + gg + rr
+    Next
+End Def
+

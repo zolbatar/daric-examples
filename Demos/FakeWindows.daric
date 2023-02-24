@@ -1,0 +1,52 @@
+Import "Library/Perlin"
+Import "Library/Colour"
+Import "Library/TerrainLib"
+
+If @Main Then
+	InitPerlin()
+    Mode -1,-1,Banked
+    FakeWindows()
+End If
+
+Def FakeWindows()
+    BankedOn
+	terrain1=CreateTerrain(terrainsize, terrainsize, 1.0, 0)
+	SetCamera 0,5,-10,0,1,0,0,0,0
+    w=ScreenWidth():h=ScreenHeight()
+
+	segw=w*0.05
+	segh=h*0.05
+
+	For R#=0.0 To 360.0 Step 0.25
+    	SetBg &10, &10, &10
+		Cls
+
+		REM Pane 1
+		SetBg &80, &40, &40:RectangleFilled segw*1,segh*1,segw*11,segh*11
+		SetBg 0,0,0:RectangleFilled segw*1+2,segh*1+2,segw*11-2,segh*11-2:ClipOn segw*1+2,segh*1+2,segw*11-2,segh*11-2
+		For I%=0 To w*12 Step 8:SetFg Rnd(128),Rnd(128),Rnd(128):Line 0,0,I%,h-1:Next
+		ClipOff
+  
+        REM Pane 2
+		SetBg &40, &80, &40:RectangleFilled segw*4,segh*4,segw*14,segh*14
+		SetBg 0,0,0:RectangleFilled segw*4+2,segh*4+2,segw*14-2,segh*14-2:ClipOn segw*4+2,segh*4+2,segw*14-2,segh*14-2
+		For I%=0 To segw:SetBg Rnd(128),Rnd(128),Rnd(128):CircleFilled I%*75+segw*7+2,segh*12+(100*Sin(I%/3)),75:Next
+		ClipOff
+  
+        REM Pane 3
+		SetBg &40, &40, &80:RectangleFilled segw*7,segh*7,segw*17,segh*17
+		SetBg 0,0,0:RectangleFilled segw*7+2,segh*7+2,segw*17-2,segh*17-2:ClipOn segw*7+2,segh*7+2,segw*17-2,segh*17-2
+		Rotate terrain1, 0, R#, 0
+		Render
+		ClipOff
+
+		Flip
+		If WaitKey(0) Then
+			DeleteObject terrain1
+            BankedOff
+			Return
+		End If
+	Next
+    BankedOff
+	DeleteObject terrain1
+End Def

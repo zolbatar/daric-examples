@@ -1,0 +1,131 @@
+Import "Library/Menu"
+
+Const prop=0
+Record MapPoint
+	x:Float
+	y:Float
+End Record
+gCentrex=0.0:gCentrey=0.0:gScale=3.0:gRound=100.0
+Dim pointarray:MapPoint[400368]
+points=0
+
+If @Main Then
+	Mode -1,-1,Banked
+	WorldInLines()
+End If
+
+Def WorldInLines()
+	c%=Dir("GIS")
+	For I%=0 To c%-1
+		p$=DirEntry(I%)
+		LoadPolygon(p$)
+	Next
+	BankedOn
+	x=0:y=0:buttons%=0:last_x=0:last_y=0:dragging%=0:render%=1
+	Repeat
+		If render%=1 WILRender():render%=0
+		x=MouseX():y=MouseY():buttons%=MouseState()
+		If (buttons% And 4) = 4 Then
+			If dragging% =0 Then
+				last_x=MouseX():last_y=MouseY():buttons%=MouseState()
+				dragging%=1
+			Else
+				dx=x-last_x:dy=y-last_y
+				gCentrex=gCentrex+dx/gScale
+				gCentrey=gCentrey-dy/gScale
+				last_x=x:last_y=y
+				render%=1
+			End If
+		Else
+			dragging%=0
+		End If
+		If KeyDown(KEY_Z) = 1 gScale=gScale+0.5:render%=1
+		If KeyDown(KEY_X) = 1 gScale=gScale-0.5:render%=1
+		If KeyDown(KEY_P) = 1 WILAnimate()
+		If gScale < 1.0 gScale=1.0:render%=1
+	Until KeyDown(KEY_Q)
+	BankedOff
+End Def
+
+Def WILAnimate()
+	gRound = 0.01
+	For J%=1 To 30
+		gRound=gRound*1.25
+		WILRender()
+	Next
+	gRound=100.0
+End Def
+
+Def WILRender()
+	w=ScreenWidth():h=ScreenHeight()
+	Cls
+	country=80
+	SetFg country/2,country/2,country/2
+	lx=0:ly=0
+	For I%=0 To points-1
+   		xx=pointarray[I%].x
+		yy=pointarray[I%].y
+		If xx <> 0.0 And yy <> 0.0 Then
+			xx=Int(xx * gRound) / gRound
+			yy=Int(yy * gRound) / gRound
+
+            ' Move
+			xx=xx+gCentrex
+			yy=yy+gCentrey
+
+            ' Scale
+            xx=xx*gScale
+            yy=yy*gScale
+
+			' Screen centre
+			xx=xx+(w/2)
+			yy=(h/2)-yy
+
+			If lx <> 0 And ly <> 0 Line lx,ly,xx,yy
+			lx=xx
+			ly=yy
+		Else
+			country=country+1
+			SetFg country/2,country/2,country/2
+		    lx=0
+			ly=0
+		End If
+	Next
+   	SetFg &FF,&FF,0
+   	SetFont prop
+	TextCentre w / 2, 0, "Press left mouse button to drag"+Chr(10)
+	TextCentre w / 2, -1, "z - Zoom In, x - Zoom Out, p - Animate, q - Quit"+Chr(10)
+	TextCentre w / 2, -1, String(points) + "/400370 points"
+	Flip
+End Def
+
+Def LoadPolygon(filename$:String)
+	channel=OpenIn(filename$)
+	skip=0
+	While Not Eof(channel)
+		S$=SGet(channel)
+		If Len(S$) > 0 Then
+			If S$ = "---" Then
+                pointarray[points].x = 0.0
+                pointarray[points].y = 0.0
+                points=points+1
+				skip=0
+			Else
+				skip=skip+1
+                p1%=Instr(S$, ",", 1)
+                p2%=Len(S$)
+                s1$=Mid(S$,1,p1%-1)
+                s2$=Mid(S$,p1%+1,p2%-p1%)
+                pointarray[points].y = Float(s1$)
+                pointarray[points].x = Float(s2$)
+                points=points+1
+                skip=0
+			End If
+		Else
+			Close channel
+			Return
+		End If
+	End While
+	Close channel
+End Def
+

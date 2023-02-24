@@ -1,0 +1,21 @@
+If @Main Then
+    Mode -1,-1,Banked
+    s=Min(ScreenWidth(), ScreenHeight())/30.0
+    Repeat
+        mx:Float=MouseX():my:Float=MouseY()
+        dist=0.7:turn=90*(my*1.5)/ScreenHeight():bias=90*(mx-(ScreenWidth()/2))/ScreenWidth()
+        Branch(ScreenWidth()/2,ScreenHeight(),-90,6.8)
+        Flip
+    Until WaitKey(0) Or AppCloseRequested()
+End If
+
+Def Branch(x,y,angle:Float,dep:Float)
+    If dep>=0.15 Then
+       dx=x+(Cos(Rad(angle))*dep*s)
+       dy=y+(Sin(Rad(angle))*dep*s):
+       Line x,y,dx,dy
+       Branch(dx,dy,angle-(turn-bias),dep*dist):
+       Branch(dx,dy,angle+(turn+bias),dep*dist)
+    End If
+End Def
+

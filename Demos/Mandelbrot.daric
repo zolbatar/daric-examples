@@ -1,0 +1,50 @@
+If @Main Then
+    Mode -1,-1,0
+    Mandelbrot()
+End If
+
+Def Mandelbrot()
+    ITERS=256:XRANGE=-1.5:YRANGE=-1.5:COLS=16
+    ww=ScreenWidth():hh=ScreenHeight()
+    Origin ScreenWidth()/2,ScreenHeight()/2
+    Cls
+    For Y=-hh/2 To hh/2
+        For X=-ww/2 To ww/2
+            CR = (XRANGE + X * 4) / ww
+            CI = (YRANGE + Y * 3) / hh
+            ZM=0.0:ZR=0.0:ZI=0.0:ZR2=0.0:ZI2=0.0:IT=0
+            Repeat
+                Z1 = ZR2 - ZI2 + CR
+                Z2 = 2 * ZR * ZI + CI
+                ZR = Z1
+                ZI = Z2
+                ZR2 = ZR * ZR
+                ZI2 = ZI * ZI
+                ZM = ZR2 + ZI2
+                IT = IT + 1
+            Until IT=ITERS OR ZM>=4
+            c=IT Mod 16
+            Case c OF
+                When 0: SetFg 66, 30, 15
+                When 1: SetFg 25, 7, 26
+                When 2: SetFg 9, 1, 47
+                When 3: SetFg 4, 4, 73
+                When 4: SetFg 0, 7, 100
+                When 5: SetFg 12, 44, 138
+                When 6: SetFg 24, 82, 177
+                When 7: SetFg 57, 125, 209
+                When 8: SetFg 134, 181, 229
+                When 9: SetFg 211, 236, 248
+                When 10: SetFg 241, 233, 191
+                When 11: SetFg 248, 201, 95
+                When 12: SetFg 255, 170, 0
+                When 13: SetFg 204, 128, 0
+                When 14: SetFg 153, 87, 0
+                When 15: SetFg 106, 52, 3
+            End Case
+            Plot X,Y
+        Next
+    Next
+    Origin 0,0
+    GetKey()
+End Def

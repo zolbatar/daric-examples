@@ -1,0 +1,36 @@
+Print "Daric File I/O Test Suite"
+Print "-------------------------"
+Print
+
+File()
+
+Def File()
+	Print "BPut Then BGet     = ";
+	channel=OpenOut("Test")
+	BPut channel, ASC("A")
+	Close channel
+	channel=OpenIn("Test")
+	V=BGet(channel)
+	If V=65 Pass() Else Fail()
+	Close channel
+
+	channel=OpenIn("Test")
+	Print "Tell               = ";:If Tell(channel)=0 Pass() Else Fail()
+	Seek(channel,1)
+	Print "Seek               = ";:If Tell(channel)=1 Pass() Else Fail()
+	Close channel
+
+	Print "Delete             = ";
+	Delete "Test":Pass()
+	Print "List Files         = ";:Print Dir(".")
+	Print "Files Index 0      = ";:Print DirEntry(0)
+End Def
+
+Def Pass()
+    Print "PASS!"
+End Def
+
+Def Fail()
+    Print "!! FAILED TEST !!"
+    Quit
+End Def

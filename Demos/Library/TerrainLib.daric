@@ -1,0 +1,57 @@
+OPTION BASE 1
+Const rockh=0.4
+Const snowh=0.7
+Const terrainsize=500
+
+Def CreateTerrain:Int(width:Int, depth:Int, rel:Float, type:Int)
+	grass=Colour(&00, &80, &00)
+	rock=Colour(&44, &44, &44)
+	snow=Colour(&EE, &EE, &EE)
+
+	number_of_vertices%=width * depth
+	number_of_faces%=(width-1) * (depth-1) * 2
+
+	scale_x = 1.0
+	scale_y = 5.0
+	scale_z = 1.0
+
+    REM Co-ord
+    act_x=250:act_z=250
+
+    REM Figure out extents to render
+    ext_x=terrainsize/2
+    ext_z=terrainsize/2
+	half_width=(ext_x * scale_x) / 2.0
+	half_depth=(ext_z * scale_z) / 2.0
+
+	REM ** Build vertices **
+	For z = 1 To ext_z
+		For x = 1 To ext_x
+			h=Perlin2D(x, z, 0.12, 5)
+			colour=grass
+    		If h > rockh colour=rock
+	    	If h > snowh colour=snow
+    		VertexColour ((x * scale_x) - half_width, h * scale_y, (z * scale_z) - half_depth, colour
+    	Next
+	Next
+
+	REM ** Build faces **
+	For z = 1 To ext_z-2
+		For x = 1 To ext_x-2
+            REM Triangle 1
+            v1% = ((z-1) * ext_x) + x
+            v2% = v1% + 1
+            v3% = v2% + ext_x - 1
+            Face v1%-1, v2%-1, v3%-1
+
+            REM Triangle 2
+            v1% = ((z-1) * ext_x) + x+1
+            v2% = v1% + ext_x
+            v3% = v2% - 1
+            Face v1%-1, v2%-1, v3%-1
+		Next
+	Next
+    terrain=Shape()
+    terrain1=Object(terrain, 0, 0, 0, 0, 0, 0, 0.05, type)
+	Return terrain1
+End Def

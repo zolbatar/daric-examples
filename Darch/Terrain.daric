@@ -1,0 +1,92 @@
+OPTION BASE 1
+Import "../Demos/Library/Perlin"
+Import "../Demos/Library/Colour"
+Import "ArchColours"
+
+Const terrainsize=600
+Dim dheight:Float[600, 600]
+Dim dheight_cons:Float[600, 600]
+Dim map_obj:Int[600, 600]
+Dim map_obj_render:Int[100, 160]
+Dim dcolours:Colour[600, 600]
+Dim dcolours_water:Colour[600, 600]
+frame=0
+terrain%=0
+ext_x=100
+Const ext_z=120
+
+Def CreateDarchTerrain()
+    SetAmbient 0.5,0.5,0.5
+'    REM SetDirectional 0.0,-1.0,1.0,1.0,1.0,1.0,1.0,0.00002,0.000001
+    SetDirectional 0.0,-1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+    width%=terrainsize
+    depth%=terrainsize
+	number_of_vertices%=width% * depth%
+	number_of_faces%=(width%-1) * (depth%-1) * 2
+
+    REM ** Build height map using perlin noise **
+	For z = 1 To depth%
+		For x = 1 To width%
+			v# = Perlin2D(x, z, 0.08, 3)-0.5
+			If v#<0.0 v#=0.0
+			dheight[x, z] = v#
+            i%=33+Rnd(95)
+            colour%=ArchColour[i%]
+            dcolours[x, z].r = (colour% And &FF0000) >> 16
+            dcolours[x, z].g = (colour% And &FF00) >> 8
+            dcolours[x, z].b = (colour% And &FF)
+            colour%=ArchColour[129+Rnd(15)]
+            dcolours_water[x, z].r = (colour% And &FF0000) >> 16
+            dcolours_water[x, z].g = (colour% And &FF00) >> 8
+            dcolours_water[x, z].b = (colour% And &FF)
+
+            REM Object
+            If v#>0.0 Then
+                Case Rnd(64) OF
+                    When 0:map_obj[x, z]=1
+                    When 1:map_obj[x, z]=2
+                    When 2:map_obj[x, z]=3
+                    Otherwise:map_obj[x, z]=0
+                End Case
+            End If
+		Next
+	Next
+
+	REM ** Smooth the colours out a bit
+	For I% = 1 To 2
+        For z = 1 To depth%-1
+            For x = 1 To width%-1
+                h1#=dheight[x,z]
+                h2#=dheight[x+1,z]
+                h3#=dheight[x,z+1]
+                h4#=dheight[x+1,z+1]
+                dheight_cons[x,z]=h1#+h2#+h3#+h4#
+                r1%=dcolours[x,z].r:g1%=dcolours[x,z].g:b1%=dcolours[x,z].b
+                r2%=dcolours[x+1,z].r:g2%=dcolours[x+1,z].g:b2%=dcolours[x+1,z].b
+                r3%=dcolours[x,z+1].r:g3%=dcolours[x,z+1].g:b3%=dcolours[x,z+1].b
+                r4%=dcolours[x+1,z+1].r:g4%=dcolours[x+1,z+1].g:b4%=dcolours[x+1,z+1].b
+                r%=(r1%+r2%+r3%+r4%)/4:g%=(g1%+g2%+g3%+g4%)/4:b%=(b1%+b2%+b3%+b4%)/4
+                dcolours[x,z].r=r%:dcolours[x,z].g=g%:dcolours[x,z].b=b%
+
+                r1%=dcolours_water[x,z].r:g1%=dcolours_water[x,z].g:b1%=dcolours_water[x,z].b
+                r2%=dcolours_water[x+1,z].r:g2%=dcolours_water[x+1,z].g:b2%=dcolours_water[x+1,z].b
+                r3%=dcolours_water[x,z+1].r:g3%=dcolours_water[x,z+1].g:b3%=dcolours_water[x,z+1].b
+                r4%=dcolours_water[x+1,z+1].r:g4%=dcolours_water[x+1,z+1].g:b4%=dcolours_water[x+1,z+1].b
+                r%=(r1%+r2%+r3%+r4%)/4:g%=(g1%+g2%+g3%+g4%)/4:b%=(b1%+b2%+b3%+b4%)/4
+                dcolours_water[x,z].r=r%:dcolours_water[x,z].g=g%:dcolours_water[x,z].b=b%
+            Next
+        Next
+    Next
+End Def
+
+Def DeleteTerrain()
+    DeleteShape terrain%
+End Def
+
+Def CheckCollision:Int(sq_x:Int,sq_z:Int,y:Float,scale_y:Float)
+    h#=dheight_cons[sq_x,sq_z]/4*scale_y
+    If (y-1.0)<=h# Return 1
+    Return 0
+End Def
+
+

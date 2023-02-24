@@ -1,0 +1,36 @@
+OPTION BASE 1
+Import "Terrain"
+
+Def MiniMap(sq_x:INT,sq_z:INT)
+    width=terrainsize
+    depth=terrainsize
+
+    REM Local map
+	For z = -75 To 75
+		For x = -75 To 75
+			h=dheight[sq_x+x,sq_z+z]
+			h=50+h*200
+		    SetFg 0,h,0
+		    Plot 80 + x, 80 + -z
+		Next
+	Next
+	SetFg 255,255,255
+	CircleFilled 75,75,3
+	Rectangle 3,3,157,157
+
+    REM World map
+    divi:Int=terrainsize/150
+    ox=(ScreenWidth() - 154):oy=6+150
+    For z = 1 To depth Step divi
+        For x = 1 To width Step divi
+            h=dheight[x,z]
+            h=0+h*300
+            SetFg 0,h,0
+            Plot ox+x//divi, oy-z//divi
+        Next
+    Next
+	SetFg 255,255,255
+	Rectangle ox+(sq_x-(ext_x/2))//divi,oy-(sq_z-(ext_z/2))//divi,ox+(sq_x+(ext_x/2))//divi,oy-(sq_z+(ext_z/2))//divi
+	Rectangle ScreenWidth()-3,3,ScreenWidth()-157,157
+End Def
+

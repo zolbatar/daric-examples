@@ -1,0 +1,126 @@
+REM This is all about performance measurement, it makes HEAVY use of floating point and trigonetry
+REM The result should be 8586070.837
+
+OPTION BASE 1
+
+Dim line$:String[4]
+Dim used:Int[500]
+Dim callId$:String[500]
+Dim resourceId$:String[10]
+Dim resourcex:Float[10]
+Dim resourcey:Float[10]
+Dim callx:Float[500]
+Dim cally:Float[500]
+I=0:numCalls=0:numResources=0
+earthRadius = 6367450.0
+
+If @Main Then
+    Mode -1,-1,0
+    Greedy()
+End If 
+
+Def Greedy()
+    Cls
+    T=Timer()
+    Load()
+    Print numResources WITH "Num resources: %d"
+    Print numCalls WITH "Num calls: %d"
+    For K=1 To 100
+        total=0.0
+        ResetUsed()
+        Print K;
+        Print ": ";
+        For C=1 To numResources
+            For D=1 To 50
+                O=100000000.0
+                L=-1
+                For a=1 To numCalls
+                    If used[a] = 0 Then
+                        D=CalcDistance(resourcex[C],resourcey[C],callx[a],cally[a])
+                        If D < O Then
+                            O=D
+                            L=a
+                        End If
+                    End If
+                Next
+                used[L]=1
+                total=total + O
+            Next
+        Next
+        Print total
+    Next
+    Print "Finished in ";:Print (Timer()-T);:Print " seconds"
+    WaitKey(10000)
+End Def
+
+Def AddCall()
+    numCalls=numCalls+1
+    callId$[numCalls]=line$[1]
+    callx[numCalls]=Float(line$[2])
+    cally[numCalls]=Float(line$[3])
+End Def
+
+Def AddResource()
+    numResources=numResources+1
+    resourceId$[numResources]=line$[1]
+    resourcex[numResources]=Float(line$[2])
+    resourcey[numResources]=Float(line$[3])
+End Def
+
+Def AddToList()
+    If I=4 AddCall()
+    If I=3 AddResource()
+    line$[1]="":line$[2]="":line$[3]="":line$[4]=""
+    I=1
+End Def
+
+Def atan2:Float(y:Float,x:Float)
+    If x > 0.0 Return Atn(y/x)
+    If y > 0.0 Return Atn(y/x) + PI
+    Return Atn(y/x) - PI
+End Def
+
+Def CalcDistance:Float(la1:Float,lo1:Float,la2:Float,lo2:Float)
+    startLat=Rad(la1)
+    startLon=Rad(lo1)
+    endLat=Rad(la2)
+    endLon=Rad(lo2)
+    lon=endLon - startLon
+    lat=endLat - startLat
+    sinHLat=Sin(lat * 0.5)
+    sinHLon=Sin(lon * 0.5)
+    a=(sinHLat * sinHLat) + (Cos(startLat) * Cos(endLat)) * (sinHLon * sinHLon)
+    c=atan2(Sqr(a), Sqr(1.0-a))
+    D=earthRadius * (c + c)
+    Return D
+End Def
+
+Def ResetUsed()
+    For a=1 To numCalls
+        used[a] = 0
+    Next
+End Def
+
+Def InitialStrings()
+    For a=1 To 500
+        line$[a] = ""
+    Next
+End Def
+
+Def Load()
+    T=Timer()
+    channel=OpenIn("Data.txt")
+    If channel=-1 Print "Data.txt file not found":Quit
+
+    line$[1]="":line$[2]="":line$[3]="":line$[4]=""
+    I=1
+    InitialStrings()
+    Repeat
+        a=BGet(channel)
+        If a=ASC(",") I=I+1 Else line$[I] = line$[I] + Chr(a)
+        If a=10 AddToList()
+    Until Eof(channel)
+    Close channel
+    Print "Imported in ";:Print (Timer()-T);:Print " seconds"
+End Def
+

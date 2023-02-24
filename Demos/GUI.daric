@@ -1,0 +1,88 @@
+If @Main Then
+    Mode 1280,1024,Windowed Or Banked
+    OpenWindows()
+End If
+
+u=0.0:v=0.0:t=0.0
+
+Def OpenWindows()
+    Window "Clock", 100,100,400,400
+    Window "Sierpinski", 200,200,400,400
+    Window "Bubble Universe", 300,300,400,400
+
+    R=0.0
+    obj_shape=LoadMesh("Shapes/911-gt2-rim.obj")
+    obj=Object(obj_shape, 0, 0, 0, 0, 0, 0, 0.075, 1)
+    Repeat
+        Rotate obj, 0, R, 0
+		Render
+        R=R+0.25
+        Flip
+
+        SetWindow "Clock"
+        Clock
+        UnsetWindow
+
+        SetWindow "Sierpinski"
+        SetBg 0,0,0
+        RectangleFilled 0,0,WindowWidth("Sierpinski"),WindowHeight("Sierpinski")
+        DrawTriangle 8,0,0,1000
+        Flip
+        UnsetWindow
+
+        SetWindow "Bubble Universe"
+        BubbleUniverse
+        t=t+0.0025
+        Flip
+        UnsetWindow
+    Until WaitKey(0) Or AppCloseRequested()
+End Def
+
+Def DrawTriangle(l:Int,x:Float,y:Float,s:Float)
+	If l > 0 Then
+		SetFg Rnd(255),Rnd(255),Rnd(255)
+		Triangle x,y,x+s,y,x,y+s
+		s2=s/2
+		DrawTriangle l-1,x,y,s2
+		DrawTriangle l-1,x+s2,y,s2
+		DrawTriangle l-1,x,y+s2,s2
+	End If
+End Def
+
+Def BubbleUniverse()
+    SetBg 0,0,0
+    RectangleFilled 0,0,WindowWidth("Bubble Universe"),WindowHeight("Bubble Universe")
+    n=350:r=PI/2/235
+    x=0.0:sz=WindowHeight("Bubble Universe")/5.0
+    Origin WindowWidth("Bubble Universe")/2,WindowHeight("Bubble Universe")/2
+    For i=0 To n
+        For j=0 To n
+            u=Sin(i+v)+Sin(r*i+x)
+            v=Cos(i+v)+Cos(r*i+x)
+            x=u+t
+            SetFg i,j,(i+j)/2
+            Plot u*sz,v*sz
+        Next
+    Next
+End Def
+
+Def Clock()
+    SetBg 0,0,0
+    RectangleFilled 0,0,WindowWidth("Clock"),WindowHeight("Clock")
+    Origin WindowWidth("Clock")/2,WindowHeight("Clock")/2
+    h=WindowHeight("Clock")
+    S=Int(Mid(Time(),7,2))
+    M=Int(Mid(Time(),4,2))
+    H=Int(Mid(Time(),1,2))
+
+    si=h*0.4:A=180-(S*6):x=Sin(RAD(A))*si:y=Cos(RAD(A))*si
+    SetFg 255,0,0:SetLineWidth 1:Line 0,0,x,y
+
+    si=h*0.35:A=180-(M*6):x=Sin(RAD(A))*si:y=Cos(RAD(A))*si
+    SetFg 60,60,60:SetLineWidth 2:Line 0,0,x,y
+
+    si=h*0.2:A=180-(H*30):x=Sin(RAD(A))*si:y=Cos(RAD(A))*si
+    SetFg 255,255,255:SetLineWidth 3:Line 0,0,x,y
+    SetLineWidth 1
+    Flip
+End Def

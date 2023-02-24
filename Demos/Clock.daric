@@ -1,0 +1,30 @@
+If @Main Then
+    Mode 1280,1024,Windowed Or Banked
+    Clock()
+End If
+
+Def Clock()
+    BankedOn
+    Origin ScreenWidth()/2,ScreenHeight()/2
+    h=ScreenHeight()
+    Repeat
+        Cls
+        S=Int(Mid(Time(),7,2))
+        M=Int(Mid(Time(),4,2))
+        H=Int(Mid(Time(),1,2))
+
+        si=h*0.4:A=180-(S*6):x=Sin(RAD(A))*si:y=Cos(RAD(A))*si
+        SetFg 255,0,0:SetLineWidth 1:Line 0,0,x,y
+
+        si=h*0.35:A=180-(M*6):x=Sin(RAD(A))*si:y=Cos(RAD(A))*si
+        SetFg 60,60,60:SetLineWidth 2:Line 0,0,x,y
+
+        si=h*0.2:A=180-(H*30):x=Sin(RAD(A))*si:y=Cos(RAD(A))*si
+        SetFg 255,255,255:SetLineWidth 3:Line 0,0,x,y
+        Flip
+    Until WaitKey(0) Or AppCloseRequested()
+    BankedOff
+    Origin 0,0
+    SetLineWidth 1
+    GetChar
+End Def
