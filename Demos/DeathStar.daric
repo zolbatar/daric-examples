@@ -24,7 +24,7 @@ Def DeathStar()
     SetFg 255,255,200
     SetFont font:TextCentre ScreenWidth()/2, 0, "DeathStar"
     SetFont 0:SetFg 255,255,255:TextCentre ScreenWidth()/2, 105, "Inspired by @electron_greg"  
-    GetKey()
+    Repeat Until WaitKey(0) Or AppCloseRequested()
 End Def
 
 Def c(v:Float,z:Float,r:Float) 
