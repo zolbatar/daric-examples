@@ -84,7 +84,7 @@ Def Darch()
         End If
 
         DoRender(pos,rot,height,tt,dead)
-    Until KeyDown(KEY_Q) Or AppCloseRequested()
+    Until KeyDown(KEY_ESCAPE) Or AppCloseRequested()
     ShadowsOff
     BankedOff
 End Def

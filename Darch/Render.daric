@@ -44,7 +44,7 @@ Def RenderTerrain(x:Int,z:Int,frac_x:Float,frac_z:Float,sq_x:Int,sq_z:Int,ry:Flo
   			End If
             If h#>0.0 r%=dcolours[x+act_x, z+act_z].r:g%=dcolours[x+act_x, z+act_z].g:b%=dcolours[x+act_x, z+act_z].b
             If h#=0.0 r%=dcolours_water[x+act_x, z+act_z].r:g%=dcolours_water[x+act_x, z+act_z].g:b%=dcolours_water[x+act_x, z+act_z].b
-            If h#>=0.0 colour%=(r% << 16) + (g% << 8) + b%
+            If h#>=0.0 colour%=Colour(r%, g%, b%)
             If h#<0.0 colour%=0:h#=0.0
 '			colour%=Colour(Rnd(255),Rnd(255),Rnd(255))
 
