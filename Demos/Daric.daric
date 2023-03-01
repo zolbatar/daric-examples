@@ -85,7 +85,7 @@ Def Daric()
     SetBg 0,255,0:RectangleFilled w/2-100,h/2+40,w/2+100,h/2+50
     SetBg 0,0,255:RectangleFilled w/2+110,h/2+40,w/2+300,h/2+50
     Flip
-    GetKey()
+    Until WaitKey(0) Or AppCloseRequested()
     BankedOff
     DeleteObject terrain1
 End Def

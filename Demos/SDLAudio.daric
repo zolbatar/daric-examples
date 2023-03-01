@@ -10,7 +10,7 @@ End If
 Def AudioMenu()
     Repeat
         Cls:I=0
-        Title("Welcome to the Daric 'Audio Studio'!")
+        Title("Welcome to the Daric 'Audio Studio'! (Use Keyboard)")
         Label("", "Samples", ms+(I*ys),0):I=I+1
             LabelIndent("0", "Play overlapping samples", ms+(I*ys)):I=I+1
         Label("", "Play some MIDI music", ms+(I*ys),0):I=I+1

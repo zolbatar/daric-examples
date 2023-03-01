@@ -26,5 +26,4 @@ Def Clock()
     BankedOff
     Origin 0,0
     SetLineWidth 1
-    GetChar
 End Def

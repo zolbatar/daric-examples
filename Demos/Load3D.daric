@@ -11,7 +11,7 @@ Def Load3D()
     SetFont prop
     Cls
     SetCamera 0,5,10,0,1,0,0,0,0
-    Title("Select a 3D Model to Load")
+    Title("Select a 3D Model to Load (Use Keyboard)")
     Label("1", "Male Head (DARIC importer)", ms+(0*ys),0)
     Label("2", "Teapot (DARIC importer)", ms+(1*ys),0)
     Label("3", "911 GT2 Rim", ms+(2*ys),0)
@@ -30,7 +30,7 @@ Def Load3D()
     End Case
 
     Cls
-    Title("Select a rendering type")
+    Title("Select a rendering type (Use Keyboard)")
     Label("1", "Solid flat shaded", ms+(0*ys),0)
     Label("2", "Wireframe", ms+(1*ys),0)
     Label("Q", "Back to Welcome", ms+(4*ys),0)
