@@ -4,7 +4,9 @@ If @Main Then
 End If
 
 Def Raytracer()
-    Cls
+    SetSpriteBuffer ScreenWidth(), ScreenHeight()
+    Print "Rendering...please wait"
+    T=Timer()
     WW=ScreenWidth():HH=ScreenHeight()
     For N=0 To HH-1
         For M=0 To WW-1
@@ -58,8 +60,11 @@ Def Raytracer()
 
             S=V*255
             SetFg S,S,S
-            Plot M,(HH-1)-N
+            SbPlot M,(HH-1)-N
         Next
     Next
+    sp=CreateSprite()
+    DrawSprite sp,0,ScreenWidth()/2,ScreenHeight()/2,0,1
+    SetAlpha 255:SetFg 255,255,255:Print Timer()-T With "Took %f seconds"
     GetKey()
 End Def

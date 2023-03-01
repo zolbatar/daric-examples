@@ -6,8 +6,9 @@ End If
 Def Mandelbrot()
     ITERS=256:XRANGE=-1.5:YRANGE=-1.5:COLS=16
     ww=ScreenWidth():hh=ScreenHeight()
-    Origin ScreenWidth()/2,ScreenHeight()/2
-    Cls
+    SetSpriteBuffer ScreenWidth(), ScreenHeight()
+    Print "Rendering...please wait"
+    T=Timer()
     For Y=-hh/2 To hh/2
         For X=-ww/2 To ww/2
             CR = (XRANGE + X * 4) / ww
@@ -42,9 +43,12 @@ Def Mandelbrot()
                 When 14: SetFg 153, 87, 0
                 When 15: SetFg 106, 52, 3
             End Case
-            Plot X,Y
+            SbPlot X+ScreenWidth()/2,Y+ScreenHeight()/2
         Next
     Next
-    Origin 0,0
+    Cls
+    sp=CreateSprite()
+    DrawSprite sp,0,ScreenWidth()/2,ScreenHeight()/2,0,1
+    SetAlpha 255:SetFg 255,255,255:Print Timer()-T With "Took %f seconds"
     GetKey()
 End Def

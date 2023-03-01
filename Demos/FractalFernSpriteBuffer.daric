@@ -3,7 +3,7 @@ If @Main Then
 
     x=0.0:y=0.0:nextX=0.0:nextY=0.0
     SetFg 144,238,144
-    SetAlpha 24
+'    SetAlpha 24
     s=Min(ScreenWidth(), ScreenHeight())/10.0
     T=Timer()
     SetSpriteBuffer(ScreenWidth(), ScreenHeight()) 
@@ -16,7 +16,7 @@ If @Main Then
 
         x = nextX
         y = nextY
-        SbPlot x*s+ScreenWidth()/2,y*s
+        SbPlot x*s+ScreenWidth()/2,ScreenHeight()-y*s
     Next
     sp=CreateSprite()
     DrawSprite sp,0,ScreenWidth()/2,ScreenHeight()/2,0,1
