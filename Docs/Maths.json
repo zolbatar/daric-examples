@@ -2,116 +2,7 @@
   {
     "package": "Daric",
     "module": "Maths",
-    "names": ["ACS", "acs", "Acs"],
-    "function": "acs",
-    "definitions": [
-      {
-        "parameters": ["FLOAT"],
-        "return": "FLOAT"
-      }
-    ]
-  },
-  {
-    "package": "Daric",
-    "module": "Maths",
-    "names": ["ASN", "asn", "Asn"],
-    "function": "asn",
-    "definitions": [
-      {
-        "parameters": ["FLOAT"],
-        "return": "FLOAT"
-      }
-    ]
-  },
-  {
-    "package": "Daric",
-    "module": "Maths",
-    "names": ["ATN", "atn", "Atn"],
-    "function": "atn",
-    "definitions": [
-      {
-        "parameters": ["FLOAT"],
-        "return": "FLOAT"
-      }
-    ]
-  },
-  {
-    "package": "Daric",
-    "module": "Maths",
-    "names": ["COS", "cos", "Cos"],
-    "function": "[cos]",
-    "definitions": [
-      {
-        "parameters": ["FLOAT"],
-        "return": "FLOAT"
-      }
-    ]
-  },
-  {
-    "package": "Daric",
-    "module": "Maths",
-    "names": ["DEG", "deg", "Deg"],
-    "function": "deg",
-    "definitions": [
-      {
-        "parameters": ["FLOAT"],
-        "return": "FLOAT"
-      }
-    ]
-  },
-  {
-    "package": "Daric",
-    "module": "Maths",
-    "names": ["EXP", "exp", "Exp"],
-    "function": "[exp]",
-    "definitions": [
-      {
-        "parameters": ["FLOAT"],
-        "return": "FLOAT"
-      }
-    ]
-  },
-  {
-    "package": "Daric",
-    "module": "Maths",
-    "names": ["LN", "ln", "Ln"],
-    "function": "[ln]",
-    "definitions": [
-      {
-        "parameters": ["FLOAT"],
-        "return": "FLOAT"
-      }
-    ]
-  },
-  {
-    "package": "Daric",
-    "module": "Maths",
-    "names": ["LOG", "log", "Log"],
-    "function": "[log]",
-    "definitions": [
-      {
-        "parameters": ["FLOAT"],
-        "return": "FLOAT"
-      }
-    ]
-  },
-  {
-    "package": "Daric",
-    "module": "Maths",
-    "names": ["SIN", "sin", "Sin"],
-    "function": "[sin]",
-    "definitions": [
-      {
-        "parameters": ["FLOAT"],
-        "return": "FLOAT"
-      }
-    ]
-  },
-  {
-    "package": "Daric",
-    "module": "Maths",
-    "names": ["PI", "pi", "Pi"],
-    "function": "pi",
+    "names": ["PI", "Pi"],
     "definitions": [
       {
         "parameters": [],
@@ -122,11 +13,10 @@
   {
     "package": "Daric",
     "module": "Maths",
-    "names": ["RAD", "rad", "Rad"],
-    "function": "rad",
+    "names": ["DEG", "Deg"],
     "definitions": [
       {
-        "parameters": ["FLOAT"],
+        "parameters": [{ "id": "angle", "type": "FLOAT", "desc": "" }],
         "return": "FLOAT"
       }
     ]
@@ -134,11 +24,21 @@
   {
     "package": "Daric",
     "module": "Maths",
-    "names": ["SGN", "sgn", "Sgn"],
-    "function": "sgn",
+    "names": ["RAD", "Rad"],
     "definitions": [
       {
-        "parameters": ["FLOAT"],
+        "parameters": [{ "id": "angle", "type": "FLOAT", "desc": "" }],
+        "return": "FLOAT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Maths",
+    "names": ["SGN", "Sgn"],
+    "definitions": [
+      {
+        "parameters": [{ "id": "value", "type": "FLOAT", "desc": "" }],
         "return": "INT"
       }
     ]
@@ -146,11 +46,10 @@
   {
     "package": "Daric",
     "module": "Maths",
-    "names": ["SQR", "sqr", "Sqr"],
-    "function": "[sqr]",
+    "names": ["ACS", "Acs"],
     "definitions": [
       {
-        "parameters": ["FLOAT"],
+        "parameters": [{ "id": "value", "type": "FLOAT", "desc": "" }],
         "return": "FLOAT"
       }
     ]
@@ -158,11 +57,148 @@
   {
     "package": "Daric",
     "module": "Maths",
-    "names": ["TAN", "tan", "Tan"],
-    "function": "TAN_F",
+    "names": ["ASN", "Asn"],
     "definitions": [
       {
-        "parameters": ["FLOAT"],
+        "parameters": [{ "id": "value", "type": "FLOAT", "desc": "" }],
+        "return": "FLOAT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Maths",
+    "names": ["ATN", "Atn"],
+    "definitions": [
+      {
+        "parameters": [{ "id": "value", "type": "FLOAT", "desc": "" }],
+        "return": "FLOAT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Maths",
+    "names": ["COS", "Cos"],
+    "definitions": [
+      {
+        "parameters": [{ "id": "value", "type": "FLOAT", "desc": "" }],
+        "return": "FLOAT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Maths",
+    "names": ["EXP", "Exp"],
+    "definitions": [
+      {
+        "parameters": [{ "id": "value", "type": "FLOAT", "desc": "" }],
+        "return": "FLOAT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Maths",
+    "names": ["FLOOR", "Floor"],
+    "definitions": [
+      {
+        "parameters": [{ "id": "value", "type": "FLOAT", "desc": "" }],
+        "return": "FLOAT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Maths",
+    "names": ["ROUND", "Round"],
+    "definitions": [
+      {
+        "parameters": [{ "id": "value", "type": "FLOAT", "desc": "" }],
+        "return": "FLOAT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Maths",
+    "names": ["LN", "Ln"],
+    "definitions": [
+      {
+        "parameters": [{ "id": "value", "type": "FLOAT", "desc": "" }],
+        "return": "FLOAT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Maths",
+    "names": ["LOG", "Log"],
+    "definitions": [
+      {
+        "parameters": [{ "id": "value", "type": "FLOAT", "desc": "" }],
+        "return": "FLOAT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Maths",
+    "names": ["SIN", "Sin"],
+    "definitions": [
+      {
+        "parameters": [{ "id": "value", "type": "FLOAT", "desc": "" }],
+        "return": "FLOAT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Maths",
+    "names": ["SQR", "Sqr"],
+    "definitions": [
+      {
+        "parameters": [{ "id": "value", "type": "FLOAT", "desc": "" }],
+        "return": "FLOAT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Maths",
+    "names": ["TAN", "Tan"],
+    "definitions": [
+      {
+        "parameters": [{ "id": "value", "type": "FLOAT", "desc": "" }],
+        "return": "FLOAT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Maths",
+    "names": ["MIN", "Min"],
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "value1", "type": "FLOAT", "desc": "" },
+          { "id": "value2", "type": "FLOAT", "desc": "" }
+        ],
+        "return": "FLOAT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Maths",
+    "names": ["MAX", "Max"],
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "value1", "type": "FLOAT", "desc": "" },
+          { "id": "value2", "type": "FLOAT", "desc": "" }
+        ],
         "return": "FLOAT"
       }
     ]

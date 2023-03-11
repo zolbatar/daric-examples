@@ -2,11 +2,10 @@
   {
     "package": "Daric",
     "module": "Strings",
-    "names": ["ASC", "asc", "Asc"],
-    "function": "asc",
+    "names": ["ASC", "Asc"],
     "definitions": [
       {
-        "parameters": ["STRING"],
+        "parameters": [{ "id": "string", "type": "STRING", "desc": "" }],
         "return": "INT"
       }
     ]
@@ -14,11 +13,10 @@
   {
     "package": "Daric",
     "module": "Strings",
-    "names": ["CHR$", "chr$", "Chr$"],
-    "function": "chrs",
+    "names": ["CHR", "Chr"],
     "definitions": [
       {
-        "parameters": ["INT"],
+        "parameters": [{ "id": "ascii", "type": "INT", "desc": "" }],
         "return": "STRING"
       }
     ]
@@ -26,11 +24,14 @@
   {
     "package": "Daric",
     "module": "Strings",
-    "names": ["INSTR", "instr", "Instr"],
-    "function": "instr",
+    "names": ["INSTR", "Instr"],
     "definitions": [
       {
-        "parameters": ["STRING", "STRING", "INT"],
+        "parameters": [
+          { "id": "string", "type": "STRING", "desc": "" },
+          { "id": "find", "type": "STRING", "desc": "" },
+          { "id": "start", "type": "INT", "desc": "" }
+        ],
         "return": "INT"
       }
     ]
@@ -38,11 +39,13 @@
   {
     "package": "Daric",
     "module": "Strings",
-    "names": ["LEFT$", "left$", "Left$"],
-    "function": "lefts",
+    "names": ["LEFT", "Left"],
     "definitions": [
       {
-        "parameters": ["STRING", "INT"],
+        "parameters": [
+          { "id": "string", "type": "STRING", "desc": "" },
+          { "id": "length", "type": "INT", "desc": "" }
+        ],
         "return": "STRING"
       }
     ]
@@ -50,11 +53,10 @@
   {
     "package": "Daric",
     "module": "Strings",
-    "names": ["LEN", "len", "Len"],
-    "function": "len",
+    "names": ["LEN", "Len"],
     "definitions": [
       {
-        "parameters": ["STRING"],
+        "parameters": [{ "id": "string", "type": "STRING", "desc": "" }],
         "return": "INT"
       }
     ]
@@ -62,11 +64,15 @@
   {
     "package": "Daric",
     "module": "Strings",
-    "names": ["MID$", "mid$", "Mid$"],
+    "names": ["MID", "Mid"],
     "function": "mids",
     "definitions": [
       {
-        "parameters": ["STRING", "INT", "INT"],
+        "parameters": [
+          { "id": "string", "type": "STRING", "desc": "" },
+          { "id": "start", "type": "INT", "desc": "" },
+          { "id": "end", "type": "INT", "desc": "" }
+        ],
         "return": "STRING"
       }
     ]
@@ -74,23 +80,13 @@
   {
     "package": "Daric",
     "module": "Strings",
-    "names": ["RIGHT$", "right$", "Right$"],
-    "function": "rights",
+    "names": ["RIGHT", "Right"],
     "definitions": [
       {
-        "parameters": ["STRING", "INT"],
-        "return": "STRING"
-      }
-    ]
-  },
-  {
-    "package": "Daric",
-    "module": "Strings",
-    "names": ["STR$", "str$", "Str$"],
-    "function": "strs",
-    "definitions": [
-      {
-        "parameters": ["STRING", "INT"],
+        "parameters": [
+          { "id": "string", "type": "STRING", "desc": "" },
+          { "id": "length", "type": "INT", "desc": "" }
+        ],
         "return": "STRING"
       }
     ]
