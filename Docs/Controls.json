@@ -3,18 +3,19 @@
     "package": "Daric",
     "module": "Controls",
     "names": ["Button"],
+    "function": "gui_button",
     "definitions": [
       {
         "parameters": [
-          { "id": "window", "type": "STRING" },
-          { "id": "id", "type": "STRING" },
-          { "id": "x", "type": "FLOAT" },
-          { "id": "y", "type": "FLOAT" },
-          { "id": "w", "type": "FLOAT" },
-          { "id": "h", "type": "FLOAT" },
-          { "id": "text", "type": "STRING" },
-          { "id": "hue", "type": "INT" },
-          { "id": "textcolour", "type": "INT" }
+          { "id": "window", "type": "STRING", "desc": "" },
+          { "id": "id", "type": "STRING", "desc": "" },
+          { "id": "x", "type": "FLOAT", "desc": "" },
+          { "id": "y", "type": "FLOAT", "desc": "" },
+          { "id": "w", "type": "FLOAT", "desc": "" },
+          { "id": "h", "type": "FLOAT", "desc": "" },
+          { "id": "text", "type": "STRING", "desc": "" },
+          { "id": "hue", "type": "INT", "desc": "" },
+          { "id": "textcolour", "type": "INT", "desc": "" }
         ],
         "return": "NONE"
       }
@@ -24,16 +25,17 @@
     "package": "Daric",
     "module": "Controls",
     "names": ["TextField"],
+    "function": "gui_textfield",
     "definitions": [
       {
         "parameters": [
-          { "id": "window", "type": "STRING" },
-          { "id": "id", "type": "STRING" },
-          { "id": "x", "type": "FLOAT" },
-          { "id": "y", "type": "FLOAT" },
-          { "id": "w", "type": "FLOAT" },
-          { "id": "h", "type": "FLOAT" },
-          { "id": "text", "type": "STRING" }
+          { "id": "window", "type": "STRING", "desc": "" },
+          { "id": "id", "type": "STRING", "desc": "" },
+          { "id": "x", "type": "FLOAT", "desc": "" },
+          { "id": "y", "type": "FLOAT", "desc": "" },
+          { "id": "w", "type": "FLOAT", "desc": "" },
+          { "id": "h", "type": "FLOAT", "desc": "" },
+          { "id": "text", "type": "STRING", "desc": "" }
         ],
         "return": "NONE"
       }
@@ -43,11 +45,12 @@
     "package": "Daric",
     "module": "GUI",
     "names": ["IsClicked"],
+    "function": "gui_isclicked",
     "definitions": [
       {
         "parameters": [
-          { "id": "window", "type": "STRING" },
-          { "id": "id", "type": "STRING" }
+          { "id": "window", "type": "STRING", "desc": "" },
+          { "id": "id", "type": "STRING", "desc": "" }
         ],
         "return": "INT"
       }
@@ -57,11 +60,12 @@
     "package": "Daric",
     "module": "Controls",
     "names": ["GetTextField"],
+    "function": "gui_gettextfield",
     "definitions": [
       {
         "parameters": [
-          { "id": "window", "type": "STRING" },
-          { "id": "id", "type": "STRING" }
+          { "id": "window", "type": "STRING", "desc": "" },
+          { "id": "id", "type": "STRING", "desc": "" }
         ],
         "return": "STRING"
       }
@@ -71,11 +75,12 @@
     "package": "Daric",
     "module": "Controls",
     "names": ["DeleteControl"],
+    "function": "gui_deletecontrol",
     "definitions": [
       {
         "parameters": [
-          { "id": "window", "type": "STRING" },
-          { "id": "id", "type": "STRING" }
+          { "id": "window", "type": "STRING", "desc": "" },
+          { "id": "id", "type": "STRING", "desc": "" }
         ],
         "return": "NONE"
       }

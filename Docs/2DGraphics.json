@@ -1,249 +1,181 @@
 [
   {
-    "package": "DARIC",
+    "package": "Daric",
     "module": "Graphics2D",
-    "names": ["Cls"],
-    "function": "cls",
-    "definitions": [
-      {
-        "parameters": [],
-        "return": "NONE"
-      }
-    ]
-  },
-  {
-    "package": "DARIC",
-    "module": "Graphics2D",
-    "names": ["CursorOn"],
-    "function": "cursoron",
-    "definitions": [
-      {
-        "parameters": [],
-        "return": "NONE"
-      }
-    ]
-  },
-  {
-    "package": "DARIC",
-    "module": "Graphics2D",
-    "names": ["CursorOff"],
-    "function": "cursoroff",
-    "definitions": [
-      {
-        "parameters": [],
-        "return": "NONE"
-      }
-    ]
-  },
-  {
-    "package": "DARIC",
-    "module": "Graphics2D",
-    "names": ["FLIP", "flip", "Flip"],
-    "function": "flip",
-    "definitions": [
-      {
-        "parameters": [],
-        "return": "NONE"
-      }
-    ]
-  },
-  {
-    "package": "DARIC",
-    "module": "Graphics2D",
-    "names": ["Mode"],
-    "function": "_mode",
-    "definitions": [
-      {
-        "parameters": ["INT", "INT", "INT", "INT"],
-        "return": "NONE"
-      }
-    ]
-  },
-  {
-    "package": "DARIC",
-    "module": "Graphics2D",
-    "names": ["PLOT", "plot", "Plot"],
-    "function": "plot",
-    "definitions": [
-      {
-        "parameters": ["FLOAT", "FLOAT"],
-        "return": "NONE"
-      }
-    ]
-  },
-  {
-    "package": "DARIC",
-    "module": "Graphics2D",
-    "names": ["CLIPON", "clipon", "ClipOn"],
-    "function": "clipon",
-    "definitions": [
-      {
-        "parameters": ["FLOAT", "FLOAT", "FLOAT", "FLOAT"],
-        "return": "NONE"
-      }
-    ]
-  },
-  {
-    "package": "DARIC",
-    "module": "Graphics2D",
-    "names": ["CLIPOFF", "clipoff", "ClipOff"],
-    "function": "clipoff",
-    "definitions": [
-      {
-        "parameters": [],
-        "return": "NONE"
-      }
-    ]
-  },
-  {
-    "package": "DARIC",
-    "module": "Graphics2D",
-    "names": ["SCREENWIDTH", "screenwidth", "ScreenWidth"],
-    "function": "screenwidth",
-    "definitions": [
-      {
-        "parameters": [],
-        "return": "INT"
-      }
-    ]
-  },
-  {
-    "package": "DARIC",
-    "module": "Graphics2D",
-    "names": ["SCREENHEIGHT", "screenheight", "ScreenHeight"],
-    "function": "screenheight",
-    "definitions": [
-      {
-        "parameters": [],
-        "return": "INT"
-      }
-    ]
-  },
-  {
-    "package": "DARIC",
-    "module": "Graphics2D",
-    "names": ["LINE", "line", "Line"],
-    "function": "line",
-    "definitions": [
-      {
-        "parameters": ["FLOAT", "FLOAT", "FLOAT", "FLOAT"],
-        "return": "NONE"
-      }
-    ]
-  },
-  {
-    "package": "DARIC",
-    "module": "Graphics2D",
-    "names": ["LINE", "line", "Line"],
-    "function": "linew",
-    "definitions": [
-      {
-        "parameters": ["FLOAT", "FLOAT", "FLOAT", "FLOAT", "FLOAT"],
-        "return": "NONE"
-      }
-    ]
-  },
-  {
-    "package": "DARIC",
-    "module": "Graphics2D",
-    "names": ["CIRCLE", "circle", "Circle"],
-    "function": "circle",
-    "definitions": [
-      {
-        "parameters": ["FLOAT", "FLOAT", "FLOAT"],
-        "return": "NONE"
-      }
-    ]
-  },
-  {
-    "package": "DARIC",
-    "module": "Graphics2D",
-    "names": ["CIRCLE", "circle", "Circle"],
-    "function": "circlew",
-    "definitions": [
-      {
-        "parameters": ["FLOAT", "FLOAT", "FLOAT", "FLOAT"],
-        "return": "NONE"
-      }
-    ]
-  },
-  {
-    "package": "DARIC",
-    "module": "Graphics2D",
-    "names": ["CIRCLEFILL", "circlefill", "CircleFill"],
-    "function": "circlefill",
-    "definitions": [
-      {
-        "parameters": ["FLOAT", "FLOAT", "FLOAT"],
-        "return": "NONE"
-      }
-    ]
-  },
-  {
-    "package": "DARIC",
-    "module": "Graphics2D",
-    "names": ["RECTANGLE", "rectangle", "Rectangle"],
-    "function": "rectangle",
-    "definitions": [
-      {
-        "parameters": ["FLOAT", "FLOAT", "FLOAT", "FLOAT"],
-        "return": "NONE"
-      }
-    ]
-  },
-  {
-    "package": "DARIC",
-    "module": "Graphics2D",
-    "names": ["RECTANGLEFILL", "rectanglefill", "RectangleFill"],
-    "function": "rectanglefill",
-    "definitions": [
-      {
-        "parameters": ["FLOAT", "FLOAT", "FLOAT", "FLOAT"],
-        "return": "NONE"
-      }
-    ]
-  },
-  {
-    "package": "DARIC",
-    "module": "Graphics2D",
-    "names": ["TRIANGLE", "triangle", "Triangle"],
-    "function": "triangle",
-    "definitions": [
-      {
-        "parameters": ["FLOAT", "FLOAT", "FLOAT", "FLOAT", "FLOAT", "FLOAT"],
-        "return": "NONE"
-      }
-    ]
-  },
-  {
-    "package": "DARIC",
-    "module": "Graphics2D",
-    "names": ["TRIANGLEFILL", "trianglefill", "TriangleFill"],
-    "function": "trianglefill",
-    "definitions": [
-      {
-        "parameters": ["FLOAT", "FLOAT", "FLOAT", "FLOAT", "FLOAT", "FLOAT"],
-        "return": "NONE"
-      }
-    ]
-  },
-  {
-    "package": "DARIC",
-    "module": "Graphics2D",
-    "names": ["TRIANGLESHADED", "triangleshaded", "TriangleShaded"],
-    "function": "triangleshaded",
+    "names": ["Circle"],
+    "function": "gfx2d_circle",
     "definitions": [
       {
         "parameters": [
-          "FLOAT",
-          "FLOAT",
-          "INT",
-          "FLOAT",
-          "FLOAT",
-          "INT",
-          "FLOAT",
-          "FLOAT",
-          "INT"
+          { "id": "x", "type": "FLOAT", "desc": "" },
+          { "id": "y", "type": "FLOAT", "desc": "" },
+          { "id": "r", "type": "FLOAT", "desc": "" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics2D",
+    "names": ["CircleFilled"],
+    "function": "gfx2d_circlefilled",
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "x", "type": "FLOAT", "desc": "" },
+          { "id": "y", "type": "FLOAT", "desc": "" },
+          { "id": "r", "type": "FLOAT", "desc": "" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics2D",
+    "names": ["Line"],
+    "function": "gfx2d_line",
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "x1", "type": "FLOAT", "desc": "" },
+          { "id": "y1", "type": "FLOAT", "desc": "" },
+          { "id": "x2", "type": "FLOAT", "desc": "" },
+          { "id": "y2", "type": "FLOAT", "desc": "" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics2D",
+    "names": ["Plot"],
+    "function": "gfx2d_plot",
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "x", "type": "FLOAT", "desc": "" },
+          { "id": "y", "type": "FLOAT", "desc": "" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics2D",
+    "names": ["Rectangle"],
+    "function": "gfx2d_rectangle",
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "x1", "type": "FLOAT", "desc": "" },
+          { "id": "y1", "type": "FLOAT", "desc": "" },
+          { "id": "x2", "type": "FLOAT", "desc": "" },
+          { "id": "y2", "type": "FLOAT", "desc": "" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics2D",
+    "names": ["RectangleFilled"],
+    "function": "gfx2d_rectanglefill",
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "x1", "type": "FLOAT", "desc": "" },
+          { "id": "y1", "type": "FLOAT", "desc": "" },
+          { "id": "x2", "type": "FLOAT", "desc": "" },
+          { "id": "y2", "type": "FLOAT", "desc": "" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics2D",
+    "names": ["SetAlpha"],
+    "function": "gfx2d_set_alpha",
+    "definitions": [
+      {
+        "parameters": [{ "id": "value", "type": "INT", "desc": "" }],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics2D",
+    "names": ["SetLineWidth"],
+    "function": "gfx2d_linewidth",
+    "definitions": [
+      {
+        "parameters": [{ "id": "value", "type": "FLOAT", "desc": "" }],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics2D",
+    "names": ["Triangle"],
+    "function": "gfx2d_triangle",
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "x1", "type": "FLOAT", "desc": "" },
+          { "id": "y1", "type": "FLOAT", "desc": "" },
+          { "id": "x2", "type": "FLOAT", "desc": "" },
+          { "id": "y2", "type": "FLOAT", "desc": "" }
+          { "id": "x3", "type": "FLOAT", "desc": "" },
+          { "id": "y3", "type": "FLOAT", "desc": "" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics2D",
+    "names": ["TriangleFilled"],
+    "function": "gfx2d_trianglefilled",
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "x1", "type": "FLOAT", "desc": "" },
+          { "id": "y1", "type": "FLOAT", "desc": "" },
+          { "id": "x2", "type": "FLOAT", "desc": "" },
+          { "id": "y2", "type": "FLOAT", "desc": "" }
+          { "id": "x3", "type": "FLOAT", "desc": "" },
+          { "id": "y3", "type": "FLOAT", "desc": "" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics2D",
+    "names": ["TriangleShaded"],
+    "function": "gfx2d_triangleshaded",
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "x1", "type": "FLOAT", "desc": "" },
+          { "id": "y1", "type": "FLOAT", "desc": "" },
+          { "id": "colour1", "type": "INT", "desc": "" },
+          { "id": "x2", "type": "FLOAT", "desc": "" },
+          { "id": "y2", "type": "FLOAT", "desc": "" },
+          { "id": "colour2", "type": "INT", "desc": "" },
+          { "id": "x3", "type": "FLOAT", "desc": "" },
+          { "id": "y3", "type": "FLOAT", "desc": "" },
+          { "id": "colour3", "type": "INT", "desc": "" }
         ],
         "return": "NONE"
       }

@@ -3,14 +3,15 @@
     "package": "Daric",
     "module": "Windowing",
     "names": ["Window"],
+    "function": "gui_window",
     "definitions": [
       {
         "parameters": [
-          { "id": "name", "type": "STRING" },
-          { "id": "x1", "type": "INT" },
-          { "id": "y1", "type": "INT" },
-          { "id": "x2", "type": "INT" },
-          { "id": "y2", "type": "INT" }
+          { "id": "name", "type": "STRING", "desc": "" },
+          { "id": "x1", "type": "INT", "desc": "" },
+          { "id": "y1", "type": "INT", "desc": "" },
+          { "id": "x2", "type": "INT", "desc": "" },
+          { "id": "y2", "type": "INT", "desc": "" }
         ],
         "return": "NONE"
       }
@@ -20,9 +21,10 @@
     "package": "Daric",
     "module": "Windowing",
     "names": ["SetWindow"],
+    "function": "gui_startwindow",
     "definitions": [
       {
-        "parameters": [{ "id": "name", "type": "STRING" }],
+        "parameters": [{ "id": "name", "type": "STRING", "desc": "" }],
         "return": "NONE"
       }
     ]
@@ -31,6 +33,7 @@
     "package": "Daric",
     "module": "Windowing",
     "names": ["UnsetWindow"],
+    "function": "gui_endwindow",
     "definitions": [
       {
         "parameters": [],
@@ -42,6 +45,7 @@
     "package": "Daric",
     "module": "Windowing",
     "names": ["WindowWidth"],
+    "function": "gfx2d_wwidth",
     "definitions": [
       {
         "parameters": [],
@@ -53,6 +57,7 @@
     "package": "Daric",
     "module": "Windowing",
     "names": ["WindowHeight"],
+    "function": "gfx2d_wheight",
     "definitions": [
       {
         "parameters": [],

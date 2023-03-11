@@ -2,11 +2,15 @@
   {
     "package": "Daric",
     "module": "Colour",
-    "names": ["BG", "bg", "Bg"],
-    "function": "bg",
+    "names": ["SetFg"],
+    "function": "gfx2d_fg",
     "definitions": [
       {
-        "parameters": ["INT", "INT", "INT"],
+        "parameters": [
+          { "id": "red", "type": "INT", "desc": "" },
+          { "id": "green", "type": "INT", "desc": "" },
+          { "id": "blue", "type": "INT", "desc": "" }
+        ],
         "return": "NONE"
       }
     ]
@@ -14,11 +18,87 @@
   {
     "package": "Daric",
     "module": "Colour",
-    "names": ["COL", "col", "Col"],
-    "function": "col",
+    "names": ["SetFgColour"],
+    "function": "gfx2d_fgc",
     "definitions": [
       {
-        "parameters": ["INT", "INT", "INT"],
+        "parameters": [{ "id": "rgba", "type": "INT", "desc": "" }],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Colour",
+    "names": ["SetFgHSV"],
+    "function": "gfx2d_fg_hsv",
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "hue", "type": "INT", "desc": "" },
+          { "id": "saturation", "type": "INT", "desc": "" },
+          { "id": "value", "type": "INT", "desc": "" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Colour",
+    "names": ["SetBg"],
+    "function": "gfx2d_bg",
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "red", "type": "INT", "desc": "" },
+          { "id": "green", "type": "INT", "desc": "" },
+          { "id": "blue", "type": "INT", "desc": "" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Colour",
+    "names": ["SetBgColour"],
+    "function": "gfx2d_bgc",
+    "definitions": [
+      {
+        "parameters": [{ "id": "rgb", "type": "INT", "desc": "" }],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Colour",
+    "names": ["SetBgHSV"],
+    "function": "gfx2d_bg_hsv",
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "hue", "type": "INT", "desc": "" },
+          { "id": "saturation", "type": "INT", "desc": "" },
+          { "id": "value", "type": "INT", "desc": "" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Colour",
+    "names": ["Colour"],
+    "function": "gfx2d_createcolour",
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "red", "type": "INT", "desc": "" },
+          { "id": "green", "type": "INT", "desc": "" },
+          { "id": "blue", "type": "INT", "desc": "" }
+        ],
         "return": "INT"
       }
     ]
@@ -26,48 +106,17 @@
   {
     "package": "Daric",
     "module": "Colour",
-    "names": ["COL", "col", "Col"],
-    "function": "cola",
+    "names": ["ColourAlpha"],
+    "function": "gfx2d_createcolouralpha",
     "definitions": [
       {
-        "parameters": ["INT", "INT", "INT", "INT"],
+        "parameters": [
+          { "id": "red", "type": "INT", "desc": "" },
+          { "id": "green", "type": "INT", "desc": "" },
+          { "id": "blue", "type": "INT", "desc": "" },
+          { "id": "alpha", "type": "INT", "desc": "" }
+        ],
         "return": "INT"
-      }
-    ]
-  },
-  {
-    "package": "Daric",
-    "module": "Colour",
-    "names": ["FG", "fg", "Fg"],
-    "function": "fg",
-    "definitions": [
-      {
-        "parameters": ["INT", "INT", "INT"],
-        "return": "NONE"
-      }
-    ]
-  },
-  {
-    "package": "Daric",
-    "module": "Colour",
-    "names": ["FG", "fg", "Fg"],
-    "function": "fga",
-    "definitions": [
-      {
-        "parameters": ["INT", "INT", "INT", "INT"],
-        "return": "NONE"
-      }
-    ]
-  },
-  {
-    "package": "Daric",
-    "module": "Colour",
-    "names": ["FG", "fg", "Fg"],
-    "function": "fgc",
-    "definitions": [
-      {
-        "parameters": ["INT"],
-        "return": "NONE"
       }
     ]
   }

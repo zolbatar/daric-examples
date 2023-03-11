@@ -2,11 +2,26 @@
   {
     "package": "Daric",
     "module": "Text",
-    "names": ["TEXT", "text", "Text"],
-    "function": "_text",
+    "names": ["LoadFont"],
+    "function": "text_loadfont",
     "definitions": [
       {
-        "parameters": ["INT", "FLOAT", "FLOAT", "FLOAT", "STRING"],
+        "parameters": [
+          { "id": "filename", "type": "STRING", "desc": "" },
+          { "id": "size", "type": "FLOAT", "desc": "" }
+        ],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Text",
+    "names": ["SetFont"],
+    "function": "text_setfont",
+    "definitions": [
+      {
+        "parameters": [{ "id": "font_handle", "type": "INT", "desc": "" }],
         "return": "NONE"
       }
     ]
@@ -14,11 +29,15 @@
   {
     "package": "Daric",
     "module": "Text",
-    "names": ["TEXTCENTRE", "textcentre", "TextCentre"],
-    "function": "textcentre",
+    "names": ["Text"],
+    "function": "text_left",
     "definitions": [
       {
-        "parameters": ["INT", "FLOAT", "FLOAT", "FLOAT", "STRING"],
+        "parameters": [
+          { "id": "x", "type": "FLOAT", "desc": "" },
+          { "id": "y", "type": "FLOAT", "desc": "" },
+          { "id": "text", "type": "STRING", "desc": "" }
+        ],
         "return": "NONE"
       }
     ]
@@ -26,11 +45,31 @@
   {
     "package": "Daric",
     "module": "Text",
-    "names": ["TEXTRIGHT", "textright", "TextRight"],
-    "function": "textright",
+    "names": ["TextCentre"],
+    "function": "text_centre",
     "definitions": [
       {
-        "parameters": ["INT", "FLOAT", "FLOAT", "FLOAT", "STRING"],
+        "parameters": [
+          { "id": "x", "type": "FLOAT", "desc": "" },
+          { "id": "y", "type": "FLOAT", "desc": "" },
+          { "id": "text", "type": "STRING", "desc": "" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Text",
+    "names": ["TextRight"],
+    "function": "text_right",
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "x", "type": "FLOAT", "desc": "" },
+          { "id": "y", "type": "FLOAT", "desc": "" },
+          { "id": "text", "type": "STRING", "desc": "" }
+        ],
         "return": "NONE"
       }
     ]

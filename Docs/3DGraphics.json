@@ -2,20 +2,55 @@
   {
     "package": "Daric",
     "module": "Graphics3D",
-    "names": ["OBJECT", "object", "Object"],
-    "function": "create_object",
+    "names": ["Perspective"],
+    "function": "gfx3d_perspective",
     "definitions": [
       {
         "parameters": [
-          "INT",
-          "FLOAT",
-          "FLOAT",
-          "FLOAT",
-          "FLOAT",
-          "FLOAT",
-          "FLOAT",
-          "FLOAT",
-          "INT"
+          { "id": "fov", "type": "FLOAT", "desc": "" },
+          { "id": "near", "type": "FLOAT", "desc": "" },
+          { "id": "far", "type": "FLOAT", "desc": "" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics3D",
+    "names": ["Orthographic"],
+    "function": "gfx3d_orthographic",
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "x1", "type": "FLOAT", "desc": "" },
+          { "id": "y1", "type": "FLOAT", "desc": "" },
+          { "id": "x2", "type": "FLOAT", "desc": "" },
+          { "id": "y2", "type": "FLOAT", "desc": "" },
+          { "id": "near", "type": "FLOAT", "desc": "" },
+          { "id": "far", "type": "FLOAT", "desc": "" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics3D",
+    "names": ["Object"],
+    "function": "gfx3d_object",
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "shape_handle", "type": "INT", "desc": "" },
+          { "id": "x", "type": "FLOAT", "desc": "" },
+          { "id": "y", "type": "FLOAT", "desc": "" },
+          { "id": "z", "type": "FLOAT", "desc": "" },
+          { "id": "rx", "type": "FLOAT", "desc": "" },
+          { "id": "ry", "type": "FLOAT", "desc": "" },
+          { "id": "rz", "type": "FLOAT", "desc": "" },
+          { "id": "scale", "type": "FLOAT", "desc": "" },
+          { "id": "render_type", "type": "INT", "desc": "" }
         ],
         "return": "INT"
       }
@@ -24,32 +59,8 @@
   {
     "package": "Daric",
     "module": "Graphics3D",
-    "names": ["DELETESHAPE", "deleteshape", "DeleteShape"],
-    "function": "delete_shape",
-    "definitions": [
-      {
-        "parameters": ["INT"],
-        "return": "NONE"
-      }
-    ]
-  },
-  {
-    "package": "Daric",
-    "module": "Graphics3D",
-    "names": ["DELETEOBJECT", "deleteobject", "DeleteObject"],
-    "function": "delete_object",
-    "definitions": [
-      {
-        "parameters": ["INT"],
-        "return": "NONE"
-      }
-    ]
-  },
-  {
-    "package": "Daric",
-    "module": "Graphics3D",
-    "names": ["SHAPE", "shape", "Shape"],
-    "function": "shape",
+    "names": ["Shape"],
+    "function": "gfx3d_shape",
     "definitions": [
       {
         "parameters": [],
@@ -60,11 +71,11 @@
   {
     "package": "Daric",
     "module": "Graphics3D",
-    "names": ["FACE", "face", "Face"],
-    "function": "create_face_solid",
+    "names": ["DeleteShape"],
+    "function": "gfx3d_shapedelete",
     "definitions": [
       {
-        "parameters": ["INT", "INT", "INT", "INT"],
+        "parameters": [{ "id": "shape_handle", "type": "INT", "desc": "" }],
         "return": "NONE"
       }
     ]
@@ -72,11 +83,21 @@
   {
     "package": "Daric",
     "module": "Graphics3D",
-    "names": ["FACE", "face", "Face"],
-    "function": "create_face",
+    "names": ["Camera"],
+    "function": "gfx3d_camera",
     "definitions": [
       {
-        "parameters": ["INT", "INT", "INT"],
+        "parameters": [
+          { "id": "x", "type": "FLOAT", "desc": "" },
+          { "id": "y", "type": "FLOAT", "desc": "" },
+          { "id": "z", "type": "FLOAT", "desc": "" },
+          { "id": "rx", "type": "FLOAT", "desc": "" },
+          { "id": "ry", "type": "FLOAT", "desc": "" },
+          { "id": "rz", "type": "FLOAT", "desc": "" },
+          { "id": "lx", "type": "FLOAT", "desc": "" },
+          { "id": "ly", "type": "FLOAT", "desc": "" },
+          { "id": "lz", "type": "FLOAT", "desc": "" }
+        ],
         "return": "NONE"
       }
     ]
@@ -84,8 +105,57 @@
   {
     "package": "Daric",
     "module": "Graphics3D",
-    "names": ["RENDER", "render", "Render"],
-    "function": "render_frame",
+    "names": ["Rotate"],
+    "function": "gfx3d_rotate",
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "object_handle", "type": "INT", "desc": "" },
+          { "id": "rx", "type": "FLOAT", "desc": "" },
+          { "id": "ry", "type": "FLOAT", "desc": "" },
+          { "id": "rz", "type": "FLOAT", "desc": "" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics3D",
+    "names": ["Scale"],
+    "function": "gfx3d_scale",
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "object_handle", "type": "INT", "desc": "" },
+          { "id": "scale_factor", "type": "FLOAT", "desc": "" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics3D",
+    "names": ["Translate"],
+    "function": "gfx3d_translate",
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "object_handle", "type": "INT", "desc": "" },
+          { "id": "x", "type": "FLOAT", "desc": "" },
+          { "id": "y", "type": "FLOAT", "desc": "" },
+          { "id": "z", "type": "FLOAT", "desc": "" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics3D",
+    "names": ["DeleteAllObjects"],
+    "function": "gfx3d_deleteallobjects",
     "definitions": [
       {
         "parameters": [],
@@ -96,11 +166,11 @@
   {
     "package": "Daric",
     "module": "Graphics3D",
-    "names": ["ROTATE", "rotate", "Rotate"],
-    "function": "object_rotate",
+    "names": ["DeleteObject"],
+    "function": "gfx3d_deleteobject",
     "definitions": [
       {
-        "parameters": ["INT", "FLOAT", "FLOAT", "FLOAT"],
+        "parameters": [{ "id": "object_handle", "type": "INT", "desc": "" }],
         "return": "NONE"
       }
     ]
@@ -108,11 +178,11 @@
   {
     "package": "Daric",
     "module": "Graphics3D",
-    "names": ["SCALE", "scale", "Scale"],
-    "function": "object_scale",
+    "names": ["BlendOn"],
+    "function": "gfx3d_blendon",
     "definitions": [
       {
-        "parameters": ["INT", "FLOAT"],
+        "parameters": [],
         "return": "NONE"
       }
     ]
@@ -120,11 +190,11 @@
   {
     "package": "Daric",
     "module": "Graphics3D",
-    "names": ["TRANSLATE", "translate", "Translate"],
-    "function": "object_translate",
+    "names": ["BlendOff"],
+    "function": "gfx3d_blendoff",
     "definitions": [
       {
-        "parameters": ["INT", "FLOAT", "FLOAT", "FLOAT"],
+        "parameters": [],
         "return": "NONE"
       }
     ]
@@ -132,11 +202,11 @@
   {
     "package": "Daric",
     "module": "Graphics3D",
-    "names": ["VERTEX", "vertex", "Vertex"],
-    "function": "create_vertex",
+    "names": ["Render"],
+    "function": "gfx3d_render",
     "definitions": [
       {
-        "parameters": ["FLOAT", "FLOAT", "FLOAT", "INT"],
+        "parameters": [],
         "return": "NONE"
       }
     ]
@@ -144,11 +214,77 @@
   {
     "package": "Daric",
     "module": "Graphics3D",
-    "names": ["LOADMESH", "loadmesh", "LoadMesh"],
-    "function": "load_mesh",
+    "names": ["Vertex"],
+    "function": "gfx3d_vertex",
     "definitions": [
       {
-        "parameters": ["STRING"],
+        "parameters": [
+          { "id": "x", "type": "FLOAT", "desc": "" },
+          { "id": "y", "type": "FLOAT", "desc": "" },
+          { "id": "z", "type": "FLOAT", "desc": "" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics3D",
+    "names": ["VertexColour"],
+    "function": "gfx3d_vertexc",
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "x", "type": "FLOAT", "desc": "" },
+          { "id": "y", "type": "FLOAT", "desc": "" },
+          { "id": "z", "type": "FLOAT", "desc": "" },
+          { "id": "rgba", "type": "INT", "desc": "" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics3D",
+    "names": ["Face"],
+    "function": "gfx3d_face",
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "vertex1", "type": "INT", "desc": "" },
+          { "id": "vertex2", "type": "INT", "desc": "" },
+          { "id": "vertex3", "type": "INT", "desc": "" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics3D",
+    "names": ["FaceColour"],
+    "function": "gfx3d_facec",
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "vertex1", "type": "INT", "desc": "" },
+          { "id": "vertex2", "type": "INT", "desc": "" },
+          { "id": "vertex3", "type": "INT", "desc": "" },
+          { "id": "rgba", "type": "INT", "desc": "" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics3D",
+    "names": ["LoadMesh"],
+    "function": "gfx3d_loadmesh",
+    "definitions": [
+      {
+        "parameters": [{ "id": "filename", "type": "STRING", "desc": "" }],
         "return": "INT"
       }
     ]
@@ -156,22 +292,93 @@
   {
     "package": "Daric",
     "module": "Graphics3D",
-    "names": ["CAMERA", "camera", "Camera"],
-    "function": "camera",
+    "names": ["SetAmbient"],
+    "function": "gfx3d_ambient",
     "definitions": [
       {
         "parameters": [
-          "FLOAT",
-          "FLOAT",
-          "FLOAT",
-          "FLOAT",
-          "FLOAT",
-          "FLOAT",
-          "FLOAT",
-          "FLOAT",
-          "FLOAT"
+          { "id": "red", "type": "INT", "desc": "" },
+          { "id": "green", "type": "INT", "desc": "" },
+          { "id": "blue", "type": "INT", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics3D",
+    "names": ["SetDirectional"],
+    "function": "gfx3d_directional",
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "x", "type": "FLOAT", "desc": "" },
+          { "id": "y", "type": "FLOAT", "desc": "" },
+          { "id": "z", "type": "FLOAT", "desc": "" },
+          { "id": "red", "type": "FLOAT", "desc": "" },
+          { "id": "green", "type": "FLOAT", "desc": "" },
+          { "id": "blue", "type": "FLOAT", "desc": "" },
+          { "id": "constant", "type": "FLOAT", "desc": "" },
+          { "id": "linear", "type": "FLOAT", "desc": "" },
+          { "id": "quadratic", "type": "FLOAT", "desc": "" }
+        ],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics3D",
+    "names": ["SetRotate"],
+    "function": "gfx3d_setrotate",
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "x", "type": "FLOAT", "desc": "" },
+          { "id": "y", "type": "FLOAT", "desc": "" },
+          { "id": "z", "type": "FLOAT", "desc": "" },
+          { "id": "vx", "type": "FLOAT", "desc": "" },
+          { "id": "vy", "type": "FLOAT", "desc": "" },
+          { "id": "vz", "type": "FLOAT", "desc": "" }
+        ],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics3D",
+    "names": ["GetRotateX"],
+    "function": "gfx3d_getrotatex",
+    "definitions": [
+      {
+        "parameters": [],
+        "return": "FLOAT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics3D",
+    "names": ["GetRotateY"],
+    "function": "gfx3d_getrotatey",
+    "definitions": [
+      {
+        "parameters": [],
+        "return": "FLOAT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics3D",
+    "names": ["GetRotateZ"],
+    "function": "gfx3d_getrotatez",
+    "definitions": [
+      {
+        "parameters": [],
+        "return": "FLOAT"
       }
     ]
   }

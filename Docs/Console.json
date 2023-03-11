@@ -3,6 +3,7 @@
     "package": "Daric",
     "module": "Console",
     "names": ["CursorOff"],
+    "function": "gfx2d_cursoroff",
     "definitions": [
       {
         "parameters": [],
@@ -14,6 +15,7 @@
     "package": "Daric",
     "module": "Console",
     "names": ["CursorOn"],
+    "function": "gfx2d_cursoron",
     "definitions": [
       {
         "parameters": [],
@@ -25,6 +27,7 @@
     "package": "Daric",
     "module": "Console",
     "names": ["ScrollOff"],
+    "function": "gfx2d_noscroll",
     "definitions": [
       {
         "parameters": [],
@@ -36,6 +39,7 @@
     "package": "Daric",
     "module": "Console",
     "names": ["ScrollOn"],
+    "function": "gfx2d_scroll",
     "definitions": [
       {
         "parameters": [],
@@ -47,11 +51,12 @@
     "package": "Daric",
     "module": "Console",
     "names": ["Pos"],
+    "function": "gfx2d_cursorpos",
     "definitions": [
       {
         "parameters": [
-          { "id": "x", "type": "INT" },
-          { "id": "y", "type": "INT" }
+          { "id": "x", "type": "INT", "desc": "" },
+          { "id": "y", "type": "INT", "desc": "" }
         ],
         "return": "NONE"
       }
@@ -61,6 +66,7 @@
     "package": "Daric",
     "module": "Console",
     "names": ["ConsoleWidth"],
+    "function": "gfx2d_twidth",
     "definitions": [
       {
         "parameters": [],
@@ -72,6 +78,7 @@
     "package": "Daric",
     "module": "Console",
     "names": ["ConsoleHeight"],
+    "function": "gfx2d_theight",
     "definitions": [
       {
         "parameters": [],

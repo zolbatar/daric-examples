@@ -2,23 +2,26 @@
   {
     "package": "Daric",
     "module": "File",
-    "names": ["BGET#", "bget#", "BGet#"],
-    "function": "bget",
+    "names": ["BGet"],
+    "function": "fileio_bget",
     "definitions": [
       {
-        "parameters": ["INT"],
-        "return": "INT"
+        "parameters": [{ "id": "file_handle", "type": "INT", "desc": "" }],
+        "return": "BYTE"
       }
     ]
   },
   {
     "package": "Daric",
     "module": "File",
-    "names": ["BPUT#", "bput#", "BPut#"],
-    "function": "bput",
+    "names": ["BPut"],
+    "function": "fileio_bput",
     "definitions": [
       {
-        "parameters": ["INT", "INT"],
+        "parameters": [
+          { "id": "file_handle", "type": "INT", "desc": "" },
+          { "id": "value", "type": "BYTE", "desc": "" }
+        ],
         "return": "NONE"
       }
     ]
@@ -26,11 +29,11 @@
   {
     "package": "Daric",
     "module": "File",
-    "names": ["CLOSE#", "close#", "Close#"],
-    "function": "_Daric_close",
+    "names": ["Close"],
+    "function": "fileio_close",
     "definitions": [
       {
-        "parameters": ["INT"],
+        "parameters": [{ "id": "file_handle", "type": "INT", "desc": "" }],
         "return": "NONE"
       }
     ]
@@ -38,11 +41,11 @@
   {
     "package": "Daric",
     "module": "File",
-    "names": ["EOF#", "eof#", "Eof#"],
-    "function": "eof",
+    "names": ["Eof"],
+    "function": "fileio_eof",
     "definitions": [
       {
-        "parameters": ["INT"],
+        "parameters": [{ "id": "file_handle", "type": "INT", "desc": "" }],
         "return": "INT"
       }
     ]
@@ -50,11 +53,47 @@
   {
     "package": "Daric",
     "module": "File",
-    "names": ["READLINE#", "readline#", "ReadLine#"],
-    "function": "getsh",
+    "names": ["OpenIn"],
+    "function": "fileio_openin",
     "definitions": [
       {
-        "parameters": ["INT"],
+        "parameters": [{ "id": "filename", "type": "STRING", "desc": "" }],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "File",
+    "names": ["OpenUp"],
+    "function": "fileio_openup",
+    "definitions": [
+      {
+        "parameters": [{ "id": "filename", "type": "STRING", "desc": "" }],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "File",
+    "names": ["OpenOut"],
+    "function": "fileio_openout",
+    "definitions": [
+      {
+        "parameters": [{ "id": "filename", "type": "STRING", "desc": "" }],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "File",
+    "names": ["SGet"],
+    "function": "fileio_getsh",
+    "definitions": [
+      {
+        "parameters": [{ "id": "file_handle", "type": "INT", "desc": "" }],
         "return": "STRING"
       }
     ]
@@ -62,11 +101,11 @@
   {
     "package": "Daric",
     "module": "File",
-    "names": ["OPENIN", "openin", "OpenIn"],
-    "function": "openin",
+    "names": ["Tell"],
+    "function": "fileio_ptr",
     "definitions": [
       {
-        "parameters": ["STRING"],
+        "parameters": [{ "id": "file_handle", "type": "INT", "desc": "" }],
         "return": "INT"
       }
     ]
@@ -74,11 +113,26 @@
   {
     "package": "Daric",
     "module": "File",
-    "names": ["OPENUP", "openup", "OpenUp"],
-    "function": "openup",
+    "names": ["Seek"],
+    "function": "fileio_sptr",
     "definitions": [
       {
-        "parameters": ["STRING"],
+        "parameters": [
+          { "id": "file_handle", "type": "INT", "desc": "" },
+          { "id": "position", "type": "INT", "desc": "" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "File",
+    "names": ["Dir"],
+    "function": "fileio_list_files",
+    "definitions": [
+      {
+        "parameters": [{ "id": "directory", "type": "STRING", "desc": "" }],
         "return": "INT"
       }
     ]
@@ -86,11 +140,11 @@
   {
     "package": "Daric",
     "module": "File",
-    "names": ["OPENOUT", "openout", "OpenOut"],
-    "function": "openout",
+    "names": ["DirEntry"],
+    "function": "fileio_get_filename",
     "definitions": [
       {
-        "parameters": ["STRING"],
+        "parameters": [{ "id": "index", "type": "INT", "desc": "" }],
         "return": "INT"
       }
     ]
@@ -98,23 +152,11 @@
   {
     "package": "Daric",
     "module": "File",
-    "names": ["PTR#", "ptr#", "Ptr#"],
-    "function": "ptr",
+    "names": ["Delete"],
+    "function": "fileio_delete",
     "definitions": [
       {
-        "parameters": ["INT"],
-        "return": "INT"
-      }
-    ]
-  },
-  {
-    "package": "Daric",
-    "module": "File",
-    "names": ["SPTR#", "sptr#", "SPtr#"],
-    "function": "sptr",
-    "definitions": [
-      {
-        "parameters": ["INT", "INT"],
+        "parameters": [{ "id": "filename", "type": "STRING", "desc": "" }],
         "return": "NONE"
       }
     ]

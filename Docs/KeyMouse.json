@@ -1,9 +1,69 @@
 [
   {
     "package": "Daric",
-    "module": "InputDevices",
-    "names": ["MOUSEX", "mousex", "MouseX"],
-    "function": "mousex",
+    "module": "Input",
+    "names": ["ClearEvents"],
+    "function": "kbm_clear",
+    "definitions": [
+      {
+        "parameters": [],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Input",
+    "names": ["WaitKey"],
+    "function": "kbm_waitkey",
+    "definitions": [
+      {
+        "parameters": [{ "id": "timeout", "type": "INT", "desc": "" }],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Input",
+    "names": ["WaitChar"],
+    "function": "kbm_waitkeys",
+    "definitions": [
+      {
+        "parameters": [{ "id": "timeout", "type": "INT", "desc": "" }],
+        "return": "STRING"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Input",
+    "names": ["KeyDown"],
+    "function": "kbm_keydown",
+    "definitions": [
+      {
+        "parameters": [{ "id": "keycode", "type": "INT", "desc": "" }],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Input",
+    "names": ["KeyPress"],
+    "function": "kbm_keypress",
+    "definitions": [
+      {
+        "parameters": [{ "id": "keycode", "type": "INT", "desc": "" }],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Input",
+    "names": ["GetKey"],
+    "function": "kbm_get",
     "definitions": [
       {
         "parameters": [],
@@ -13,48 +73,12 @@
   },
   {
     "package": "Daric",
-    "module": "InputDevices",
-    "names": ["MOUSEY", "mousey", "MouseY"],
-    "function": "mousey",
+    "module": "Input",
+    "names": ["GetChar"],
+    "function": "kbm_gets",
     "definitions": [
       {
         "parameters": [],
-        "return": "INT"
-      }
-    ]
-  },
-  {
-    "package": "Daric",
-    "module": "InputDevices",
-    "names": ["MOUSESTATE", "mousestate", "MouseState"],
-    "function": "mousestate",
-    "definitions": [
-      {
-        "parameters": [],
-        "return": "INT"
-      }
-    ]
-  },
-  {
-    "package": "Daric",
-    "module": "InputDevices",
-    "names": ["INKEY", "inkey", "Inkey"],
-    "function": "inkey",
-    "definitions": [
-      {
-        "parameters": ["INT"],
-        "return": "INT"
-      }
-    ]
-  },
-  {
-    "package": "Daric",
-    "module": "InputDevices",
-    "names": ["INKEY$", "inkey$", "Inkey$"],
-    "function": "inkeys",
-    "definitions": [
-      {
-        "parameters": ["INT"],
         "return": "STRING"
       }
     ]
@@ -62,8 +86,8 @@
   {
     "package": "Daric",
     "module": "InputDevices",
-    "names": ["GET", "get", "Get"],
-    "function": "get",
+    "names": ["MouseX"],
+    "function": "kbm_mousex",
     "definitions": [
       {
         "parameters": [],
@@ -74,12 +98,24 @@
   {
     "package": "Daric",
     "module": "InputDevices",
-    "names": ["GET$", "get$", "Get$"],
-    "function": "_gets",
+    "names": ["MouseY"],
+    "function": "kbm_mousey",
     "definitions": [
       {
         "parameters": [],
-        "return": "STRING"
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "InputDevices",
+    "names": ["MouseState"],
+    "function": "kbm_mousestate",
+    "definitions": [
+      {
+        "parameters": [],
+        "return": "INT"
       }
     ]
   }

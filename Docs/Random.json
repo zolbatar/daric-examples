@@ -2,11 +2,11 @@
   {
     "package": "Daric",
     "module": "Random",
-    "names": ["RND", "rnd", "Rnd"],
+    "names": ["Rnd"],
     "function": "rndi",
     "definitions": [
       {
-        "parameters": ["INT"],
+        "parameters": [{ "id": "range", "type": "INT", "desc": "" }],
         "return": "INT"
       }
     ]
@@ -14,11 +14,11 @@
   {
     "package": "Daric",
     "module": "Random",
-    "names": ["RNDF", "rndf", "RndF"],
+    "names": ["RndF"],
     "function": "rndf",
     "definitions": [
       {
-        "parameters": ["FLOAT"],
+        "parameters": [{ "id": "range", "type": "FLOAT", "desc": "" }],
         "return": "FLOAT"
       }
     ]

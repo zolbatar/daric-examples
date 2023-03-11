@@ -3,9 +3,10 @@
     "package": "Daric",
     "module": "Core",
     "names": ["Sleep"],
+    "function": "__sleep",
     "definitions": [
       {
-        "parameters": [{ "id": "time", "type": "FLOAT" }],
+        "parameters": [{ "id": "time", "type": "FLOAT", "desc": "" }],
         "return": "NONE"
       }
     ]
@@ -14,6 +15,7 @@
     "package": "Daric",
     "module": "Core",
     "names": ["AppCloseRequested"],
+    "function": "gui_appcloserequested",
     "definitions": [
       {
         "parameters": [],

@@ -2,11 +2,92 @@
   {
     "package": "Daric",
     "module": "Sound",
-    "names": ["SOUND", "sound", "Sound"],
-    "function": "sound",
+    "names": ["LoadSample"],
+    "function": "audio_loadwav",
     "definitions": [
       {
-        "parameters": ["INT", "INT", "INT", "FLOAT", "FLOAT"],
+        "parameters": [{ "id": "filename", "type": "STRING", "desc": "" }],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Sound",
+    "names": ["PlaySample"],
+    "function": "audio_play",
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "channel", "type": "INT", "desc": "" },
+          { "id": "sample_handle", "type": "INT", "desc": "" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Sound",
+    "names": ["LoadMusic"],
+    "function": "audio_loadmus",
+    "definitions": [
+      {
+        "parameters": [{ "id": "filename", "type": "STRING", "desc": "" }],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Sound",
+    "names": ["PlayMusic"],
+    "function": "audio_playmusic",
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "sample_handle", "type": "INT", "desc": "" },
+          { "id": "loops", "type": "INT", "desc": "" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Sound",
+    "names": ["StopMusic"],
+    "function": "audio_stopmusic",
+    "definitions": [
+      {
+        "parameters": [{ "id": "duration", "type": "INT", "desc": "" }],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Sound",
+    "names": ["SetVolume"],
+    "function": "audio_volume",
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "channel", "type": "INT", "desc": "" },
+          { "id": "volume", "type": "FLOAT", "desc": "" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Sound",
+    "names": ["SetMusicVolume"],
+    "function": "music_volume",
+    "definitions": [
+      {
+        "parameters": [{ "id": "volume", "type": "FLOAT", "desc": "" }],
         "return": "NONE"
       }
     ]

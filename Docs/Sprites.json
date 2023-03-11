@@ -2,11 +2,14 @@
   {
     "package": "Daric",
     "module": "Sprites",
-    "names": ["DELETESPRITE", "deletesprite", "DeleteSprite"],
-    "function": "deletesprite",
+    "names": ["SetSpriteBuffer"],
+    "function": "sprites_setspritebuffer",
     "definitions": [
       {
-        "parameters": ["INT"],
+        "parameters": [
+          { "id": "w", "type": "INT", "desc": "" },
+          { "id": "h", "type": "INT", "desc": "" }
+        ],
         "return": "NONE"
       }
     ]
@@ -14,11 +17,14 @@
   {
     "package": "Daric",
     "module": "Sprites",
-    "names": ["DRAWSPRITE", "drawsprite", "DrawSprite"],
-    "function": "drawsprite",
+    "names": ["SbPlot"],
+    "function": "sprites_sbplot",
     "definitions": [
       {
-        "parameters": ["INT", "INT", "FLOAT", "FLOAT", "FLOAT", "FLOAT"],
+        "parameters": [
+          { "id": "x", "type": "INT", "desc": "" },
+          { "id": "y", "type": "INT", "desc": "" }
+        ],
         "return": "NONE"
       }
     ]
@@ -26,11 +32,11 @@
   {
     "package": "Daric",
     "module": "Sprites",
-    "names": ["LOADSPRITE", "loadsprite", "LoadSprite"],
-    "function": "loadsprite",
+    "names": ["CreateSprite"],
+    "function": "sprites_create",
     "definitions": [
       {
-        "parameters": ["STRING"],
+        "parameters": [],
         "return": "INT"
       }
     ]
@@ -38,12 +44,90 @@
   {
     "package": "Daric",
     "module": "Sprites",
-    "names": ["CREATESPRITE", "createsprite", "CreateSprite"],
-    "function": "createsprite",
+    "names": ["LoadSprite"],
+    "function": "gfx2d_createcolouralpha",
     "definitions": [
       {
-        "parameters": ["INT", "INT", "INT", "INT"],
+        "parameters": [{ "id": "name", "type": "STRING", "desc": "" }],
         "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Sprites",
+    "names": ["DeleteSprite"],
+    "function": "sprites_load",
+    "definitions": [
+      {
+        "parameters": [{ "id": "handle", "type": "INT", "desc": "" }],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Sprites",
+    "names": ["DrawSprite"],
+    "function": "sprites_draw",
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "handle", "type": "INT", "desc": "" },
+          { "id": "bank", "type": "INT", "desc": "" },
+          { "id": "x", "type": "FLOAT", "desc": "" },
+          { "id": "y", "type": "FLOAT", "desc": "" },
+          { "id": "rotation", "type": "FLOAT", "desc": "" },
+          { "id": "scale", "type": "FLOAT", "desc": "" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Sprites",
+    "names": ["DrawPartSprite"],
+    "function": "sprites_partdraw",
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "handle", "type": "INT", "desc": "" },
+          { "id": "bank", "type": "INT", "desc": "" },
+          { "id": "x", "type": "FLOAT", "desc": "" },
+          { "id": "y", "type": "FLOAT", "desc": "" },
+          { "id": "rotation", "type": "FLOAT", "desc": "" },
+          { "id": "scale", "type": "FLOAT", "desc": "" },
+          { "id": "x_offset", "type": "INT", "desc": "" },
+          { "id": "y_offset", "type": "INT", "desc": "" },
+          { "id": "x_size", "type": "INT", "desc": "" },
+          { "id": "y_size", "type": "INT", "desc": "" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Sprites",
+    "names": ["SpriteRenderPoint"],
+    "function": "sprites_renderpoint",
+    "definitions": [
+      {
+        "parameters": [{ "id": "flag", "type": "INT", "desc": "" }],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Sprites",
+    "names": ["SpriteUseFGColour"],
+    "function": "sprites_usecolour",
+    "definitions": [
+      {
+        "parameters": [{ "id": "flag", "type": "INT", "desc": "" }],
+        "return": "NONE"
       }
     ]
   }
