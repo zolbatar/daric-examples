@@ -1,0 +1,170 @@
+[
+  {
+    "package": "Daric",
+    "module": "Maths",
+    "names": ["ACS", "acs", "Acs"],
+    "function": "acs",
+    "definitions": [
+      {
+        "parameters": ["FLOAT"],
+        "return": "FLOAT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Maths",
+    "names": ["ASN", "asn", "Asn"],
+    "function": "asn",
+    "definitions": [
+      {
+        "parameters": ["FLOAT"],
+        "return": "FLOAT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Maths",
+    "names": ["ATN", "atn", "Atn"],
+    "function": "atn",
+    "definitions": [
+      {
+        "parameters": ["FLOAT"],
+        "return": "FLOAT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Maths",
+    "names": ["COS", "cos", "Cos"],
+    "function": "[cos]",
+    "definitions": [
+      {
+        "parameters": ["FLOAT"],
+        "return": "FLOAT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Maths",
+    "names": ["DEG", "deg", "Deg"],
+    "function": "deg",
+    "definitions": [
+      {
+        "parameters": ["FLOAT"],
+        "return": "FLOAT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Maths",
+    "names": ["EXP", "exp", "Exp"],
+    "function": "[exp]",
+    "definitions": [
+      {
+        "parameters": ["FLOAT"],
+        "return": "FLOAT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Maths",
+    "names": ["LN", "ln", "Ln"],
+    "function": "[ln]",
+    "definitions": [
+      {
+        "parameters": ["FLOAT"],
+        "return": "FLOAT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Maths",
+    "names": ["LOG", "log", "Log"],
+    "function": "[log]",
+    "definitions": [
+      {
+        "parameters": ["FLOAT"],
+        "return": "FLOAT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Maths",
+    "names": ["SIN", "sin", "Sin"],
+    "function": "[sin]",
+    "definitions": [
+      {
+        "parameters": ["FLOAT"],
+        "return": "FLOAT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Maths",
+    "names": ["PI", "pi", "Pi"],
+    "function": "pi",
+    "definitions": [
+      {
+        "parameters": [],
+        "return": "FLOAT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Maths",
+    "names": ["RAD", "rad", "Rad"],
+    "function": "rad",
+    "definitions": [
+      {
+        "parameters": ["FLOAT"],
+        "return": "FLOAT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Maths",
+    "names": ["SGN", "sgn", "Sgn"],
+    "function": "sgn",
+    "definitions": [
+      {
+        "parameters": ["FLOAT"],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Maths",
+    "names": ["SQR", "sqr", "Sqr"],
+    "function": "[sqr]",
+    "definitions": [
+      {
+        "parameters": ["FLOAT"],
+        "return": "FLOAT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Maths",
+    "names": ["TAN", "tan", "Tan"],
+    "function": "TAN_F",
+    "definitions": [
+      {
+        "parameters": ["FLOAT"],
+        "return": "FLOAT"
+      }
+    ]
+  }
+]

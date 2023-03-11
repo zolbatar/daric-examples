@@ -1,0 +1,24 @@
+[
+  {
+    "package": "Daric",
+    "module": "Core",
+    "names": ["Sleep"],
+    "definitions": [
+      {
+        "parameters": [{ "id": "time", "type": "FLOAT" }],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Core",
+    "names": ["AppCloseRequested"],
+    "definitions": [
+      {
+        "parameters": [],
+        "return": "INT"
+      }
+    ]
+  }
+]

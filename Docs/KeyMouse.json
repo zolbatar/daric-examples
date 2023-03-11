@@ -1,0 +1,86 @@
+[
+  {
+    "package": "Daric",
+    "module": "InputDevices",
+    "names": ["MOUSEX", "mousex", "MouseX"],
+    "function": "mousex",
+    "definitions": [
+      {
+        "parameters": [],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "InputDevices",
+    "names": ["MOUSEY", "mousey", "MouseY"],
+    "function": "mousey",
+    "definitions": [
+      {
+        "parameters": [],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "InputDevices",
+    "names": ["MOUSESTATE", "mousestate", "MouseState"],
+    "function": "mousestate",
+    "definitions": [
+      {
+        "parameters": [],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "InputDevices",
+    "names": ["INKEY", "inkey", "Inkey"],
+    "function": "inkey",
+    "definitions": [
+      {
+        "parameters": ["INT"],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "InputDevices",
+    "names": ["INKEY$", "inkey$", "Inkey$"],
+    "function": "inkeys",
+    "definitions": [
+      {
+        "parameters": ["INT"],
+        "return": "STRING"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "InputDevices",
+    "names": ["GET", "get", "Get"],
+    "function": "get",
+    "definitions": [
+      {
+        "parameters": [],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "InputDevices",
+    "names": ["GET$", "get$", "Get$"],
+    "function": "_gets",
+    "definitions": [
+      {
+        "parameters": [],
+        "return": "STRING"
+      }
+    ]
+  }
+]

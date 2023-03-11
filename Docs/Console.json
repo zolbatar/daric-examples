@@ -1,0 +1,82 @@
+[
+  {
+    "package": "Daric",
+    "module": "Console",
+    "names": ["CursorOff"],
+    "definitions": [
+      {
+        "parameters": [],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Console",
+    "names": ["CursorOn"],
+    "definitions": [
+      {
+        "parameters": [],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Console",
+    "names": ["ScrollOff"],
+    "definitions": [
+      {
+        "parameters": [],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Console",
+    "names": ["ScrollOn"],
+    "definitions": [
+      {
+        "parameters": [],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Console",
+    "names": ["Pos"],
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "x", "type": "INT" },
+          { "id": "y", "type": "INT" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Console",
+    "names": ["ConsoleWidth"],
+    "definitions": [
+      {
+        "parameters": [],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Console",
+    "names": ["ConsoleHeight"],
+    "definitions": [
+      {
+        "parameters": [],
+        "return": "INT"
+      }
+    ]
+  }
+]

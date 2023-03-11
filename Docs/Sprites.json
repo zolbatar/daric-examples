@@ -1,0 +1,50 @@
+[
+  {
+    "package": "Daric",
+    "module": "Sprites",
+    "names": ["DELETESPRITE", "deletesprite", "DeleteSprite"],
+    "function": "deletesprite",
+    "definitions": [
+      {
+        "parameters": ["INT"],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Sprites",
+    "names": ["DRAWSPRITE", "drawsprite", "DrawSprite"],
+    "function": "drawsprite",
+    "definitions": [
+      {
+        "parameters": ["INT", "INT", "FLOAT", "FLOAT", "FLOAT", "FLOAT"],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Sprites",
+    "names": ["LOADSPRITE", "loadsprite", "LoadSprite"],
+    "function": "loadsprite",
+    "definitions": [
+      {
+        "parameters": ["STRING"],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Sprites",
+    "names": ["CREATESPRITE", "createsprite", "CreateSprite"],
+    "function": "createsprite",
+    "definitions": [
+      {
+        "parameters": ["INT", "INT", "INT", "INT"],
+        "return": "INT"
+      }
+    ]
+  }
+]

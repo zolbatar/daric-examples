@@ -1,0 +1,14 @@
+[
+  {
+    "package": "Daric",
+    "module": "Sound",
+    "names": ["SOUND", "sound", "Sound"],
+    "function": "sound",
+    "definitions": [
+      {
+        "parameters": ["INT", "INT", "INT", "FLOAT", "FLOAT"],
+        "return": "NONE"
+      }
+    ]
+  }
+]

@@ -1,6 +1,7 @@
 If @Main Then
     Mode -1,-1,Banked
     s=Min(ScreenWidth(), ScreenHeight())/30.0
+    Print "Move the mouse around to animate!"
     Repeat
         mx:Float=MouseX():my:Float=MouseY()
         dist=0.7:turn=90*(my*1.5)/ScreenHeight():bias=90*(mx-(ScreenWidth()/2))/ScreenWidth()

@@ -1,0 +1,122 @@
+[
+  {
+    "package": "Daric",
+    "module": "File",
+    "names": ["BGET#", "bget#", "BGet#"],
+    "function": "bget",
+    "definitions": [
+      {
+        "parameters": ["INT"],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "File",
+    "names": ["BPUT#", "bput#", "BPut#"],
+    "function": "bput",
+    "definitions": [
+      {
+        "parameters": ["INT", "INT"],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "File",
+    "names": ["CLOSE#", "close#", "Close#"],
+    "function": "_Daric_close",
+    "definitions": [
+      {
+        "parameters": ["INT"],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "File",
+    "names": ["EOF#", "eof#", "Eof#"],
+    "function": "eof",
+    "definitions": [
+      {
+        "parameters": ["INT"],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "File",
+    "names": ["READLINE#", "readline#", "ReadLine#"],
+    "function": "getsh",
+    "definitions": [
+      {
+        "parameters": ["INT"],
+        "return": "STRING"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "File",
+    "names": ["OPENIN", "openin", "OpenIn"],
+    "function": "openin",
+    "definitions": [
+      {
+        "parameters": ["STRING"],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "File",
+    "names": ["OPENUP", "openup", "OpenUp"],
+    "function": "openup",
+    "definitions": [
+      {
+        "parameters": ["STRING"],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "File",
+    "names": ["OPENOUT", "openout", "OpenOut"],
+    "function": "openout",
+    "definitions": [
+      {
+        "parameters": ["STRING"],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "File",
+    "names": ["PTR#", "ptr#", "Ptr#"],
+    "function": "ptr",
+    "definitions": [
+      {
+        "parameters": ["INT"],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "File",
+    "names": ["SPTR#", "sptr#", "SPtr#"],
+    "function": "sptr",
+    "definitions": [
+      {
+        "parameters": ["INT", "INT"],
+        "return": "NONE"
+      }
+    ]
+  }
+]

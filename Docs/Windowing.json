@@ -1,0 +1,63 @@
+[
+  {
+    "package": "Daric",
+    "module": "Windowing",
+    "names": ["Window"],
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "name", "type": "STRING" },
+          { "id": "x1", "type": "INT" },
+          { "id": "y1", "type": "INT" },
+          { "id": "x2", "type": "INT" },
+          { "id": "y2", "type": "INT" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Windowing",
+    "names": ["SetWindow"],
+    "definitions": [
+      {
+        "parameters": [{ "id": "name", "type": "STRING" }],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Windowing",
+    "names": ["UnsetWindow"],
+    "definitions": [
+      {
+        "parameters": [],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Windowing",
+    "names": ["WindowWidth"],
+    "definitions": [
+      {
+        "parameters": [],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Windowing",
+    "names": ["WindowHeight"],
+    "definitions": [
+      {
+        "parameters": [],
+        "return": "INT"
+      }
+    ]
+  }
+]

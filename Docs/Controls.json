@@ -1,0 +1,84 @@
+[
+  {
+    "package": "Daric",
+    "module": "Controls",
+    "names": ["Button"],
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "window", "type": "STRING" },
+          { "id": "id", "type": "STRING" },
+          { "id": "x", "type": "FLOAT" },
+          { "id": "y", "type": "FLOAT" },
+          { "id": "w", "type": "FLOAT" },
+          { "id": "h", "type": "FLOAT" },
+          { "id": "text", "type": "STRING" },
+          { "id": "hue", "type": "INT" },
+          { "id": "textcolour", "type": "INT" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Controls",
+    "names": ["TextField"],
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "window", "type": "STRING" },
+          { "id": "id", "type": "STRING" },
+          { "id": "x", "type": "FLOAT" },
+          { "id": "y", "type": "FLOAT" },
+          { "id": "w", "type": "FLOAT" },
+          { "id": "h", "type": "FLOAT" },
+          { "id": "text", "type": "STRING" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "GUI",
+    "names": ["IsClicked"],
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "window", "type": "STRING" },
+          { "id": "id", "type": "STRING" }
+        ],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Controls",
+    "names": ["GetTextField"],
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "window", "type": "STRING" },
+          { "id": "id", "type": "STRING" }
+        ],
+        "return": "STRING"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Controls",
+    "names": ["DeleteControl"],
+    "definitions": [
+      {
+        "parameters": [
+          { "id": "window", "type": "STRING" },
+          { "id": "id", "type": "STRING" }
+        ],
+        "return": "NONE"
+      }
+    ]
+  }
+]

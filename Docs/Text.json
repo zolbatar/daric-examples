@@ -1,0 +1,38 @@
+[
+  {
+    "package": "Daric",
+    "module": "Text",
+    "names": ["TEXT", "text", "Text"],
+    "function": "_text",
+    "definitions": [
+      {
+        "parameters": ["INT", "FLOAT", "FLOAT", "FLOAT", "STRING"],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Text",
+    "names": ["TEXTCENTRE", "textcentre", "TextCentre"],
+    "function": "textcentre",
+    "definitions": [
+      {
+        "parameters": ["INT", "FLOAT", "FLOAT", "FLOAT", "STRING"],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Text",
+    "names": ["TEXTRIGHT", "textright", "TextRight"],
+    "function": "textright",
+    "definitions": [
+      {
+        "parameters": ["INT", "FLOAT", "FLOAT", "FLOAT", "STRING"],
+        "return": "NONE"
+      }
+    ]
+  }
+]

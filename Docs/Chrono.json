@@ -1,0 +1,35 @@
+[
+  {
+    "package": "Daric",
+    "module": "Chrono",
+    "names": ["Timer"],
+    "definitions": [
+      {
+        "parameters": [],
+        "return": "FLOAT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Chrono",
+    "names": ["Time"],
+    "definitions": [
+      {
+        "parameters": [],
+        "return": "STRING"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Chrono",
+    "names": ["Date"],
+    "definitions": [
+      {
+        "parameters": [],
+        "return": "STRING"
+      }
+    ]
+  }
+]

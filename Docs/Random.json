@@ -1,0 +1,26 @@
+[
+  {
+    "package": "Daric",
+    "module": "Random",
+    "names": ["RND", "rnd", "Rnd"],
+    "function": "rndi",
+    "definitions": [
+      {
+        "parameters": ["INT"],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Random",
+    "names": ["RNDF", "rndf", "RndF"],
+    "function": "rndf",
+    "definitions": [
+      {
+        "parameters": ["FLOAT"],
+        "return": "FLOAT"
+      }
+    ]
+  }
+]

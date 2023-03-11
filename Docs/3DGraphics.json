@@ -1,0 +1,178 @@
+[
+  {
+    "package": "Daric",
+    "module": "Graphics3D",
+    "names": ["OBJECT", "object", "Object"],
+    "function": "create_object",
+    "definitions": [
+      {
+        "parameters": [
+          "INT",
+          "FLOAT",
+          "FLOAT",
+          "FLOAT",
+          "FLOAT",
+          "FLOAT",
+          "FLOAT",
+          "FLOAT",
+          "INT"
+        ],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics3D",
+    "names": ["DELETESHAPE", "deleteshape", "DeleteShape"],
+    "function": "delete_shape",
+    "definitions": [
+      {
+        "parameters": ["INT"],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics3D",
+    "names": ["DELETEOBJECT", "deleteobject", "DeleteObject"],
+    "function": "delete_object",
+    "definitions": [
+      {
+        "parameters": ["INT"],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics3D",
+    "names": ["SHAPE", "shape", "Shape"],
+    "function": "shape",
+    "definitions": [
+      {
+        "parameters": [],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics3D",
+    "names": ["FACE", "face", "Face"],
+    "function": "create_face_solid",
+    "definitions": [
+      {
+        "parameters": ["INT", "INT", "INT", "INT"],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics3D",
+    "names": ["FACE", "face", "Face"],
+    "function": "create_face",
+    "definitions": [
+      {
+        "parameters": ["INT", "INT", "INT"],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics3D",
+    "names": ["RENDER", "render", "Render"],
+    "function": "render_frame",
+    "definitions": [
+      {
+        "parameters": [],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics3D",
+    "names": ["ROTATE", "rotate", "Rotate"],
+    "function": "object_rotate",
+    "definitions": [
+      {
+        "parameters": ["INT", "FLOAT", "FLOAT", "FLOAT"],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics3D",
+    "names": ["SCALE", "scale", "Scale"],
+    "function": "object_scale",
+    "definitions": [
+      {
+        "parameters": ["INT", "FLOAT"],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics3D",
+    "names": ["TRANSLATE", "translate", "Translate"],
+    "function": "object_translate",
+    "definitions": [
+      {
+        "parameters": ["INT", "FLOAT", "FLOAT", "FLOAT"],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics3D",
+    "names": ["VERTEX", "vertex", "Vertex"],
+    "function": "create_vertex",
+    "definitions": [
+      {
+        "parameters": ["FLOAT", "FLOAT", "FLOAT", "INT"],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics3D",
+    "names": ["LOADMESH", "loadmesh", "LoadMesh"],
+    "function": "load_mesh",
+    "definitions": [
+      {
+        "parameters": ["STRING"],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Graphics3D",
+    "names": ["CAMERA", "camera", "Camera"],
+    "function": "camera",
+    "definitions": [
+      {
+        "parameters": [
+          "FLOAT",
+          "FLOAT",
+          "FLOAT",
+          "FLOAT",
+          "FLOAT",
+          "FLOAT",
+          "FLOAT",
+          "FLOAT",
+          "FLOAT"
+        ],
+        "return": "NONE"
+      }
+    ]
+  }
+]

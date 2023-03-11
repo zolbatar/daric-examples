@@ -1,0 +1,74 @@
+[
+  {
+    "package": "Daric",
+    "module": "Colour",
+    "names": ["BG", "bg", "Bg"],
+    "function": "bg",
+    "definitions": [
+      {
+        "parameters": ["INT", "INT", "INT"],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Colour",
+    "names": ["COL", "col", "Col"],
+    "function": "col",
+    "definitions": [
+      {
+        "parameters": ["INT", "INT", "INT"],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Colour",
+    "names": ["COL", "col", "Col"],
+    "function": "cola",
+    "definitions": [
+      {
+        "parameters": ["INT", "INT", "INT", "INT"],
+        "return": "INT"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Colour",
+    "names": ["FG", "fg", "Fg"],
+    "function": "fg",
+    "definitions": [
+      {
+        "parameters": ["INT", "INT", "INT"],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Colour",
+    "names": ["FG", "fg", "Fg"],
+    "function": "fga",
+    "definitions": [
+      {
+        "parameters": ["INT", "INT", "INT", "INT"],
+        "return": "NONE"
+      }
+    ]
+  },
+  {
+    "package": "Daric",
+    "module": "Colour",
+    "names": ["FG", "fg", "Fg"],
+    "function": "fgc",
+    "definitions": [
+      {
+        "parameters": ["INT"],
+        "return": "NONE"
+      }
+    ]
+  }
+]
