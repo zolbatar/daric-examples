@@ -3,10 +3,11 @@
     "package": "Daric",
     "module": "Maths",
     "names": ["PI", "Pi"],
+    "description": "",
     "definitions": [
       {
         "parameters": [],
-        "return": "FLOAT"
+        "return": "Float"
       }
     ]
   },
@@ -16,8 +17,8 @@
     "names": ["DEG", "Deg"],
     "definitions": [
       {
-        "parameters": [{ "id": "angle", "type": "FLOAT", "desc": "" }],
-        "return": "FLOAT"
+        "parameters": [{ "id": "angle", "type": "Float", "desc": "" }],
+        "return": "Float"
       }
     ]
   },
@@ -27,8 +28,8 @@
     "names": ["RAD", "Rad"],
     "definitions": [
       {
-        "parameters": [{ "id": "angle", "type": "FLOAT", "desc": "" }],
-        "return": "FLOAT"
+        "parameters": [{ "id": "angle", "type": "Float", "desc": "" }],
+        "return": "Float"
       }
     ]
   },
@@ -38,8 +39,8 @@
     "names": ["SGN", "Sgn"],
     "definitions": [
       {
-        "parameters": [{ "id": "value", "type": "FLOAT", "desc": "" }],
-        "return": "INT"
+        "parameters": [{ "id": "value", "type": "Float", "desc": "" }],
+        "return": "Int"
       }
     ]
   },
@@ -47,10 +48,11 @@
     "package": "Daric",
     "module": "Maths",
     "names": ["ACS", "Acs"],
+    "description": "Function returning the arc-cosine of its numeric argument.",
     "definitions": [
       {
-        "parameters": [{ "id": "value", "type": "FLOAT", "desc": "" }],
-        "return": "FLOAT"
+        "parameters": [{ "id": "value", "type": "Float", "desc": "" }],
+        "return": "Float"
       }
     ]
   },
@@ -60,8 +62,8 @@
     "names": ["ASN", "Asn"],
     "definitions": [
       {
-        "parameters": [{ "id": "value", "type": "FLOAT", "desc": "" }],
-        "return": "FLOAT"
+        "parameters": [{ "id": "value", "type": "Float", "desc": "" }],
+        "return": "Float"
       }
     ]
   },
@@ -71,8 +73,8 @@
     "names": ["ATN", "Atn"],
     "definitions": [
       {
-        "parameters": [{ "id": "value", "type": "FLOAT", "desc": "" }],
-        "return": "FLOAT"
+        "parameters": [{ "id": "value", "type": "Float", "desc": "" }],
+        "return": "Float"
       }
     ]
   },
@@ -82,8 +84,8 @@
     "names": ["COS", "Cos"],
     "definitions": [
       {
-        "parameters": [{ "id": "value", "type": "FLOAT", "desc": "" }],
-        "return": "FLOAT"
+        "parameters": [{ "id": "value", "type": "Float", "desc": "" }],
+        "return": "Float"
       }
     ]
   },
@@ -93,8 +95,8 @@
     "names": ["EXP", "Exp"],
     "definitions": [
       {
-        "parameters": [{ "id": "value", "type": "FLOAT", "desc": "" }],
-        "return": "FLOAT"
+        "parameters": [{ "id": "value", "type": "Float", "desc": "" }],
+        "return": "Float"
       }
     ]
   },
@@ -104,8 +106,8 @@
     "names": ["FLOOR", "Floor"],
     "definitions": [
       {
-        "parameters": [{ "id": "value", "type": "FLOAT", "desc": "" }],
-        "return": "FLOAT"
+        "parameters": [{ "id": "value", "type": "Float", "desc": "" }],
+        "return": "Float"
       }
     ]
   },
@@ -115,8 +117,8 @@
     "names": ["ROUND", "Round"],
     "definitions": [
       {
-        "parameters": [{ "id": "value", "type": "FLOAT", "desc": "" }],
-        "return": "FLOAT"
+        "parameters": [{ "id": "value", "type": "Float", "desc": "" }],
+        "return": "Float"
       }
     ]
   },
@@ -126,8 +128,8 @@
     "names": ["LN", "Ln"],
     "definitions": [
       {
-        "parameters": [{ "id": "value", "type": "FLOAT", "desc": "" }],
-        "return": "FLOAT"
+        "parameters": [{ "id": "value", "type": "Float", "desc": "" }],
+        "return": "Float"
       }
     ]
   },
@@ -137,8 +139,8 @@
     "names": ["LOG", "Log"],
     "definitions": [
       {
-        "parameters": [{ "id": "value", "type": "FLOAT", "desc": "" }],
-        "return": "FLOAT"
+        "parameters": [{ "id": "value", "type": "Float", "desc": "" }],
+        "return": "Float"
       }
     ]
   },
@@ -148,8 +150,8 @@
     "names": ["SIN", "Sin"],
     "definitions": [
       {
-        "parameters": [{ "id": "value", "type": "FLOAT", "desc": "" }],
-        "return": "FLOAT"
+        "parameters": [{ "id": "value", "type": "Float", "desc": "" }],
+        "return": "Float"
       }
     ]
   },
@@ -159,8 +161,8 @@
     "names": ["SQR", "Sqr"],
     "definitions": [
       {
-        "parameters": [{ "id": "value", "type": "FLOAT", "desc": "" }],
-        "return": "FLOAT"
+        "parameters": [{ "id": "value", "type": "Float", "desc": "" }],
+        "return": "Float"
       }
     ]
   },
@@ -170,8 +172,8 @@
     "names": ["TAN", "Tan"],
     "definitions": [
       {
-        "parameters": [{ "id": "value", "type": "FLOAT", "desc": "" }],
-        "return": "FLOAT"
+        "parameters": [{ "id": "value", "type": "Float", "desc": "" }],
+        "return": "Float"
       }
     ]
   },
@@ -182,10 +184,10 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "value1", "type": "FLOAT", "desc": "" },
-          { "id": "value2", "type": "FLOAT", "desc": "" }
+          { "id": "value1", "type": "Float", "desc": "" },
+          { "id": "value2", "type": "Float", "desc": "" }
         ],
-        "return": "FLOAT"
+        "return": "Float"
       }
     ]
   },
@@ -196,10 +198,10 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "value1", "type": "FLOAT", "desc": "" },
-          { "id": "value2", "type": "FLOAT", "desc": "" }
+          { "id": "value1", "type": "Float", "desc": "" },
+          { "id": "value2", "type": "Float", "desc": "" }
         ],
-        "return": "FLOAT"
+        "return": "Float"
       }
     ]
   }

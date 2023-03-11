@@ -6,8 +6,8 @@
     "function": "fileio_bget",
     "definitions": [
       {
-        "parameters": [{ "id": "file_handle", "type": "INT", "desc": "" }],
-        "return": "BYTE"
+        "parameters": [{ "id": "file_handle", "type": "Int", "desc": "" }],
+        "return": "Byte"
       }
     ]
   },
@@ -19,10 +19,10 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "file_handle", "type": "INT", "desc": "" },
-          { "id": "value", "type": "BYTE", "desc": "" }
+          { "id": "file_handle", "type": "Int", "desc": "" },
+          { "id": "value", "type": "Byte", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -33,8 +33,8 @@
     "function": "fileio_close",
     "definitions": [
       {
-        "parameters": [{ "id": "file_handle", "type": "INT", "desc": "" }],
-        "return": "NONE"
+        "parameters": [{ "id": "file_handle", "type": "Int", "desc": "" }],
+        "return": "None"
       }
     ]
   },
@@ -45,8 +45,8 @@
     "function": "fileio_eof",
     "definitions": [
       {
-        "parameters": [{ "id": "file_handle", "type": "INT", "desc": "" }],
-        "return": "INT"
+        "parameters": [{ "id": "file_handle", "type": "Int", "desc": "" }],
+        "return": "Int"
       }
     ]
   },
@@ -57,8 +57,8 @@
     "function": "fileio_openin",
     "definitions": [
       {
-        "parameters": [{ "id": "filename", "type": "STRING", "desc": "" }],
-        "return": "INT"
+        "parameters": [{ "id": "filename", "type": "String", "desc": "" }],
+        "return": "Int"
       }
     ]
   },
@@ -69,8 +69,8 @@
     "function": "fileio_openup",
     "definitions": [
       {
-        "parameters": [{ "id": "filename", "type": "STRING", "desc": "" }],
-        "return": "INT"
+        "parameters": [{ "id": "filename", "type": "String", "desc": "" }],
+        "return": "Int"
       }
     ]
   },
@@ -81,8 +81,8 @@
     "function": "fileio_openout",
     "definitions": [
       {
-        "parameters": [{ "id": "filename", "type": "STRING", "desc": "" }],
-        "return": "INT"
+        "parameters": [{ "id": "filename", "type": "String", "desc": "" }],
+        "return": "Int"
       }
     ]
   },
@@ -93,8 +93,8 @@
     "function": "fileio_getsh",
     "definitions": [
       {
-        "parameters": [{ "id": "file_handle", "type": "INT", "desc": "" }],
-        "return": "STRING"
+        "parameters": [{ "id": "file_handle", "type": "Int", "desc": "" }],
+        "return": "String"
       }
     ]
   },
@@ -105,8 +105,8 @@
     "function": "fileio_ptr",
     "definitions": [
       {
-        "parameters": [{ "id": "file_handle", "type": "INT", "desc": "" }],
-        "return": "INT"
+        "parameters": [{ "id": "file_handle", "type": "Int", "desc": "" }],
+        "return": "Int"
       }
     ]
   },
@@ -118,10 +118,10 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "file_handle", "type": "INT", "desc": "" },
-          { "id": "position", "type": "INT", "desc": "" }
+          { "id": "file_handle", "type": "Int", "desc": "" },
+          { "id": "position", "type": "Int", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -132,8 +132,8 @@
     "function": "fileio_list_files",
     "definitions": [
       {
-        "parameters": [{ "id": "directory", "type": "STRING", "desc": "" }],
-        "return": "INT"
+        "parameters": [{ "id": "directory", "type": "String", "desc": "" }],
+        "return": "Int"
       }
     ]
   },
@@ -144,8 +144,8 @@
     "function": "fileio_get_filename",
     "definitions": [
       {
-        "parameters": [{ "id": "index", "type": "INT", "desc": "" }],
-        "return": "INT"
+        "parameters": [{ "id": "index", "type": "Int", "desc": "" }],
+        "return": "Int"
       }
     ]
   },
@@ -156,8 +156,8 @@
     "function": "fileio_delete",
     "definitions": [
       {
-        "parameters": [{ "id": "filename", "type": "STRING", "desc": "" }],
-        "return": "NONE"
+        "parameters": [{ "id": "filename", "type": "String", "desc": "" }],
+        "return": "None"
       }
     ]
   }

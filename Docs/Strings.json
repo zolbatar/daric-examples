@@ -5,8 +5,8 @@
     "names": ["ASC", "Asc"],
     "definitions": [
       {
-        "parameters": [{ "id": "string", "type": "STRING", "desc": "" }],
-        "return": "INT"
+        "parameters": [{ "id": "String", "type": "String", "desc": "" }],
+        "return": "Int"
       }
     ]
   },
@@ -16,8 +16,8 @@
     "names": ["CHR", "Chr"],
     "definitions": [
       {
-        "parameters": [{ "id": "ascii", "type": "INT", "desc": "" }],
-        "return": "STRING"
+        "parameters": [{ "id": "ascii", "type": "Int", "desc": "" }],
+        "return": "String"
       }
     ]
   },
@@ -28,11 +28,11 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "string", "type": "STRING", "desc": "" },
-          { "id": "find", "type": "STRING", "desc": "" },
-          { "id": "start", "type": "INT", "desc": "" }
+          { "id": "String", "type": "String", "desc": "" },
+          { "id": "find", "type": "String", "desc": "" },
+          { "id": "start", "type": "Int", "desc": "" }
         ],
-        "return": "INT"
+        "return": "Int"
       }
     ]
   },
@@ -43,10 +43,10 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "string", "type": "STRING", "desc": "" },
-          { "id": "length", "type": "INT", "desc": "" }
+          { "id": "String", "type": "String", "desc": "" },
+          { "id": "length", "type": "Int", "desc": "" }
         ],
-        "return": "STRING"
+        "return": "String"
       }
     ]
   },
@@ -56,8 +56,8 @@
     "names": ["LEN", "Len"],
     "definitions": [
       {
-        "parameters": [{ "id": "string", "type": "STRING", "desc": "" }],
-        "return": "INT"
+        "parameters": [{ "id": "String", "type": "String", "desc": "" }],
+        "return": "Int"
       }
     ]
   },
@@ -69,11 +69,11 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "string", "type": "STRING", "desc": "" },
-          { "id": "start", "type": "INT", "desc": "" },
-          { "id": "end", "type": "INT", "desc": "" }
+          { "id": "String", "type": "String", "desc": "" },
+          { "id": "start", "type": "Int", "desc": "" },
+          { "id": "end", "type": "Int", "desc": "" }
         ],
-        "return": "STRING"
+        "return": "String"
       }
     ]
   },
@@ -84,10 +84,10 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "string", "type": "STRING", "desc": "" },
-          { "id": "length", "type": "INT", "desc": "" }
+          { "id": "String", "type": "String", "desc": "" },
+          { "id": "length", "type": "Int", "desc": "" }
         ],
-        "return": "STRING"
+        "return": "String"
       }
     ]
   }

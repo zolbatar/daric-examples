@@ -7,7 +7,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -18,8 +18,8 @@
     "function": "kbm_waitkey",
     "definitions": [
       {
-        "parameters": [{ "id": "timeout", "type": "INT", "desc": "" }],
-        "return": "INT"
+        "parameters": [{ "id": "timeout", "type": "Int", "desc": "" }],
+        "return": "Int"
       }
     ]
   },
@@ -30,8 +30,8 @@
     "function": "kbm_waitkeys",
     "definitions": [
       {
-        "parameters": [{ "id": "timeout", "type": "INT", "desc": "" }],
-        "return": "STRING"
+        "parameters": [{ "id": "timeout", "type": "Int", "desc": "" }],
+        "return": "String"
       }
     ]
   },
@@ -42,8 +42,8 @@
     "function": "kbm_keydown",
     "definitions": [
       {
-        "parameters": [{ "id": "keycode", "type": "INT", "desc": "" }],
-        "return": "INT"
+        "parameters": [{ "id": "keycode", "type": "Int", "desc": "" }],
+        "return": "Int"
       }
     ]
   },
@@ -54,8 +54,8 @@
     "function": "kbm_keypress",
     "definitions": [
       {
-        "parameters": [{ "id": "keycode", "type": "INT", "desc": "" }],
-        "return": "INT"
+        "parameters": [{ "id": "keycode", "type": "Int", "desc": "" }],
+        "return": "Int"
       }
     ]
   },
@@ -67,7 +67,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "INT"
+        "return": "Int"
       }
     ]
   },
@@ -79,7 +79,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "STRING"
+        "return": "String"
       }
     ]
   },
@@ -91,7 +91,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "INT"
+        "return": "Int"
       }
     ]
   },
@@ -103,7 +103,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "INT"
+        "return": "Int"
       }
     ]
   },
@@ -115,7 +115,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "INT"
+        "return": "Int"
       }
     ]
   }

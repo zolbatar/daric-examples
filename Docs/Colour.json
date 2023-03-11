@@ -7,11 +7,11 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "red", "type": "INT", "desc": "" },
-          { "id": "green", "type": "INT", "desc": "" },
-          { "id": "blue", "type": "INT", "desc": "" }
+          { "id": "red", "type": "Int", "desc": "" },
+          { "id": "green", "type": "Int", "desc": "" },
+          { "id": "blue", "type": "Int", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -22,8 +22,8 @@
     "function": "gfx2d_fgc",
     "definitions": [
       {
-        "parameters": [{ "id": "rgba", "type": "INT", "desc": "" }],
-        "return": "NONE"
+        "parameters": [{ "id": "rgba", "type": "Int", "desc": "" }],
+        "return": "None"
       }
     ]
   },
@@ -35,11 +35,11 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "hue", "type": "INT", "desc": "" },
-          { "id": "saturation", "type": "INT", "desc": "" },
-          { "id": "value", "type": "INT", "desc": "" }
+          { "id": "hue", "type": "Int", "desc": "" },
+          { "id": "saturation", "type": "Int", "desc": "" },
+          { "id": "value", "type": "Int", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -51,11 +51,11 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "red", "type": "INT", "desc": "" },
-          { "id": "green", "type": "INT", "desc": "" },
-          { "id": "blue", "type": "INT", "desc": "" }
+          { "id": "red", "type": "Int", "desc": "" },
+          { "id": "green", "type": "Int", "desc": "" },
+          { "id": "blue", "type": "Int", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -66,8 +66,8 @@
     "function": "gfx2d_bgc",
     "definitions": [
       {
-        "parameters": [{ "id": "rgb", "type": "INT", "desc": "" }],
-        "return": "NONE"
+        "parameters": [{ "id": "rgb", "type": "Int", "desc": "" }],
+        "return": "None"
       }
     ]
   },
@@ -79,11 +79,11 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "hue", "type": "INT", "desc": "" },
-          { "id": "saturation", "type": "INT", "desc": "" },
-          { "id": "value", "type": "INT", "desc": "" }
+          { "id": "hue", "type": "Int", "desc": "" },
+          { "id": "saturation", "type": "Int", "desc": "" },
+          { "id": "value", "type": "Int", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -95,11 +95,11 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "red", "type": "INT", "desc": "" },
-          { "id": "green", "type": "INT", "desc": "" },
-          { "id": "blue", "type": "INT", "desc": "" }
+          { "id": "red", "type": "Int", "desc": "" },
+          { "id": "green", "type": "Int", "desc": "" },
+          { "id": "blue", "type": "Int", "desc": "" }
         ],
-        "return": "INT"
+        "return": "Int"
       }
     ]
   },
@@ -111,12 +111,12 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "red", "type": "INT", "desc": "" },
-          { "id": "green", "type": "INT", "desc": "" },
-          { "id": "blue", "type": "INT", "desc": "" },
-          { "id": "alpha", "type": "INT", "desc": "" }
+          { "id": "red", "type": "Int", "desc": "" },
+          { "id": "green", "type": "Int", "desc": "" },
+          { "id": "blue", "type": "Int", "desc": "" },
+          { "id": "alpha", "type": "Int", "desc": "" }
         ],
-        "return": "INT"
+        "return": "Int"
       }
     ]
   }

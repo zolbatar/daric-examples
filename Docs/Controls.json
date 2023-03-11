@@ -7,17 +7,17 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "window", "type": "STRING", "desc": "" },
-          { "id": "id", "type": "STRING", "desc": "" },
-          { "id": "x", "type": "FLOAT", "desc": "" },
-          { "id": "y", "type": "FLOAT", "desc": "" },
-          { "id": "w", "type": "FLOAT", "desc": "" },
-          { "id": "h", "type": "FLOAT", "desc": "" },
-          { "id": "text", "type": "STRING", "desc": "" },
-          { "id": "hue", "type": "INT", "desc": "" },
-          { "id": "textcolour", "type": "INT", "desc": "" }
+          { "id": "window", "type": "String", "desc": "" },
+          { "id": "id", "type": "String", "desc": "" },
+          { "id": "x", "type": "Float", "desc": "" },
+          { "id": "y", "type": "Float", "desc": "" },
+          { "id": "w", "type": "Float", "desc": "" },
+          { "id": "h", "type": "Float", "desc": "" },
+          { "id": "text", "type": "String", "desc": "" },
+          { "id": "hue", "type": "Int", "desc": "" },
+          { "id": "textcolour", "type": "Int", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -29,15 +29,15 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "window", "type": "STRING", "desc": "" },
-          { "id": "id", "type": "STRING", "desc": "" },
-          { "id": "x", "type": "FLOAT", "desc": "" },
-          { "id": "y", "type": "FLOAT", "desc": "" },
-          { "id": "w", "type": "FLOAT", "desc": "" },
-          { "id": "h", "type": "FLOAT", "desc": "" },
-          { "id": "text", "type": "STRING", "desc": "" }
+          { "id": "window", "type": "String", "desc": "" },
+          { "id": "id", "type": "String", "desc": "" },
+          { "id": "x", "type": "Float", "desc": "" },
+          { "id": "y", "type": "Float", "desc": "" },
+          { "id": "w", "type": "Float", "desc": "" },
+          { "id": "h", "type": "Float", "desc": "" },
+          { "id": "text", "type": "String", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -49,10 +49,10 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "window", "type": "STRING", "desc": "" },
-          { "id": "id", "type": "STRING", "desc": "" }
+          { "id": "window", "type": "String", "desc": "" },
+          { "id": "id", "type": "String", "desc": "" }
         ],
-        "return": "INT"
+        "return": "Int"
       }
     ]
   },
@@ -64,10 +64,10 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "window", "type": "STRING", "desc": "" },
-          { "id": "id", "type": "STRING", "desc": "" }
+          { "id": "window", "type": "String", "desc": "" },
+          { "id": "id", "type": "String", "desc": "" }
         ],
-        "return": "STRING"
+        "return": "String"
       }
     ]
   },
@@ -79,10 +79,10 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "window", "type": "STRING", "desc": "" },
-          { "id": "id", "type": "STRING", "desc": "" }
+          { "id": "window", "type": "String", "desc": "" },
+          { "id": "id", "type": "String", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   }

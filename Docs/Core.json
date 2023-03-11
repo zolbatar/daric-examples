@@ -6,8 +6,8 @@
     "function": "__sleep",
     "definitions": [
       {
-        "parameters": [{ "id": "time", "type": "FLOAT", "desc": "" }],
-        "return": "NONE"
+        "parameters": [{ "id": "time", "type": "Float", "desc": "" }],
+        "return": "None"
       }
     ]
   },
@@ -19,7 +19,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "INT"
+        "return": "Int"
       }
     ]
   }

@@ -6,8 +6,8 @@
     "function": "rndi",
     "definitions": [
       {
-        "parameters": [{ "id": "range", "type": "INT", "desc": "" }],
-        "return": "INT"
+        "parameters": [{ "id": "range", "type": "Int", "desc": "" }],
+        "return": "Int"
       }
     ]
   },
@@ -18,8 +18,8 @@
     "function": "rndf",
     "definitions": [
       {
-        "parameters": [{ "id": "range", "type": "FLOAT", "desc": "" }],
-        "return": "FLOAT"
+        "parameters": [{ "id": "range", "type": "Float", "desc": "" }],
+        "return": "Float"
       }
     ]
   }

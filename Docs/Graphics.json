@@ -7,7 +7,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -19,7 +19,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -31,7 +31,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -43,7 +43,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -55,11 +55,11 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "w", "type": "INT", "desc": "" },
-          { "id": "h", "type": "INT", "desc": "" },
-          { "id": "flags", "type": "INT", "desc": "" }
+          { "id": "w", "type": "Int", "desc": "" },
+          { "id": "h", "type": "Int", "desc": "" },
+          { "id": "flags", "type": "Int", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -71,10 +71,10 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "x", "type": "FLOAT", "desc": "" },
-          { "id": "y", "type": "FLOAT", "desc": "" }
+          { "id": "x", "type": "Float", "desc": "" },
+          { "id": "y", "type": "Float", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -86,7 +86,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "INT"
+        "return": "Int"
       }
     ]
   },
@@ -98,7 +98,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "INT"
+        "return": "Int"
       }
     ]
   },
@@ -110,12 +110,12 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "x1", "type": "FLOAT", "desc": "" },
-          { "id": "y1", "type": "FLOAT", "desc": "" },
-          { "id": "x2", "type": "FLOAT", "desc": "" },
-          { "id": "y2", "type": "IFLOATNT" }
+          { "id": "x1", "type": "Float", "desc": "" },
+          { "id": "y1", "type": "Float", "desc": "" },
+          { "id": "x2", "type": "Float", "desc": "" },
+          { "id": "y2", "type": "Float", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -127,7 +127,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   }

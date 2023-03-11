@@ -7,13 +7,13 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "name", "type": "STRING", "desc": "" },
-          { "id": "x1", "type": "INT", "desc": "" },
-          { "id": "y1", "type": "INT", "desc": "" },
-          { "id": "x2", "type": "INT", "desc": "" },
-          { "id": "y2", "type": "INT", "desc": "" }
+          { "id": "name", "type": "String", "desc": "" },
+          { "id": "x1", "type": "Int", "desc": "" },
+          { "id": "y1", "type": "Int", "desc": "" },
+          { "id": "x2", "type": "Int", "desc": "" },
+          { "id": "y2", "type": "Int", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -24,8 +24,8 @@
     "function": "gui_startwindow",
     "definitions": [
       {
-        "parameters": [{ "id": "name", "type": "STRING", "desc": "" }],
-        "return": "NONE"
+        "parameters": [{ "id": "name", "type": "String", "desc": "" }],
+        "return": "None"
       }
     ]
   },
@@ -37,7 +37,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -49,7 +49,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "INT"
+        "return": "Int"
       }
     ]
   },
@@ -61,7 +61,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "INT"
+        "return": "Int"
       }
     ]
   }

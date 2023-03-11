@@ -7,11 +7,11 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "fov", "type": "FLOAT", "desc": "" },
-          { "id": "near", "type": "FLOAT", "desc": "" },
-          { "id": "far", "type": "FLOAT", "desc": "" }
+          { "id": "fov", "type": "Float", "desc": "" },
+          { "id": "near", "type": "Float", "desc": "" },
+          { "id": "far", "type": "Float", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -23,14 +23,14 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "x1", "type": "FLOAT", "desc": "" },
-          { "id": "y1", "type": "FLOAT", "desc": "" },
-          { "id": "x2", "type": "FLOAT", "desc": "" },
-          { "id": "y2", "type": "FLOAT", "desc": "" },
-          { "id": "near", "type": "FLOAT", "desc": "" },
-          { "id": "far", "type": "FLOAT", "desc": "" }
+          { "id": "x1", "type": "Float", "desc": "" },
+          { "id": "y1", "type": "Float", "desc": "" },
+          { "id": "x2", "type": "Float", "desc": "" },
+          { "id": "y2", "type": "Float", "desc": "" },
+          { "id": "near", "type": "Float", "desc": "" },
+          { "id": "far", "type": "Float", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -42,17 +42,17 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "shape_handle", "type": "INT", "desc": "" },
-          { "id": "x", "type": "FLOAT", "desc": "" },
-          { "id": "y", "type": "FLOAT", "desc": "" },
-          { "id": "z", "type": "FLOAT", "desc": "" },
-          { "id": "rx", "type": "FLOAT", "desc": "" },
-          { "id": "ry", "type": "FLOAT", "desc": "" },
-          { "id": "rz", "type": "FLOAT", "desc": "" },
-          { "id": "scale", "type": "FLOAT", "desc": "" },
-          { "id": "render_type", "type": "INT", "desc": "" }
+          { "id": "shape_handle", "type": "Int", "desc": "" },
+          { "id": "x", "type": "Float", "desc": "" },
+          { "id": "y", "type": "Float", "desc": "" },
+          { "id": "z", "type": "Float", "desc": "" },
+          { "id": "rx", "type": "Float", "desc": "" },
+          { "id": "ry", "type": "Float", "desc": "" },
+          { "id": "rz", "type": "Float", "desc": "" },
+          { "id": "scale", "type": "Float", "desc": "" },
+          { "id": "render_type", "type": "Int", "desc": "" }
         ],
-        "return": "INT"
+        "return": "Int"
       }
     ]
   },
@@ -64,7 +64,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "INT"
+        "return": "Int"
       }
     ]
   },
@@ -75,8 +75,8 @@
     "function": "gfx3d_shapedelete",
     "definitions": [
       {
-        "parameters": [{ "id": "shape_handle", "type": "INT", "desc": "" }],
-        "return": "NONE"
+        "parameters": [{ "id": "shape_handle", "type": "Int", "desc": "" }],
+        "return": "None"
       }
     ]
   },
@@ -88,17 +88,17 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "x", "type": "FLOAT", "desc": "" },
-          { "id": "y", "type": "FLOAT", "desc": "" },
-          { "id": "z", "type": "FLOAT", "desc": "" },
-          { "id": "rx", "type": "FLOAT", "desc": "" },
-          { "id": "ry", "type": "FLOAT", "desc": "" },
-          { "id": "rz", "type": "FLOAT", "desc": "" },
-          { "id": "lx", "type": "FLOAT", "desc": "" },
-          { "id": "ly", "type": "FLOAT", "desc": "" },
-          { "id": "lz", "type": "FLOAT", "desc": "" }
+          { "id": "x", "type": "Float", "desc": "" },
+          { "id": "y", "type": "Float", "desc": "" },
+          { "id": "z", "type": "Float", "desc": "" },
+          { "id": "rx", "type": "Float", "desc": "" },
+          { "id": "ry", "type": "Float", "desc": "" },
+          { "id": "rz", "type": "Float", "desc": "" },
+          { "id": "lx", "type": "Float", "desc": "" },
+          { "id": "ly", "type": "Float", "desc": "" },
+          { "id": "lz", "type": "Float", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -110,12 +110,12 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "object_handle", "type": "INT", "desc": "" },
-          { "id": "rx", "type": "FLOAT", "desc": "" },
-          { "id": "ry", "type": "FLOAT", "desc": "" },
-          { "id": "rz", "type": "FLOAT", "desc": "" }
+          { "id": "object_handle", "type": "Int", "desc": "" },
+          { "id": "rx", "type": "Float", "desc": "" },
+          { "id": "ry", "type": "Float", "desc": "" },
+          { "id": "rz", "type": "Float", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -127,10 +127,10 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "object_handle", "type": "INT", "desc": "" },
-          { "id": "scale_factor", "type": "FLOAT", "desc": "" }
+          { "id": "object_handle", "type": "Int", "desc": "" },
+          { "id": "scale_factor", "type": "Float", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -142,12 +142,12 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "object_handle", "type": "INT", "desc": "" },
-          { "id": "x", "type": "FLOAT", "desc": "" },
-          { "id": "y", "type": "FLOAT", "desc": "" },
-          { "id": "z", "type": "FLOAT", "desc": "" }
+          { "id": "object_handle", "type": "Int", "desc": "" },
+          { "id": "x", "type": "Float", "desc": "" },
+          { "id": "y", "type": "Float", "desc": "" },
+          { "id": "z", "type": "Float", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -159,7 +159,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -170,8 +170,8 @@
     "function": "gfx3d_deleteobject",
     "definitions": [
       {
-        "parameters": [{ "id": "object_handle", "type": "INT", "desc": "" }],
-        "return": "NONE"
+        "parameters": [{ "id": "object_handle", "type": "Int", "desc": "" }],
+        "return": "None"
       }
     ]
   },
@@ -183,7 +183,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -195,7 +195,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -207,7 +207,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -219,11 +219,11 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "x", "type": "FLOAT", "desc": "" },
-          { "id": "y", "type": "FLOAT", "desc": "" },
-          { "id": "z", "type": "FLOAT", "desc": "" }
+          { "id": "x", "type": "Float", "desc": "" },
+          { "id": "y", "type": "Float", "desc": "" },
+          { "id": "z", "type": "Float", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -235,12 +235,12 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "x", "type": "FLOAT", "desc": "" },
-          { "id": "y", "type": "FLOAT", "desc": "" },
-          { "id": "z", "type": "FLOAT", "desc": "" },
-          { "id": "rgba", "type": "INT", "desc": "" }
+          { "id": "x", "type": "Float", "desc": "" },
+          { "id": "y", "type": "Float", "desc": "" },
+          { "id": "z", "type": "Float", "desc": "" },
+          { "id": "rgba", "type": "Int", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -252,11 +252,11 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "vertex1", "type": "INT", "desc": "" },
-          { "id": "vertex2", "type": "INT", "desc": "" },
-          { "id": "vertex3", "type": "INT", "desc": "" }
+          { "id": "vertex1", "type": "Int", "desc": "" },
+          { "id": "vertex2", "type": "Int", "desc": "" },
+          { "id": "vertex3", "type": "Int", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -268,12 +268,12 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "vertex1", "type": "INT", "desc": "" },
-          { "id": "vertex2", "type": "INT", "desc": "" },
-          { "id": "vertex3", "type": "INT", "desc": "" },
-          { "id": "rgba", "type": "INT", "desc": "" }
+          { "id": "vertex1", "type": "Int", "desc": "" },
+          { "id": "vertex2", "type": "Int", "desc": "" },
+          { "id": "vertex3", "type": "Int", "desc": "" },
+          { "id": "rgba", "type": "Int", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -284,8 +284,8 @@
     "function": "gfx3d_loadmesh",
     "definitions": [
       {
-        "parameters": [{ "id": "filename", "type": "STRING", "desc": "" }],
-        "return": "INT"
+        "parameters": [{ "id": "filename", "type": "String", "desc": "" }],
+        "return": "Int"
       }
     ]
   },
@@ -297,11 +297,11 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "red", "type": "INT", "desc": "" },
-          { "id": "green", "type": "INT", "desc": "" },
-          { "id": "blue", "type": "INT", "desc": "" }
+          { "id": "red", "type": "Int", "desc": "" },
+          { "id": "green", "type": "Int", "desc": "" },
+          { "id": "blue", "type": "Int", "desc": "" }
         ],
-        "return": "INT"
+        "return": "Int"
       }
     ]
   },
@@ -313,17 +313,17 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "x", "type": "FLOAT", "desc": "" },
-          { "id": "y", "type": "FLOAT", "desc": "" },
-          { "id": "z", "type": "FLOAT", "desc": "" },
-          { "id": "red", "type": "FLOAT", "desc": "" },
-          { "id": "green", "type": "FLOAT", "desc": "" },
-          { "id": "blue", "type": "FLOAT", "desc": "" },
-          { "id": "constant", "type": "FLOAT", "desc": "" },
-          { "id": "linear", "type": "FLOAT", "desc": "" },
-          { "id": "quadratic", "type": "FLOAT", "desc": "" }
+          { "id": "x", "type": "Float", "desc": "" },
+          { "id": "y", "type": "Float", "desc": "" },
+          { "id": "z", "type": "Float", "desc": "" },
+          { "id": "red", "type": "Float", "desc": "" },
+          { "id": "green", "type": "Float", "desc": "" },
+          { "id": "blue", "type": "Float", "desc": "" },
+          { "id": "constant", "type": "Float", "desc": "" },
+          { "id": "linear", "type": "Float", "desc": "" },
+          { "id": "quadratic", "type": "Float", "desc": "" }
         ],
-        "return": "INT"
+        "return": "Int"
       }
     ]
   },
@@ -335,14 +335,14 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "x", "type": "FLOAT", "desc": "" },
-          { "id": "y", "type": "FLOAT", "desc": "" },
-          { "id": "z", "type": "FLOAT", "desc": "" },
-          { "id": "vx", "type": "FLOAT", "desc": "" },
-          { "id": "vy", "type": "FLOAT", "desc": "" },
-          { "id": "vz", "type": "FLOAT", "desc": "" }
+          { "id": "x", "type": "Float", "desc": "" },
+          { "id": "y", "type": "Float", "desc": "" },
+          { "id": "z", "type": "Float", "desc": "" },
+          { "id": "vx", "type": "Float", "desc": "" },
+          { "id": "vy", "type": "Float", "desc": "" },
+          { "id": "vz", "type": "Float", "desc": "" }
         ],
-        "return": "INT"
+        "return": "Int"
       }
     ]
   },
@@ -354,7 +354,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "FLOAT"
+        "return": "Float"
       }
     ]
   },
@@ -366,7 +366,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "FLOAT"
+        "return": "Float"
       }
     ]
   },
@@ -378,7 +378,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "FLOAT"
+        "return": "Float"
       }
     ]
   }

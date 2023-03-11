@@ -7,10 +7,10 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "w", "type": "INT", "desc": "" },
-          { "id": "h", "type": "INT", "desc": "" }
+          { "id": "w", "type": "Int", "desc": "" },
+          { "id": "h", "type": "Int", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -22,10 +22,10 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "x", "type": "INT", "desc": "" },
-          { "id": "y", "type": "INT", "desc": "" }
+          { "id": "x", "type": "Int", "desc": "" },
+          { "id": "y", "type": "Int", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -37,7 +37,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "INT"
+        "return": "Int"
       }
     ]
   },
@@ -48,8 +48,8 @@
     "function": "gfx2d_createcolouralpha",
     "definitions": [
       {
-        "parameters": [{ "id": "name", "type": "STRING", "desc": "" }],
-        "return": "INT"
+        "parameters": [{ "id": "name", "type": "String", "desc": "" }],
+        "return": "Int"
       }
     ]
   },
@@ -60,8 +60,8 @@
     "function": "sprites_load",
     "definitions": [
       {
-        "parameters": [{ "id": "handle", "type": "INT", "desc": "" }],
-        "return": "NONE"
+        "parameters": [{ "id": "handle", "type": "Int", "desc": "" }],
+        "return": "None"
       }
     ]
   },
@@ -73,14 +73,14 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "handle", "type": "INT", "desc": "" },
-          { "id": "bank", "type": "INT", "desc": "" },
-          { "id": "x", "type": "FLOAT", "desc": "" },
-          { "id": "y", "type": "FLOAT", "desc": "" },
-          { "id": "rotation", "type": "FLOAT", "desc": "" },
-          { "id": "scale", "type": "FLOAT", "desc": "" }
+          { "id": "handle", "type": "Int", "desc": "" },
+          { "id": "bank", "type": "Int", "desc": "" },
+          { "id": "x", "type": "Float", "desc": "" },
+          { "id": "y", "type": "Float", "desc": "" },
+          { "id": "rotation", "type": "Float", "desc": "" },
+          { "id": "scale", "type": "Float", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -92,30 +92,30 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "handle", "type": "INT", "desc": "" },
-          { "id": "bank", "type": "INT", "desc": "" },
-          { "id": "x", "type": "FLOAT", "desc": "" },
-          { "id": "y", "type": "FLOAT", "desc": "" },
-          { "id": "rotation", "type": "FLOAT", "desc": "" },
-          { "id": "scale", "type": "FLOAT", "desc": "" },
-          { "id": "x_offset", "type": "INT", "desc": "" },
-          { "id": "y_offset", "type": "INT", "desc": "" },
-          { "id": "x_size", "type": "INT", "desc": "" },
-          { "id": "y_size", "type": "INT", "desc": "" }
+          { "id": "handle", "type": "Int", "desc": "" },
+          { "id": "bank", "type": "Int", "desc": "" },
+          { "id": "x", "type": "Float", "desc": "" },
+          { "id": "y", "type": "Float", "desc": "" },
+          { "id": "rotation", "type": "Float", "desc": "" },
+          { "id": "scale", "type": "Float", "desc": "" },
+          { "id": "x_offset", "type": "Int", "desc": "" },
+          { "id": "y_offset", "type": "Int", "desc": "" },
+          { "id": "x_size", "type": "Int", "desc": "" },
+          { "id": "y_size", "type": "Int", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
   {
     "package": "Daric",
     "module": "Sprites",
-    "names": ["SpriteRenderPoint"],
-    "function": "sprites_renderpoint",
+    "names": ["SpriteRenderPoInt"],
+    "function": "sprites_renderpoInt",
     "definitions": [
       {
-        "parameters": [{ "id": "flag", "type": "INT", "desc": "" }],
-        "return": "NONE"
+        "parameters": [{ "id": "flag", "type": "Int", "desc": "" }],
+        "return": "None"
       }
     ]
   },
@@ -126,8 +126,8 @@
     "function": "sprites_usecolour",
     "definitions": [
       {
-        "parameters": [{ "id": "flag", "type": "INT", "desc": "" }],
-        "return": "NONE"
+        "parameters": [{ "id": "flag", "type": "Int", "desc": "" }],
+        "return": "None"
       }
     ]
   }

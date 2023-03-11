@@ -7,10 +7,10 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "filename", "type": "STRING", "desc": "" },
-          { "id": "size", "type": "FLOAT", "desc": "" }
+          { "id": "filename", "type": "String", "desc": "" },
+          { "id": "size", "type": "Float", "desc": "" }
         ],
-        "return": "INT"
+        "return": "Int"
       }
     ]
   },
@@ -21,8 +21,8 @@
     "function": "text_setfont",
     "definitions": [
       {
-        "parameters": [{ "id": "font_handle", "type": "INT", "desc": "" }],
-        "return": "NONE"
+        "parameters": [{ "id": "font_handle", "type": "Int", "desc": "" }],
+        "return": "None"
       }
     ]
   },
@@ -34,11 +34,11 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "x", "type": "FLOAT", "desc": "" },
-          { "id": "y", "type": "FLOAT", "desc": "" },
-          { "id": "text", "type": "STRING", "desc": "" }
+          { "id": "x", "type": "Float", "desc": "" },
+          { "id": "y", "type": "Float", "desc": "" },
+          { "id": "text", "type": "String", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -50,11 +50,11 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "x", "type": "FLOAT", "desc": "" },
-          { "id": "y", "type": "FLOAT", "desc": "" },
-          { "id": "text", "type": "STRING", "desc": "" }
+          { "id": "x", "type": "Float", "desc": "" },
+          { "id": "y", "type": "Float", "desc": "" },
+          { "id": "text", "type": "String", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -66,11 +66,11 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "x", "type": "FLOAT", "desc": "" },
-          { "id": "y", "type": "FLOAT", "desc": "" },
-          { "id": "text", "type": "STRING", "desc": "" }
+          { "id": "x", "type": "Float", "desc": "" },
+          { "id": "y", "type": "Float", "desc": "" },
+          { "id": "text", "type": "String", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   }

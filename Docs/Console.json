@@ -7,7 +7,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -19,7 +19,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -31,7 +31,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -43,7 +43,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -55,10 +55,10 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "x", "type": "INT", "desc": "" },
-          { "id": "y", "type": "INT", "desc": "" }
+          { "id": "x", "type": "Int", "desc": "" },
+          { "id": "y", "type": "Int", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -70,7 +70,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "INT"
+        "return": "Int"
       }
     ]
   },
@@ -82,7 +82,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "INT"
+        "return": "Int"
       }
     ]
   }

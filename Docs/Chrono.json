@@ -7,7 +7,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "FLOAT"
+        "return": "Float"
       }
     ]
   },
@@ -19,7 +19,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "STRING"
+        "return": "String"
       }
     ]
   },
@@ -31,7 +31,7 @@
     "definitions": [
       {
         "parameters": [],
-        "return": "STRING"
+        "return": "String"
       }
     ]
   }

@@ -7,11 +7,11 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "x", "type": "FLOAT", "desc": "" },
-          { "id": "y", "type": "FLOAT", "desc": "" },
-          { "id": "r", "type": "FLOAT", "desc": "" }
+          { "id": "x", "type": "Float", "desc": "" },
+          { "id": "y", "type": "Float", "desc": "" },
+          { "id": "r", "type": "Float", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -23,11 +23,11 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "x", "type": "FLOAT", "desc": "" },
-          { "id": "y", "type": "FLOAT", "desc": "" },
-          { "id": "r", "type": "FLOAT", "desc": "" }
+          { "id": "x", "type": "Float", "desc": "" },
+          { "id": "y", "type": "Float", "desc": "" },
+          { "id": "r", "type": "Float", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -39,12 +39,12 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "x1", "type": "FLOAT", "desc": "" },
-          { "id": "y1", "type": "FLOAT", "desc": "" },
-          { "id": "x2", "type": "FLOAT", "desc": "" },
-          { "id": "y2", "type": "FLOAT", "desc": "" }
+          { "id": "x1", "type": "Float", "desc": "" },
+          { "id": "y1", "type": "Float", "desc": "" },
+          { "id": "x2", "type": "Float", "desc": "" },
+          { "id": "y2", "type": "Float", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -56,10 +56,10 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "x", "type": "FLOAT", "desc": "" },
-          { "id": "y", "type": "FLOAT", "desc": "" }
+          { "id": "x", "type": "Float", "desc": "" },
+          { "id": "y", "type": "Float", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -71,12 +71,12 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "x1", "type": "FLOAT", "desc": "" },
-          { "id": "y1", "type": "FLOAT", "desc": "" },
-          { "id": "x2", "type": "FLOAT", "desc": "" },
-          { "id": "y2", "type": "FLOAT", "desc": "" }
+          { "id": "x1", "type": "Float", "desc": "" },
+          { "id": "y1", "type": "Float", "desc": "" },
+          { "id": "x2", "type": "Float", "desc": "" },
+          { "id": "y2", "type": "Float", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -88,12 +88,12 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "x1", "type": "FLOAT", "desc": "" },
-          { "id": "y1", "type": "FLOAT", "desc": "" },
-          { "id": "x2", "type": "FLOAT", "desc": "" },
-          { "id": "y2", "type": "FLOAT", "desc": "" }
+          { "id": "x1", "type": "Float", "desc": "" },
+          { "id": "y1", "type": "Float", "desc": "" },
+          { "id": "x2", "type": "Float", "desc": "" },
+          { "id": "y2", "type": "Float", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -104,8 +104,8 @@
     "function": "gfx2d_set_alpha",
     "definitions": [
       {
-        "parameters": [{ "id": "value", "type": "INT", "desc": "" }],
-        "return": "NONE"
+        "parameters": [{ "id": "value", "type": "Int", "desc": "" }],
+        "return": "None"
       }
     ]
   },
@@ -116,8 +116,8 @@
     "function": "gfx2d_linewidth",
     "definitions": [
       {
-        "parameters": [{ "id": "value", "type": "FLOAT", "desc": "" }],
-        "return": "NONE"
+        "parameters": [{ "id": "value", "type": "Float", "desc": "" }],
+        "return": "None"
       }
     ]
   },
@@ -129,14 +129,14 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "x1", "type": "FLOAT", "desc": "" },
-          { "id": "y1", "type": "FLOAT", "desc": "" },
-          { "id": "x2", "type": "FLOAT", "desc": "" },
-          { "id": "y2", "type": "FLOAT", "desc": "" }
-          { "id": "x3", "type": "FLOAT", "desc": "" },
-          { "id": "y3", "type": "FLOAT", "desc": "" }
+          { "id": "x1", "type": "Float", "desc": "" },
+          { "id": "y1", "type": "Float", "desc": "" },
+          { "id": "x2", "type": "Float", "desc": "" },
+          { "id": "y2", "type": "Float", "desc": "" },
+          { "id": "x3", "type": "Float", "desc": "" },
+          { "id": "y3", "type": "Float", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -148,14 +148,14 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "x1", "type": "FLOAT", "desc": "" },
-          { "id": "y1", "type": "FLOAT", "desc": "" },
-          { "id": "x2", "type": "FLOAT", "desc": "" },
-          { "id": "y2", "type": "FLOAT", "desc": "" }
-          { "id": "x3", "type": "FLOAT", "desc": "" },
-          { "id": "y3", "type": "FLOAT", "desc": "" }
+          { "id": "x1", "type": "Float", "desc": "" },
+          { "id": "y1", "type": "Float", "desc": "" },
+          { "id": "x2", "type": "Float", "desc": "" },
+          { "id": "y2", "type": "Float", "desc": "" },
+          { "id": "x3", "type": "Float", "desc": "" },
+          { "id": "y3", "type": "Float", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   },
@@ -167,17 +167,17 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "x1", "type": "FLOAT", "desc": "" },
-          { "id": "y1", "type": "FLOAT", "desc": "" },
-          { "id": "colour1", "type": "INT", "desc": "" },
-          { "id": "x2", "type": "FLOAT", "desc": "" },
-          { "id": "y2", "type": "FLOAT", "desc": "" },
-          { "id": "colour2", "type": "INT", "desc": "" },
-          { "id": "x3", "type": "FLOAT", "desc": "" },
-          { "id": "y3", "type": "FLOAT", "desc": "" },
-          { "id": "colour3", "type": "INT", "desc": "" }
+          { "id": "x1", "type": "Float", "desc": "" },
+          { "id": "y1", "type": "Float", "desc": "" },
+          { "id": "colour1", "type": "Int", "desc": "" },
+          { "id": "x2", "type": "Float", "desc": "" },
+          { "id": "y2", "type": "Float", "desc": "" },
+          { "id": "colour2", "type": "Int", "desc": "" },
+          { "id": "x3", "type": "Float", "desc": "" },
+          { "id": "y3", "type": "Float", "desc": "" },
+          { "id": "colour3", "type": "Int", "desc": "" }
         ],
-        "return": "NONE"
+        "return": "None"
       }
     ]
   }
