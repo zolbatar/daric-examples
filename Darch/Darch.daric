@@ -41,7 +41,6 @@ Def Darch()
 
     BankedOn
     ltt=Timer():tt=0.0
-    ShadowsOn
     Repeat
         Cls
         newt#=Timer()
@@ -85,7 +84,6 @@ Def Darch()
 
         DoRender(pos,rot,height,tt,dead)
     Until KeyDown(KEY_ESCAPE) Or AppCloseRequested()
-    ShadowsOff
     BankedOff
 End Def
 

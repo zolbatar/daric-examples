@@ -297,9 +297,9 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "red", "type": "Int", "desc": "" },
-          { "id": "green", "type": "Int", "desc": "" },
-          { "id": "blue", "type": "Int", "desc": "" }
+          { "id": "red", "type": "Float", "desc": "" },
+          { "id": "green", "type": "Float", "desc": "" },
+          { "id": "blue", "type": "Float", "desc": "" }
         ],
         "return": "Int"
       }
