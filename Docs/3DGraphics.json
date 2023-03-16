@@ -292,7 +292,7 @@
   {
     "package": "Daric",
     "module": "Graphics3D",
-    "names": ["SetAmbient"],
+    "names": ["Ambient"],
     "function": "gfx3d_ambient",
     "definitions": [
       {
@@ -308,7 +308,7 @@
   {
     "package": "Daric",
     "module": "Graphics3D",
-    "names": ["SetDirectional"],
+    "names": ["Directional"],
     "function": "gfx3d_directional",
     "definitions": [
       {

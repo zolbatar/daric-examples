@@ -48,7 +48,6 @@
     "package": "Daric",
     "module": "Maths",
     "names": ["ACS", "Acs"],
-    "description": "Function returning the arc-cosine of its numeric argument.",
     "definitions": [
       {
         "parameters": [{ "id": "value", "type": "Float", "desc": "" }],

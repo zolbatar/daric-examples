@@ -1,6 +1,6 @@
 Import "Library/Menu"
 number_of_vertices%=0:number_of_faces%=0
-min=1000000.0:max=-1000000.0:A$=""
+vmin=1000000.0:vmax=-1000000.0:A$=""
 
 If @Main
     Mode 1280,1024,Windowed
@@ -10,7 +10,7 @@ End If
 Def Load3D()
     SetFont prop
     Cls
-    SetCamera 0,5,10,0,1,0,0,0,0
+    Camera 0,5,10,0,1,0,0,0,0
     Title("Select a 3D Model to Load (Use Keyboard)")
     Label("1", "Male Head (DARIC importer)", ms+(0*ys),0)
     Label("2", "Teapot (DARIC importer)", ms+(1*ys),0)
@@ -20,8 +20,8 @@ Def Load3D()
     Label("Q", "Back to Welcome", ms+(7*ys),0)
     A$=GetChar()
     Case A$ OF
-        When "1":file$="Shapes/MaleHead.obj":SetCamera 0,0,-10,0,1,0,0,0,0
-        When "2":file$="Shapes/Teapot.obj":SetCamera 0,0,-10,0,1,0,0,0,0
+        When "1":file$="Shapes/MaleHead.obj":Camera 0,0,-10,0,1,0,0,0,0
+        When "2":file$="Shapes/Teapot.obj":Camera 0,0,-10,0,1,0,0,0,0
         When "3":file$="Shapes/911-gt2-rim.obj"
         When "4":file$="Shapes/Oak_Tree.obj"
         When "5":file$="Shapes/Crystal.obj"
@@ -118,7 +118,7 @@ Def LoadOBJFile:Int(filename$:String, typ$:String)
         NormaliseSize(linein$)
     Until Eof(file%)
     Print "adjustment is ";
-    Print min
+    Print vmin
 
     REM Now actually start to build our object, vertices first
     Print "Building vertices..."
@@ -131,9 +131,9 @@ Def LoadOBJFile:Int(filename$:String, typ$:String)
         If Len(linein$) >= 1 Then
             If Left(linein$, 2) = "v " Then
                 Get3OBJValues(linein$, s1$, s2$, s3$)
-                x=Float(s1$) / max
-                y=Float(s2$) / max
-                z=Float(s3$) / max
+                x=Float(s1$) / vmax
+                y=Float(s2$) / vmax
+                z=Float(s3$) / vmax
 	            VertexColour x, y, z, colour%
             End If
         End If
@@ -219,11 +219,11 @@ Def NormaliseSize(linein$:String)
     x=Float(s1$)
     y=Float(s2$)
     z=Float(s3$)
-    If x < min min = x
-    If y < min min = y
-    If z < min min = z
+    If x < vmin vmin = x
+    If y < vmin vmin = y
+    If z < vmin vmin = z
 
-    If x > max max = x
-    If y > max max = y
-    If z > max max = z
+    If x > vmax vmax = x
+    If y > vmax vmax = y
+    If z > vmax vmax = z
 End Def

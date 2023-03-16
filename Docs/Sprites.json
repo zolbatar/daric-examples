@@ -45,7 +45,7 @@
     "package": "Daric",
     "module": "Sprites",
     "names": ["LoadSprite"],
-    "function": "gfx2d_createcolouralpha",
+    "function": "sprites_load",
     "definitions": [
       {
         "parameters": [{ "id": "name", "type": "String", "desc": "" }],
@@ -57,7 +57,7 @@
     "package": "Daric",
     "module": "Sprites",
     "names": ["DeleteSprite"],
-    "function": "sprites_load",
+    "function": "sprites_delete",
     "definitions": [
       {
         "parameters": [{ "id": "handle", "type": "Int", "desc": "" }],
@@ -110,8 +110,8 @@
   {
     "package": "Daric",
     "module": "Sprites",
-    "names": ["SpriteRenderPoInt"],
-    "function": "sprites_renderpoInt",
+    "names": ["SpriteRenderPoint"],
+    "function": "sprites_renderpoint",
     "definitions": [
       {
         "parameters": [{ "id": "flag", "type": "Int", "desc": "" }],

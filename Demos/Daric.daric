@@ -65,8 +65,8 @@ Def Daric()
     coolfont=LoadFont("edunline.ttf",80)
 	terrain1=CreateTerrain(terrainsize, terrainsize, 0.25, 2)
     BankedOn
-'	SetCamera 0,5,-10,0,1,0,0,0,0
-    SetCamera 0,1,5,0,1,0,0,0,0
+'	Camera 0,5,-10,0,1,0,0,0,0
+    Camera 0,1,5,0,1,0,0,0,0
     Cls
     Sky()
     Sun()
@@ -85,7 +85,7 @@ Def Daric()
     SetBg 0,255,0:RectangleFilled w/2-100,h/2+40,w/2+100,h/2+50
     SetBg 0,0,255:RectangleFilled w/2+110,h/2+40,w/2+300,h/2+50
     Flip
-    Until WaitKey(0) Or AppCloseRequested()
+    Repeat Until WaitKey(0) Or AppCloseRequested()
     BankedOff
     DeleteObject terrain1
 End Def

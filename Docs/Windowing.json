@@ -48,7 +48,7 @@
     "function": "gfx2d_wwidth",
     "definitions": [
       {
-        "parameters": [],
+        "parameters": [{ "id": "name", "type": "String", "desc": "" }],
         "return": "Int"
       }
     ]
@@ -60,7 +60,7 @@
     "function": "gfx2d_wheight",
     "definitions": [
       {
-        "parameters": [],
+        "parameters": [{ "id": "name", "type": "String", "desc": "" }],
         "return": "Int"
       }
     ]

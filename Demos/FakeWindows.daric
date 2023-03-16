@@ -11,7 +11,7 @@ End If
 Def FakeWindows()
     BankedOn
 	terrain1=CreateTerrain(terrainsize, terrainsize, 1.0, 0)
-	SetCamera 0,5,-10,0,1,0,0,0,0
+	Camera 0,5,-10,0,1,0,0,0,0
     w=ScreenWidth():h=ScreenHeight()
 
 	segw=w*0.05

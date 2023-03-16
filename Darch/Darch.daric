@@ -50,7 +50,7 @@ Def Darch()
         cum=cum+tt
 
         REM Camera position depends on the Y position:our plane
-        SetCamera 0,30,-10,0,1,0,0,5,50
+        Camera 0,30,-10,0,1,0,0,5,50
 
         If dead=0 Then
             REM Mouse

@@ -34,8 +34,8 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "x", "type": "Float", "desc": "" },
-          { "id": "y", "type": "Float", "desc": "" },
+          { "id": "x", "type": "Int", "desc": "" },
+          { "id": "y", "type": "Int", "desc": "" },
           { "id": "text", "type": "String", "desc": "" }
         ],
         "return": "None"
@@ -50,8 +50,8 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "x", "type": "Float", "desc": "" },
-          { "id": "y", "type": "Float", "desc": "" },
+          { "id": "x", "type": "Int", "desc": "" },
+          { "id": "y", "type": "Int", "desc": "" },
           { "id": "text", "type": "String", "desc": "" }
         ],
         "return": "None"
@@ -66,8 +66,8 @@
     "definitions": [
       {
         "parameters": [
-          { "id": "x", "type": "Float", "desc": "" },
-          { "id": "y", "type": "Float", "desc": "" },
+          { "id": "x", "type": "Int", "desc": "" },
+          { "id": "y", "type": "Int", "desc": "" },
           { "id": "text", "type": "String", "desc": "" }
         ],
         "return": "None"

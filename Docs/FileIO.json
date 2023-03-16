@@ -145,7 +145,7 @@
     "definitions": [
       {
         "parameters": [{ "id": "index", "type": "Int", "desc": "" }],
-        "return": "Int"
+        "return": "String"
       }
     ]
   },

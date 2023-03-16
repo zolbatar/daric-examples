@@ -15,7 +15,7 @@ Def Cubes()
 	cube_shp=CreateCube()
 	cube1=Object(cube_shp, -2, 0, 0, 0, 0, 0, 2, solid)
 	cube2=Object(cube_shp, 2, 0, 0, 0, 0, 0, 2, wireframe)
-	SetCamera 0,5,10,0,1,0,0,0,0
+	Camera 0,5,10,0,1,0,0,0,0
 	SetFont prop
 	SetFg &FF,&FF,&FF
 	BankedOn
