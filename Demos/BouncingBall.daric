@@ -1,0 +1,16 @@
+If @Main Then
+	Mode 800,600,Banked Or Windowed
+	Balls()
+End If 
+
+TAU=2*PI
+radd=109:r2=radd*2:rad2=radd^2:scl=1024:nc=128:nc2=nc/2:norm=TAU/scl:ang=RAD(18):k=4:amb=1
+DIM p:Float[2,2]
+DIM l:Float[3]
+l[0]=-0.348
+l[1]=0.348
+l[2]-0.87
+
+Def Balls()
+    GetKey()
+End Def
