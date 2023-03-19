@@ -1,0 +1,141 @@
+Option Base 1
+Import "Globs"
+
+box=-1:box_shape=-1
+
+Def CreateBox()
+    colour=Colour(80,80,80)
+    colourwater=ColourAlpha(0,30,100,100)
+
+    lowest=-1.25*height
+    i=0
+    ' Left and right sides
+	For z = 1 To terrainsize-1
+		h0=dheight[1, z]
+		h1=dheight[1, z+1]
+
+   		Vertex (1 * scale_x) - half_width, h0 * height, (z * scale_z) - half_depth
+   		Vertex (1 * scale_x) - half_width, h1 * height, ((z+1) * scale_z) - half_depth
+   		Vertex (1 * scale_x) - half_width, lowest, ((z+1) * scale_z) - half_depth
+        FaceColour i+2,i+1,i, colour
+        i=i+3
+
+   		Vertex (1 * scale_x) - half_width, lowest, ((z+1) * scale_z) - half_depth
+   		Vertex (1 * scale_x) - half_width, lowest, (z * scale_z) - half_depth
+   		Vertex (1 * scale_x) - half_width, h0 * height, (z * scale_z) - half_depth
+        FaceColour i+2,i+1,i, colour
+        i=i+3
+
+		' Water?
+		If (h0 < 0.0 Or h1 < 0.0) Then
+			Vertex (1 * scale_x) - half_width, 0, ((z+1) * scale_z) - half_depth
+			Vertex (1 * scale_x) - half_width, 0, (z * scale_z) - half_depth
+			Vertex (1 * scale_x) - half_width, h0 * height, (z * scale_z) - half_depth
+			FaceColour i+2,i+1,i, colourwater
+			i=i+3
+
+			Vertex (1 * scale_x) - half_width, h0 * height, (z * scale_z) - half_depth
+			Vertex (1 * scale_x) - half_width, h1 * height, ((z+1) * scale_z) - half_depth
+ 			Vertex (1 * scale_x) - half_width, 0, ((z+1) * scale_z) - half_depth
+			FaceColour i+2,i+1,i, colourwater
+			i=i+3
+		End If
+
+		h0=dheight[terrainsize, z]
+		h1=dheight[terrainsize, z+1]
+
+   		Vertex (terrainsize * scale_x) - half_width, lowest, ((z+1) * scale_z) - half_depth
+   		Vertex (terrainsize * scale_x) - half_width, h1 * height, ((z+1) * scale_z) - half_depth
+   		Vertex (terrainsize * scale_x) - half_width, h0 * height, (z * scale_z) - half_depth
+        FaceColour i+2,i+1,i, colour
+        i=i+3
+
+   		Vertex (terrainsize * scale_x) - half_width, h0 * height, (z * scale_z) - half_depth
+   		Vertex (terrainsize * scale_x) - half_width, lowest, (z * scale_z) - half_depth
+   		Vertex (terrainsize * scale_x) - half_width, lowest, ((z+1) * scale_z) - half_depth
+        FaceColour i+2,i+1,i, colour
+        i=i+3
+
+		' Water?
+		If (h0 < 0.0 Or h1 < 0.0) Then
+			Vertex (terrainsize * scale_x) - half_width, h0 * height, (z * scale_z) - half_depth
+			Vertex (terrainsize * scale_x) - half_width, 0, (z * scale_z) - half_depth
+			Vertex (terrainsize * scale_x) - half_width, 0, ((z+1) * scale_z) - half_depth
+			FaceColour i+2,i+1,i, colourwater
+			i=i+3
+
+ 			Vertex (terrainsize * scale_x) - half_width, 0, ((z+1) * scale_z) - half_depth
+			Vertex (terrainsize * scale_x) - half_width, h1 * height, ((z+1) * scale_z) - half_depth
+			Vertex (terrainsize * scale_x) - half_width, h0 * height, (z * scale_z) - half_depth
+			FaceColour i+2,i+1,i, colourwater
+			i=i+3
+		End If	Next
+
+    ' Front and back
+   	For x = 1 To terrainsize-1
+		h0=dheight[x, 1]
+		h1=dheight[x+1, 1]
+
+   		Vertex (x * scale_x) - half_width, h0 * height, (1 * scale_z) - half_depth
+   		Vertex ((x+1) * scale_x) - half_width, h1 * height, (1 * scale_z) - half_depth
+   		Vertex ((x+1) * scale_x) - half_width, lowest, (1 * scale_z) - half_depth
+        FaceColour i+2,i+1,i, colour
+        i=i+3
+
+   		Vertex ((x+1) * scale_x) - half_width, lowest, (1 * scale_z) - half_depth
+   		Vertex (x * scale_x) - half_width, lowest, (1 * scale_z) - half_depth
+   		Vertex (x * scale_x) - half_width, h0 * height, (1 * scale_z) - half_depth
+        FaceColour i+2,i+1,i, colour
+        i=i+3
+
+		' Water?
+		If (h0 < 0.0 Or h1 < 0.0) Then
+	   		Vertex (x * scale_x) - half_width, 0, (1 * scale_z) - half_depth
+   			Vertex ((x+1) * scale_x) - half_width, 0, (1 * scale_z) - half_depth
+   			Vertex ((x+1) * scale_x) - half_width, h1 * height, (1 * scale_z) - half_depth
+   	     	FaceColour i+2,i+1,i, colourwater
+   	     	i=i+3
+
+	   		Vertex (x * scale_x) - half_width, 0, (1 * scale_z) - half_depth
+   			Vertex ((x+1) * scale_x) - half_width, h1 * height, (1 * scale_z) - half_depth
+   			Vertex (x * scale_x) - half_width, h0 * height, (1 * scale_z) - half_depth
+   	     	FaceColour i+2,i+1,i, colourwater
+   	     	i=i+3
+		End If
+
+		h0=dheight[x, terrainsize]
+		h1=dheight[x+1, terrainsize]
+
+  		Vertex ((x+1) * scale_x) - half_width, lowest, (terrainsize * scale_z) - half_depth
+   		Vertex ((x+1) * scale_x) - half_width, h1 * height, (terrainsize * scale_z) - half_depth
+   		Vertex (x * scale_x) - half_width, h0 * height, (terrainsize * scale_z) - half_depth
+        FaceColour i+2,i+1,i, colour
+        i=i+3
+
+   		Vertex (x * scale_x) - half_width, h0 * height, (terrainsize * scale_z) - half_depth
+   		Vertex (x * scale_x) - half_width, lowest, (terrainsize * scale_z) - half_depth
+   		Vertex ((x+1) * scale_x) - half_width, lowest, (terrainsize * scale_z) - half_depth
+        FaceColour i+2,i+1,i, colour
+        i=i+3
+
+		' Water?
+		If (h0 < 0.0 Or h1 < 0.0) Then
+	   		Vertex ((x+1) * scale_x) - half_width, h1 * height, (terrainsize * scale_z) - half_depth
+   			Vertex ((x+1) * scale_x) - half_width, 0, (terrainsize * scale_z) - half_depth
+   			Vertex (x * scale_x) - half_width, 0, (terrainsize * scale_z) - half_depth
+   	     	FaceColour i+2,i+1,i, colourwater
+   	     	i=i+3
+
+	   		Vertex (x * scale_x) - half_width, 0, (terrainsize * scale_z) - half_depth
+   			Vertex (x * scale_x) - half_width, h0 * height, (terrainsize * scale_z) - half_depth
+   			Vertex ((x+1) * scale_x) - half_width, h1 * height, (terrainsize * scale_z) - half_depth
+   	     	FaceColour i+2,i+1,i, colourwater
+   	     	i=i+3
+		End If
+	Next
+
+    If box_shape <> -1 DeleteShape box_shape
+    If box <> -1 DeleteObject box
+    box_shape=Shape()
+    box=Object(box_shape, 0, 0, 0, 0, 0, 0, 0.015, 0)
+End Def

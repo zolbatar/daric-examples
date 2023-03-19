@@ -1,0 +1,27 @@
+Option Base 1
+Import "Terrain"
+water=-1:water_shape=-1
+
+Def CreateWater()
+    i=0
+    colour=ColourAlpha(0,30,100,100)
+
+    ' Triangle 1
+    Vertex ((1 * scale_x) - half_width, 0, (1 * scale_z) - half_depth
+    Vertex ((terrainsize * scale_x) - half_width, 0, (1 * scale_z) - half_depth
+    Vertex ((terrainsize * scale_x) - half_width, 0, (terrainsize * scale_z) - half_depth
+    FaceColour i+2,i+1,i,colour
+    i=i+3
+
+    ' Triangle 2
+    Vertex ((1 * scale_x) - half_width, 0, (1 * scale_z) - half_depth
+    Vertex ((terrainsize * scale_x) - half_width, 0, (terrainsize * scale_z) - half_depth
+    Vertex ((1 * scale_x) - half_width, 0, (terrainsize * scale_z) - half_depth
+    FaceColour i+2,i+1,i,colour
+    i=i+3
+
+    If water_shape <> -1 DeleteShape water_shape
+    If water <> -1 DeleteObject water
+    water_shape=Shape()
+    water=Object(water_shape, 0, 0.001, 0, 0, 0, 0, scale, 0)
+End Def

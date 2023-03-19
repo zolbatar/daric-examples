@@ -1,0 +1,41 @@
+rem **Black Hole**by Dusty W. Murray**
+rem **Converted to Daric by Steven Reid, 3/19/2023**
+Def Range:float(v:Float, minimal:Float, maximal:Float)
+if v<minimal then v = minimal
+if v>maximal then v = maximal
+return v
+End Def
+Mode 800,600,Windowed
+SetBg 0, 0, 8
+SetFg 255,255,255
+w = ScreenWidth()
+h = ScreenHeight()
+mw = int(w/2)
+mh = int(h/2)
+mr = mw * 2
+Repeat
+Cls
+ads = 0.005
+rds = 0.5
+r = 5.0
+rd = 0.0
+a = 0.0
+ad = ads
+For t = 0 To 1999*31
+ch = Rnd(5)
+if ch = 0 then rd = rds
+if ch = 1 then rd = -rds * 0.991
+if ch = 2 then ad = ads
+if ch = 3 then ad = -ads
+r = r + rd
+r = Range(r, 10, mr)
+a = a + ad
+if a<0 then a=a+2*pi
+if a>2*pi then a=a-2*pi
+ar = r / 50
+x= int (Sin(a+ar)*r) + mw
+y= int (Cos(a+ar)*r) + mh
+Plot x,y
+Next
+key = GetKey() : rem Wait for a key
+Until key=113 : rem Quit on "q" being entered

@@ -1,0 +1,72 @@
+Option Base 1
+Dim ArchColour:Int[256]
+Dim ArchColourTheme1:Int[24]
+
+Def CreateArchColours()
+    For I=0 To 255
+        tint=I And 3
+        r = ((I And 16) >> 3) OR ((I And 4) >> 2)
+        g = (I And &60) >> 5
+        b = ((I And 128) >> 6) OR ((I And 8) >> 3)
+        bb=((b*4+tint)*&11)
+        gg=(((g*4+tint)*&11) << 8)
+        rr=(((r*4+tint)*&11) << 16)
+        ArchColour[I+1] = bb + gg + rr + (&FF << 24)
+    Next
+
+    ' Mud
+    For I=1 To 8
+        r=(I*7)+29
+        b=(I*6)+15
+        g=(I*6)+17
+        ArchColourTheme1[I]= r + (b << 16) + (g << 8) + (&FF << 24)
+    Next
+
+    ' Grass
+    For I=1 To 8
+        b=(I*8)+8
+        g=74+(I*10)
+        ArchColourTheme1[I+8]= (b << 16) + (g << 8) + (&FF << 24)
+    Next
+
+    For I=1 To 4
+        ' Rock
+        ArchColourTheme1[I+16]=ArchColour[88+I]
+
+        ' Snow
+        ArchColourTheme1[I+20]=ArchColour[252+I]
+    Next
+
+End Def
+
+Def ShowArchColours()
+    For Y=0 To 15
+        For X=0 To 15
+            SetBgColour ArchColour[Y*16+X+1]
+            RectangleFilled X*48,Y*48,(X+1)*48,(Y+1)*48
+        Next
+    Next
+    Flip
+    GetKey()
+End Def
+
+Def ShowThemeColours()
+    For I=1 To 8
+        SetBgColour ArchColourTheme1[I]
+        RectangleFilled (I+0)*48,3*48,(I+1)*48,4*48
+
+        SetBgColour ArchColourTheme1[I+8]
+        RectangleFilled (I+0)*48,5*48,(I+1)*48,6*48
+    Next
+
+    For I=1 To 4
+        SetBgColour ArchColourTheme1[I+16]
+        RectangleFilled (I+0)*48,7*48,(I+1)*48,8*48
+
+        SetBgColour ArchColourTheme1[I+20]
+        RectangleFilled (I+0)*48,9*48,(I+1)*48,10*48
+    Next
+
+    Flip
+    GetKey()
+End Def

@@ -1,0 +1,9 @@
+scale_x=2.0
+scale_z=2.0
+height=50.0
+rendermode=2
+Const scale=0.015
+Const terrainsize=300
+Dim dheight:Float[300, 300]
+half_width=(terrainsize * scale_x) / 2.0
+half_depth=(terrainsize * scale_z) / 2.0

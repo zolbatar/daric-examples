@@ -1,0 +1,72 @@
+Option Base 1
+Import "Globs"
+
+Dim objects:Map[String,Int]
+Dim instances:Stack[Int]
+
+Def LoadObjects()
+    Add objects["Ship"],LoadMesh("Shapes/Player_Enhanced.obj")
+    Add objects["TreeD"],LoadMesh("Shapes/Low_Poly_Tree_Double.obj")
+    Add objects["TreeT"],LoadMesh("Shapes/Low_Poly_Tree_Triple.obj")
+    Add objects["TreeQ"],LoadMesh("Shapes/Low_Poly_Tree_Quad.obj")
+End Def
+
+Def CreateObjects()
+    While Size(instances) > 0
+        Take instances, id
+        DeleteObject id
+    End While
+
+    ' Create some woods/forests
+    Get objects["TreeD"],id1
+    Get objects["TreeT"],id2
+    Get objects["TreeQ"],id3
+    For z = 1 To terrainsize-1 Step 1
+		For x = 1 To terrainsize-1 Step 1
+            h0=dheight[x-1, z-1]
+            h1=dheight[x, z-1]
+            h2=dheight[x+1, z-1]
+
+            h3=dheight[x-1, z]
+            h4=dheight[x, z]
+            h5=dheight[x+1, z]
+
+            h6=dheight[x-1, z+1]
+            h7=dheight[x, z+1]
+            h8=dheight[x+1, z+1]
+
+            h=h0+h1+h2+h3+h4+h5+h6+h7+h8/9.0
+            If h>=0.2 And h<1.6 And RndF(1.0)>=0.9 Then
+                r=Rnd(2)
+                Case r Of
+                    When 0:id=id1
+                    When 1:id=id2
+                    When 2:id=id3
+                End Case
+                ox=((x * scale_x) - half_width) * scale
+                oz=((z * scale_z) - half_depth) * scale
+                sizes=0.25+RndF(0.25)
+                oy=h*scale*6.5
+                Add instances, Object(id, ox, oy, oz, 0, 0, 0, scale*sizes, rendermode)
+            End If
+        Next
+    Next
+
+'    Get objects["Crystal"],id
+ '   Add instances, Object(id, -0.5, 0.25, 0, 0, 0, 0, 0.04, rendermode)
+
+ '   Get objects["Ship"],id
+ '   Add instances, Object(id, -0.25, 0.25, 0, 0, 0, 0, 0.04, rendermode)
+
+ '   Get objects["Fir"],id
+'    Add instances, Object(id, 0, 0.25, 0, 0, 0, 0, 0.025, rendermode)
+
+ '   Get objects["Palm"],id
+ '   Add instances, Object(id, 0.25, 0.25, 0, 0, 0, 0, 0.025, rendermode)
+
+ '   Get objects["Oak"],id
+ '   Add instances, Object(id, 0.5, 0.25, 0, 0, 0, 0, 0.025, rendermode)
+
+ '   Get objects["Poplar"],id
+ '   Add instances, Object(id, 0.7, 0.25, 0, 0, 0, 0, 0.025, rendermode)
+End Def

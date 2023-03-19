@@ -1,0 +1,112 @@
+Option Base 1
+Import "Perlin"
+Import "../Library/Colour"
+Import "ArchColours"
+Import "Globs"
+
+Dim dcolours:Colour[300, 300]
+height_adj=Rad(180)/(terrainsize)
+height_adj_v=0.4
+terrain=-1:terrain_shape=-1
+
+Def CreateTerrain()
+    ' ** Build height map using perlin noise **
+	For z = 1 To terrainsize
+		For x = 1 To terrainsize
+			v = Perlin2D(x, z, 0.05, 3.9)-0.3
+            v1 = Round(v*128.0)
+            v = v1/128.0
+
+            ' Lower to the edge
+            v = v - (height_adj_v * (1.0-Sin(height_adj * x)))
+            v = v - (height_adj_v * (1.0-Sin(height_adj * z)))
+			dheight[x, z]=v
+            
+            ' Ground
+            If v<=0.05 Then ' Mud
+                d:Int=(v/0.05*7)+RndF(1.5)-0.75
+                If d<0 d=0
+                If d>7 d=7
+                colour=ArchColourTheme1[1+d]
+            End If
+            If v>0.05 And v<=0.25 ' Grass
+                d:Int=((v-0.05)/0.25*7)+RndF(1.5)-0.75
+                If d<0 d=0
+                If d>7 d=7
+                colour=ArchColourTheme1[9+d]
+            End If
+            If v>0.25 And v<=0.4 colour=ArchColourTheme1[Rnd(3)+17] ' Rock
+            If v>0.4 colour=ArchColourTheme1[Rnd(3)+21] ' Snow
+
+            ' Get r, g, b components
+            b = (colour And &FF0000) >> 16
+            g = (colour And &FF00) >> 8
+            r = (colour And &FF)
+
+            ' Add some totally random colouring to make it interesting
+            ration=RndF(0.5)
+            ratioo=1.0-ration
+            colour=ArchColour[Rnd(256+1)]
+            cb = (colour And &FF0000) >> 16
+            cg = (colour And &FF00) >> 8
+            cr = (colour And &FF)
+            r=(r*ratioo)+(cr*ration)
+            g=(g*ratioo)+(cg*ration)
+            b=(b*ratioo)+(cb*ration)
+
+            ' And store
+            dcolours[x, z].b = b
+            dcolours[x, z].g = g
+            dcolours[x, z].r = r
+		Next
+	Next
+
+	REM ** Smooth the colours out a bit
+	For I = 1 To 2
+        For z = 1 To terrainsize-1
+            For x = 1 To terrainsize-1
+                r1=dcolours[x,z].r:     g1=dcolours[x,z].g:     b1=dcolours[x,z].b
+                r2=dcolours[x+1,z].r:   g2=dcolours[x+1,z].g:   b2=dcolours[x+1,z].b
+                r3=dcolours[x,z+1].r:   g3=dcolours[x,z+1].g:   b3=dcolours[x,z+1].b
+                r4=dcolours[x+1,z+1].r: g4=dcolours[x+1,z+1].g: b4=dcolours[x+1,z+1].b
+                r=(r1+r2+r3+r4)/4
+                g=(g1+g2+g3+g4)/4
+                b=(b1+b2+b3+b4)/4
+                dcolours[x,z].r=r
+                dcolours[x,z].g=g
+                dcolours[x,z].b=b
+            Next
+        Next
+    Next
+    CreateTerrainShape()
+End Def
+
+Def CreateTerrainShape()
+    i=0
+	For z = 1 To terrainsize-1
+		For x = 1 To terrainsize-1
+            r=dcolours[x, z].r
+            g=dcolours[x, z].g
+            b=dcolours[x, z].b
+            colour=Colour(r,g,b)
+
+            ' Triangle 1
+            Vertex ((x * scale_x) - half_width, dheight[x, z] * height, (z * scale_z) - half_depth
+            Vertex (((x+1) * scale_x) - half_width, dheight[x+1, z] * height, (z * scale_z) - half_depth
+            Vertex (((x+1) * scale_x) - half_width, dheight[x+1, z+1] * height, ((z+1) * scale_z) - half_depth
+            FaceColour i+2,i+1,i,colour
+            i=i+3
+
+            ' Triangle 2
+            Vertex ((x * scale_x) - half_width, dheight[x, z] * height, (z * scale_z) - half_depth
+            Vertex (((x+1) * scale_x) - half_width, dheight[x+1, z+1] * height, ((z+1) * scale_z) - half_depth
+            Vertex ((x * scale_x) - half_width, dheight[x, z+1] * height, ((z+1) * scale_z) - half_depth
+            FaceColour i+2,i+1,i,colour
+            i=i+3
+		Next    
+	Next
+    If terrain_shape <> -1 DeleteShape terrain_shape
+    If terrain <> -1 DeleteObject terrain
+    terrain_shape=Shape()
+    terrain=Object(terrain_shape, 0, 0, 0, 0, 0, 0, scale, rendermode)
+End Def

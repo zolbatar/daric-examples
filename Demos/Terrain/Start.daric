@@ -1,0 +1,156 @@
+Option Base 1
+Import "Terrain"
+Import "Box"
+Import "Water"
+Import "Objects"
+
+x=0.0:y=0.0:z=0.0
+alt=1.0
+view=0
+
+Dim sine:Float[360]
+
+If @Main Then
+    Mode -1,-1,Banked
+    'Mode 1600,1200,Windowed Or Banked
+    'Mode 1280,1024,Windowed Or Banked
+    Start()
+End If
+
+Def Start()
+    InitPerlin()
+    LoadObjects()
+    CreateArchColours()
+    CreateTerrain()
+    CreateWater()
+    CreateBox()
+    CreateObjects()
+    'ShowArchColours()
+    'ShowThemeColours()
+
+    ' Animation cycle
+    For I=1 To 360
+        sine[I]=Sin(Rad(I))
+    Next
+
+    DoRender()
+End Def
+
+Def DoRender()
+    Ambient 0.6, 0.6, 0.6
+    Directional 0.0,-0.8,0.2, 1.0,1.0,1.0 ,1.0,0.0,0.0
+
+    mx=0:my=0:last_x=0:last_y=0:dragging=0:buttons=0
+    cycle=1
+    BlendOn
+    Repeat
+        Case view Of
+            When 0: rx=Sin(Rad(y))*alt*2.5:rz=Cos(Rad(y))*alt*2.5:Camera x,alt,z, 0,1,0, x+rx,0,z+rz
+            When 1: Camera x,alt*5,z, 0,1,1, x,0,z
+        End Case
+        'Translate water,0,sine[cycle]*0.0025,0
+        Sky()
+    	Render
+        Text 0,0,"Right mouse to move, shift-right to rotate"
+        Text 0,20,"Cursors to move around"
+        Text 0,40,"Y,T - Rotate"
+        Text 0,60,"Q,W,E,R - Set 0,90,180,270 angle"
+        Text 0,80,"A,S - Blending on and off"
+        Text 0,100,"D,F,G - Change render type"
+        Text 0,120,"Z,X,C - Zoom levels"
+        Text 0,140,"N - Normal view"
+        Text 0,160,"M - Orthographic top down view"
+        Text 0,180,"Escape - Quit"
+	    Flip
+        cycle=cycle+1:If cycle=361 cycle=1
+
+        ' Mouse dragging
+        mx=MouseX():my=MouseY():buttons=MouseState()
+        If (buttons And 1) = 1 Then
+			If dragging=0 Then
+				last_x=MouseX():last_y=MouseY()
+				dragging=1
+			Else
+                If KeyDown(KEY_LSHIFT) Then
+                    dx=(mx-last_x) / 5.0:dy=(my-last_y) / 25.0
+                    y=y-dx
+                    last_x=mx:last_y=my
+                Else
+                    dx=(mx-last_x) / 200.0:dy=(my-last_y) / 200.0
+                    MoveSideways(dx)
+                    MoveForward(dy)
+                    last_x=mx:last_y=my
+                End If
+			End If
+		Else
+			dragging=0
+		End If
+
+        If KeyDown(KEY_UP) MoveForward(alt / -20)
+        If KeyDown(KEY_DOWN) MoveForward(alt / 20)
+        If KeyDown(KEY_LEFT) MoveSideways(alt / -20)
+        If KeyDown(KEY_RIGHT) MoveSideways(alt / 20)
+        If KeyPress(KEY_Q) y=0
+        If KeyPress(KEY_W) y=90
+        If KeyPress(KEY_E) y=180
+        If KeyPress(KEY_R) y=270
+        If KeyDown(KEY_Y) y=y-2
+        If KeyDown(KEY_T) y=y+2
+        If KeyDown(KEY_A) BlendOn()
+        If KeyDown(KEY_S) BlendOff()
+        If KeyPress(KEY_D) rendermode=0:CreateAll()
+        If KeyPress(KEY_F) rendermode=1:CreateAll()
+        If KeyPress(KEY_G) rendermode=2:CreateAll()
+        If KeyPress(KEY_Z) alt=4.0
+        If KeyPress(KEY_X) alt=1.0
+        If KeyPress(KEY_C) alt=0.5
+        If KeyPress(KEY_N) view=0:Perspective 30,0.1,1000.0
+        If KeyPress(KEY_M) view=1:Orthographic -terrainsize*scale,terrainsize*scale,-terrainsize*scale,terrainsize*scale,-100.0,100.0
+    Until KeyDown(KEY_ESCAPE) Or AppCloseRequested()
+End Def
+
+Def CreateAll()
+    CreateTerrainShape()
+    CreateWater()
+    CreateBox()
+    CreateObjects()
+End Def
+
+Def MoveForward(v:Float)
+    rx=Sin(Rad(y))*v
+    rz=Cos(Rad(y))*v
+    x=x-rx
+    z=z-rz
+End Def
+
+Def MoveSideways(v:Float)
+    rx=Sin(Rad(y+90))*v
+    rz=Cos(Rad(y+90))*v
+    x=x-rx
+    z=z-rz
+End Def
+
+Def Sky()
+    w=ScreenWidth():h=ScreenHeight()
+    level=6.0
+    For Y=0 To h
+        SetBg &0 * level,&04 * level,&10 * level
+        RectangleFilled 0, Y, w, Y+3
+        level=level-0.005
+    Next
+End Def
+
+Def Lines()
+    w=ScreenWidth():h=ScreenHeight()
+    hh=Int((h-1)/2)*2
+    SetFg 0 ,0 ,0
+    For Y=0 To hh // 2 Step 4
+        SetAlpha 80
+        Line 0,Y,w-1,Y
+        Line 0,Y+1,w-1,Y+1
+        SetAlpha 160
+        Line 0,Y+2,w-1,Y+2
+        Line 0,Y+3,w-1,Y+3
+    Next
+    SetAlpha 255
+End Def
