@@ -68,7 +68,7 @@
   {
     "package": "Daric",
     "module": "Sound",
-    "names": ["SetVolume"],
+    "names": ["Volume"],
     "function": "audio_volume",
     "definitions": [
       {
@@ -83,7 +83,7 @@
   {
     "package": "Daric",
     "module": "Sound",
-    "names": ["SetMusicVolume"],
+    "names": ["MusicVolume"],
     "function": "music_volume",
     "definitions": [
       {

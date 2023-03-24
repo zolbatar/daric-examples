@@ -330,7 +330,7 @@
   {
     "package": "Daric",
     "module": "Graphics3D",
-    "names": ["SetRotate"],
+    "names": ["QuaternionRotate"],
     "function": "gfx3d_setrotate",
     "definitions": [
       {
@@ -349,7 +349,7 @@
   {
     "package": "Daric",
     "module": "Graphics3D",
-    "names": ["GetRotateX"],
+    "names": ["QuaternionRotateX"],
     "function": "gfx3d_getrotatex",
     "definitions": [
       {
@@ -361,7 +361,7 @@
   {
     "package": "Daric",
     "module": "Graphics3D",
-    "names": ["GetRotateY"],
+    "names": ["QuaternionRotateY"],
     "function": "gfx3d_getrotatey",
     "definitions": [
       {
@@ -373,7 +373,7 @@
   {
     "package": "Daric",
     "module": "Graphics3D",
-    "names": ["GetRotateZ"],
+    "names": ["QuaternionRotateZ"],
     "function": "gfx3d_getrotatez",
     "definitions": [
       {

@@ -100,7 +100,7 @@
   {
     "package": "Daric",
     "module": "Graphics2D",
-    "names": ["SetAlpha"],
+    "names": ["Alpha"],
     "function": "gfx2d_set_alpha",
     "definitions": [
       {
@@ -112,7 +112,7 @@
   {
     "package": "Daric",
     "module": "Graphics2D",
-    "names": ["SetLineWidth"],
+    "names": ["LineWidth"],
     "function": "gfx2d_linewidth",
     "definitions": [
       {

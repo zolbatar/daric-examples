@@ -21,7 +21,7 @@ a1d[3]=123:a2di[2,3]=456:a3d[1,2,3]=789
 
 Data        1,2,3,4,5
 DataLabel   "Label"
-Data        123
+Data        123.50,80
 
 Record Coordinate
     x:Float
@@ -479,13 +479,13 @@ End Def
 
 Def TestData
 	Print "::Data::"
-	Read a1%
-    Read a2%
-    Read a3%
-	Print "Data (Int)         = ";:If a1%=1 And a2%=2 And a3%=3 Pass() Else Fail()
+	Read a1,a2,a3
+	Print "Data (Int)         = ";:If a1=1 And a2=2 And a3=3 Pass() Else Fail()
 	Restore "Label"
-	Read a1%
-	Print "DataLabel          = ";:If a1%=123 Pass() Else Fail()
+	ReadF f1
+    b1:Byte=0
+    ReadB b1
+	Print "DataLabel          = ";:If f1=123.50 And b1=80 Pass() Else Fail()
 	Print
 End Def
 

@@ -2,7 +2,7 @@
   {
     "package": "Daric",
     "module": "Colour",
-    "names": ["SetFg"],
+    "names": ["Fg"],
     "function": "gfx2d_fg",
     "definitions": [
       {
@@ -18,7 +18,7 @@
   {
     "package": "Daric",
     "module": "Colour",
-    "names": ["SetFgColour"],
+    "names": ["FgColour"],
     "function": "gfx2d_fgc",
     "definitions": [
       {
@@ -30,7 +30,7 @@
   {
     "package": "Daric",
     "module": "Colour",
-    "names": ["SetFgHSV"],
+    "names": ["FgHSV"],
     "function": "gfx2d_fg_hsv",
     "definitions": [
       {
@@ -46,7 +46,7 @@
   {
     "package": "Daric",
     "module": "Colour",
-    "names": ["SetBg"],
+    "names": ["Bg"],
     "function": "gfx2d_bg",
     "definitions": [
       {
@@ -62,7 +62,7 @@
   {
     "package": "Daric",
     "module": "Colour",
-    "names": ["SetBgColour"],
+    "names": ["BgColour"],
     "function": "gfx2d_bgc",
     "definitions": [
       {
@@ -74,7 +74,7 @@
   {
     "package": "Daric",
     "module": "Colour",
-    "names": ["SetBgHSV"],
+    "names": ["BgHSV"],
     "function": "gfx2d_bg_hsv",
     "definitions": [
       {

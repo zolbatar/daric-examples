@@ -20,7 +20,7 @@
   {
     "package": "Daric",
     "module": "Windowing",
-    "names": ["SetWindow"],
+    "names": ["WindowStart"],
     "function": "gui_startwindow",
     "definitions": [
       {
@@ -32,7 +32,7 @@
   {
     "package": "Daric",
     "module": "Windowing",
-    "names": ["UnsetWindow"],
+    "names": ["WindowEnd"],
     "function": "gui_endwindow",
     "definitions": [
       {

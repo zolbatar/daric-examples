@@ -2,7 +2,7 @@
   {
     "package": "Daric",
     "module": "Sprites",
-    "names": ["SetSpriteBuffer"],
+    "names": ["SpriteBuffer"],
     "function": "sprites_setspritebuffer",
     "definitions": [
       {

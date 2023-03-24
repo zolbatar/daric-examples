@@ -17,7 +17,7 @@
   {
     "package": "Daric",
     "module": "Text",
-    "names": ["SetFont"],
+    "names": ["Font"],
     "function": "text_setfont",
     "definitions": [
       {
