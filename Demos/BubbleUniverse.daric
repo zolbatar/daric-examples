@@ -1,9 +1,9 @@
 REM Thanks to ZXDunny for the original code
 
 If @Main Then
-    Mode -1,-1,0
+    Mode -1,-1,Fullscreen
     BubbleUniverse()
-End If
+EndIf
 
 Def BubbleUniverse()
     BankedOn
@@ -17,7 +17,7 @@ Def BubbleUniverse()
                 u=Sin(i+v)+Sin(r*i+x)
                 v=Cos(i+v)+Cos(r*i+x)
                 x=u+t
-                SetFg i,j,(i+j)/2
+                Ink i,j,(i+j)/2
                 Plot u*sz,v*sz
             Next
         Next
@@ -26,4 +26,4 @@ Def BubbleUniverse()
     Until WaitKey(0)
     Origin 0,0
     BankedOff
-End Def
+EndDef

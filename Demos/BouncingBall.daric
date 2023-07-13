@@ -1,16 +1,37 @@
+Option Base 1
+
+TAU=2*PI
+radd=109.0:r2=radd*2:rad2=radd^2:scl=1024:nc=128:nc2=nc/2:norm=TAU/scl:ang=RAD(18):k=4:amb=1
+Dim p:Float[2,2]
+Dim l:Float[3]     ' BASE 0
+l[1]=-0.348
+l[2]=0.348
+l[3]=-0.87
+
 If @Main Then
 	Mode 800,600,Banked Or Windowed
 	Balls()
-End If 
-
-TAU=2*PI
-radd=109:r2=radd*2:rad2=radd^2:scl=1024:nc=128:nc2=nc/2:norm=TAU/scl:ang=RAD(18):k=4:amb=1
-DIM p:Float[2,2]
-DIM l:Float[3]
-l[0]=-0.348
-l[1]=0.348
-l[2]-0.87
+EndIf 
 
 Def Balls()
-    GetKey()
-End Def
+    For y=-radd To radd Step 0.75
+	    For x=-radd To radd Step 0.75
+			If Sqr(x*x+y*y)<radd Then
+				tmp=x/Sqr(rad2-y*y):xres=Atn(tmp/Sqr(1-tmp*tmp))/norm
+				tmp=y/radd:yres=Atn(tmp/sqr(1-tmp*tmp))/norm
+				col=xres:If yres Mod nc<nc2 Then col=col+nc2
+				v0=y:v1=x:v2=Sqr(radd*radd-y*y-x*x)
+				ll=Sqr(v0*v0+v1*v1+v2*v2)
+				v0/=ll:v1/=ll:v2/=ll
+				p[1,1]=x:p[1,2]=y
+				i=Min(((Min(0.0,l[1]*v0+l[2]*v1+l[3]*v2)^k)+amb)*255,255)/3
+				Print Sys i
+				'transform2d p() rotate ang: x1=p(1,1)+rad,y1=p(1,2)+rad:
+				'window w: PLOT INK i;x1,y1:
+				'window 0: plot ink 1+(col mod nc);x1,y1:
+			EndIf
+    	Next
+ 	Next
+ 
+ GetKey()
+EndDef

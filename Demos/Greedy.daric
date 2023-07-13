@@ -15,9 +15,9 @@ I=0:numCalls=0:numResources=0
 earthRadius = 6367450.0
 
 If @Main Then
-    Mode -1,-1,0
+    Mode 1024,768,Windowed
     Greedy()
-End If 
+EndIf 
 
 Def Greedy()
     Cls
@@ -40,8 +40,8 @@ Def Greedy()
                         If D < O Then
                             O=D
                             L=a
-                        End If
-                    End If
+                        EndIf
+                    EndIf
                 Next
                 used[L]=1
                 total=total + O
@@ -51,34 +51,34 @@ Def Greedy()
     Next
     Print "Finished in ";:Print (Timer()-T);:Print " seconds"
     WaitKey(10000)
-End Def
+EndDef
 
 Def AddCall()
     numCalls=numCalls+1
     callId$[numCalls]=line$[1]
     callx[numCalls]=Float(line$[2])
     cally[numCalls]=Float(line$[3])
-End Def
+EndDef
 
 Def AddResource()
     numResources=numResources+1
     resourceId$[numResources]=line$[1]
     resourcex[numResources]=Float(line$[2])
     resourcey[numResources]=Float(line$[3])
-End Def
+EndDef
 
 Def AddToList()
     If I=4 AddCall()
     If I=3 AddResource()
     line$[1]="":line$[2]="":line$[3]="":line$[4]=""
     I=1
-End Def
+EndDef
 
 Def atan2:Float(y:Float,x:Float)
     If x > 0.0 Return Atn(y/x)
     If y > 0.0 Return Atn(y/x) + PI
-    Return Atn(y/x) - PI
-End Def
+    =Atn(y/x) - PI
+EndDef
 
 Def CalcDistance:Float(la1:Float,lo1:Float,la2:Float,lo2:Float)
     startLat=Rad(la1)
@@ -92,29 +92,22 @@ Def CalcDistance:Float(la1:Float,lo1:Float,la2:Float,lo2:Float)
     a=(sinHLat * sinHLat) + (Cos(startLat) * Cos(endLat)) * (sinHLon * sinHLon)
     c=atan2(Sqr(a), Sqr(1.0-a))
     D=earthRadius * (c + c)
-    Return D
-End Def
+    =D
+EndDef
 
 Def ResetUsed()
     For a=1 To numCalls
         used[a] = 0
     Next
-End Def
-
-Def InitialStrings()
-    For a=1 To 500
-        line$[a] = ""
-    Next
-End Def
+EndDef
 
 Def Load()
     T=Timer()
     channel=OpenIn("Data.txt")
-    If channel=-1 Print "Data.txt file not found":Quit
+    If channel=-1 Print "Data.txt file not found":End
 
     line$[1]="":line$[2]="":line$[3]="":line$[4]=""
     I=1
-    InitialStrings()
     Repeat
         a=BGet(channel)
         If a=ASC(",") I=I+1 Else line$[I] = line$[I] + Chr(a)
@@ -122,5 +115,5 @@ Def Load()
     Until Eof(channel)
     Close channel
     Print "Imported in ";:Print (Timer()-T);:Print " seconds"
-End Def
+EndDef
 

@@ -1,10 +1,10 @@
 If @Main Then
-    Mode -1,-1,0
+    Mode -1,-1,Fullscreen
     Raytracer()
-End If
+EndIf
 
 Def Raytracer()
-    SetSpriteBuffer ScreenWidth(), ScreenHeight()
+    SpriteBuffer ScreenWidth(), ScreenHeight()
     Print "Rendering...please wait"
     T=Timer()
     WW=ScreenWidth():HH=ScreenHeight()
@@ -29,42 +29,33 @@ Def Raytracer()
                 If D>0.0 Then
                     TT=-P-Sqr(D)
                     If TT>0.0 Then
-
                         REM This generates the spheres
-                        X=X+TT*U
-                        Y=Y+TT*V
-                        Z=Z-TT*W
-                        E=X-I
-                        F=Y-I
-                        G=Z
+                        X=X+TT*U:Y=Y+TT*V:Z=Z-TT*W
+                        E=X-I:F=Y-I:G=Z
                         P=2*(U*E+V*F-W*G)
-                        U=U-P*E
-                        V=V-P*F
-                        W=W+P*G
+                        U=U-P*E:V=V-P*F:W=W+P*G
                         I=-I
-
                         T=1
                     Else
                         T=0
-                    End If
+                    EndIf
                 Else
                     T=1
-                End If
+                EndIf
             Until T=1
 
             REM This generates the checkerboard
             If V<0.0 Then
                 P=(Y+2)/V
                 V=-V*((Int(X-U*P)+Int(Z-W*P) And 1)/2.0+0.3)+0.2
-            End If
+            EndIf
 
             S=V*255
-            SetFg S,S,S
-            SbPlot M,(HH-1)-N
+            SbPlot M,(HH-1)-N,S,S,S
         Next
     Next
     sp=CreateSprite()
     DrawSprite sp,0,ScreenWidth()/2,ScreenHeight()/2,0,1
-    SetAlpha 255:SetFg 255,255,255:Print Timer()-T With "Took %f seconds"
+    Alpha 255:Ink 255,255,255:Print Timer()-T With "Took %f seconds"
     GetKey()
-End Def
+EndDef

@@ -6,21 +6,21 @@ Record Spreader
 x:FLOAT
 y:FLOAT
 z:FLOAT
-End Record
+EndRecord
 Const no_spreaders%=500
 Dim spreaders:Spreader[500]
 spreader_rot#=0
 
 Def CreateSpreaders(height:INT)
     For I%=1 To no_spreaders%
-        fx=Rnd(terrainsize)
-        fz=Rnd(terrainsize)
+        fx=Rnd(terrainsize-1)+1
+        fz=Rnd(terrainsize-1)+1
         spreaders[I%].x=fx*scale_x
         spreaders[I%].z=fz*scale_z
         h#=dheight_cons[fx,fz]/4*height
         spreaders[I%].y=h#+3
     Next
-End Def
+EndDef
 
 Def RenderSpreaders(x:FLOAT,z:FLOAT,tt:FLOAT)
     For I%=1 To no_spreaders%
@@ -31,7 +31,7 @@ Def RenderSpreaders(x:FLOAT,z:FLOAT,tt:FLOAT)
     Next
     spreader_rot#=spreader_rot#+30*tt
     If spreader_rot#>360 spreader_rot#=spreader_rot#-360
-End Def
+EndDef
 
 Def RenderObjects(act_x:INT,act_z:INT,half_width#:FLOAT,half_depth#:FLOAT,half_x:INT,half_z:INT,a#:FLOAT)
 	For z = 1 To ext_z
@@ -41,7 +41,7 @@ Def RenderObjects(act_x:INT,act_z:INT,half_width#:FLOAT,half_depth#:FLOAT,half_x
         		o%=map_obj[x+act_x, z+act_z]
         	Else
         	    o%=0
-        	End If
+        	EndIf
     		If o%>0 Then
                 h#=dheight_cons[x+act_x, z+act_z]
                 yy=h# * scale_y / 4
@@ -54,9 +54,9 @@ Def RenderObjects(act_x:INT,act_z:INT,half_width#:FLOAT,half_depth#:FLOAT,half_x
                     When 1:map_obj_render[x, z]=Object(shape_tree1%,xx,yy,zz, 0, 0, 0, 0.5, 0)
                     When 2:map_obj_render[x, z]=Object(shape_tree2%,xx,yy,zz, 0, 0, 0, 0.45, 0)
                     When 3:map_obj_render[x, z]=Object(shape_tree3%,xx,yy,zz, 0, 0, 0, 0.4, 0)
-                End Case
-            End If
+                EndCase
+            EndIf
 		Next
     Next
-End Def
+EndDef
 

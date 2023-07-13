@@ -7,14 +7,14 @@ prop200=-1
 serif200=-1
 
 If @Main Then
-    Mode -1,-1,0
+    Mode -1,-1,Fullscreen
     TextAndFonts()
-End If
+EndIf
 
-Def RandomColour()
-    SetFg Rnd(180)+64,Rnd(180)+64,Rnd(180)+64
-    SetBg Rnd(180)+64,Rnd(180)+64,Rnd(180)+64
-End Def
+Def RandomRGB()
+    Ink Rnd(180)+64,Rnd(180)+64,Rnd(180)+64
+    Paper Rnd(180)+64,Rnd(180)+64,Rnd(180)+64
+EndDef
 
 Def TextAndFonts()
     If dotmatrixfont=-1 dotmatrixfont=LoadFont("FXMatrix105MonoPicaRegular.otf", 40)
@@ -26,39 +26,39 @@ Def TextAndFonts()
     If serif200=-1 serif200=LoadFont("RobotoSerif-Regular.ttf", 100)
     Cls
     w=ScreenWidth():h=ScreenHeight()
-    SetLineWidth(1)
+    LineWidth(1)
     For I=1 To 50
-        RandomColour()
+        RandomRGB()
         Line Rnd(w), Rnd(h), Rnd(w), Rnd(h)
     Next
     For I=1 To 50
-        RandomColour()
+        RandomRGB()
         Circle Rnd(w), Rnd(h), Rnd(50)+20
         CircleFilled Rnd(w), Rnd(h), Rnd(50)+20
     Next
 
-    SetFg &FF,&FF,&00
-    SetFont prop40
+    Ink &FF,&FF,&00
+    Font prop40
     TextCentre w/2, 0, "Standard inbuilt fonts"+Chr(10)+Chr(10)
-    SetFg &FF,&FF,&FF
-    SetFont mono40:TextCentre w/2, -1, "The quick brown fox jumps over the lazy dog (monospaced)"+Chr(10)
-    SetFont prop40:TextCentre w/2, -1, "The quick brown fox jumps over the lazy dog (sans serif)"+Chr(10)
-    SetFont serif40:TextCentre w/2, -1, "The quick brown fox jumps over the lazy dog (serif)"+Chr(10)+Chr(10)
-    SetFg &FF,&FF,&00
-    SetFont prop40:TextCentre w/2, -1, "Loadable TTF/OTF typefaces"+Chr(10)+Chr(10)
-    SetFg &FF,&FF,&FF
-    SetFont dotmatrixfont
+    Ink &FF,&FF,&FF
+    Font mono40:TextCentre w/2, -1, "The quick brown fox jumps over the lazy dog (monospaced)"+Chr(10)
+    Font prop40:TextCentre w/2, -1, "The quick brown fox jumps over the lazy dog (sans serif)"+Chr(10)
+    Font serif40:TextCentre w/2, -1, "The quick brown fox jumps over the lazy dog (serif)"+Chr(10)+Chr(10)
+    Ink &FF,&FF,&00
+    Font prop40:TextCentre w/2, -1, "Loadable TTF/OTF typefaces"+Chr(10)+Chr(10)
+    Ink &FF,&FF,&FF
+    Font dotmatrixfont
     TextCentre w/2, -1, "The quick brown fox jumps over the lazy dog"+Chr(10)
     TextCentre w/2, -1, "(FXMatrix105MonoPicaRegular.otf)"+Chr(10)+Chr(10)
-    SetFg &FF,&FF,&00
-    SetFont prop40:TextCentre w/2, -1, "Large fonts"+Chr(10)+Chr(10)
-    SetFg &FF,&FF,&FF
-    SetFont mono200
+    Ink &FF,&FF,&00
+    Font prop40:TextCentre w/2, -1, "Large fonts"+Chr(10)+Chr(10)
+    Ink &FF,&FF,&FF
+    Font mono200
     TextCentre w/2, -1, "Monospaced 100"+Chr(10)
-    SetFont prop200
+    Font prop200
     TextCentre w/2, -1, "Sans-serif 100"+Chr(10)
-    SetFont serif200
+    Font serif200
     TextCentre w/2, -1, "Serif 100"+Chr(10)
     GetKey()
-End Def
+EndDef
 

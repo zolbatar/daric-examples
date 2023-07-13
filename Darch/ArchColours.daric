@@ -12,5 +12,5 @@ Def CreateArchColours()
         rr=(((r*4+tint)*&11) << 16)
         ArchColour[I+1] = bb + gg + rr
     Next
-End Def
+EndDef
 

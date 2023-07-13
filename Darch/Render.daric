@@ -22,14 +22,13 @@ Def RenderTerrain(x:Int,z:Int,frac_x:Float,frac_z:Float,sq_x:Int,sq_z:Int,ry:Flo
     act_x:Int=sq_x-half_x
 	act_z:Int=sq_z-20
 
-	'Print Sys "Render terrain"
 	For z = 1 To ext_z
 		For x = 1 To ext_x
-		    If ((x+act_x) >= 0) And ((x+act_x) < terrainsize) And ((z+act_z) >= 0) And ((z+act_z) < terrainsize) Then
+		    If ((x+act_x) >= 1) And ((x+act_x) <= terrainsize) And ((z+act_z) >= 1) And ((z+act_z) <= terrainsize) Then
   			    h#=dheight[x+act_x, z+act_z]
   			Else
   			    h#=-1.0
-  			End If
+  			EndIf
     	    Vertex half_width# - (x * scale_x), h# * scale_y, (z * scale_z)
     	Next
  	Next
@@ -41,12 +40,12 @@ Def RenderTerrain(x:Int,z:Int,frac_x:Float,frac_z:Float,sq_x:Int,sq_z:Int,ry:Flo
                 h#=dheight_cons[x+act_x, z+act_z]
   			Else
   			    h#=-1.0
-  			End If
+  			EndIf
             If h#>0.0 r%=dcolours[x+act_x, z+act_z].r:g%=dcolours[x+act_x, z+act_z].g:b%=dcolours[x+act_x, z+act_z].b
             If h#=0.0 r%=dcolours_water[x+act_x, z+act_z].r:g%=dcolours_water[x+act_x, z+act_z].g:b%=dcolours_water[x+act_x, z+act_z].b
-            If h#>=0.0 colour%=Colour(r%, g%, b%)
+            If h#>=0.0 colour%=RGB(r%, g%, b%)
             If h#<0.0 colour%=0:h#=0.0
-'			colour%=Colour(Rnd(255),Rnd(255),Rnd(255))
+'			colour%=RGB(Rnd(255),Rnd(255),Rnd(255))
 
             REM Triangle 1
             v1% = ((z-1) * ext_x) + x
@@ -64,6 +63,6 @@ Def RenderTerrain(x:Int,z:Int,frac_x:Float,frac_z:Float,sq_x:Int,sq_z:Int,ry:Flo
     terrain%=Shape()
     terrain1%=Object(terrain%, -frac_x, 0, frac_z, 0, 0, 0, 1, 0)
 '    RenderObjects(act_x,act_z,half_width#,half_depth#,half_x,half_z,RAD(ry))
-End Def
+EndDef
 
 

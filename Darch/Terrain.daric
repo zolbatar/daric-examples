@@ -10,6 +10,7 @@ Dim map_obj:Int[600, 600]
 Dim map_obj_render:Int[100, 160]
 Dim dcolours:Colour[600, 600]
 Dim dcolours_water:Colour[600, 600]
+
 frame=0
 terrain%=0
 ext_x=100
@@ -47,8 +48,8 @@ Def CreateDarchTerrain()
                     When 1:map_obj[x, z]=2
                     When 2:map_obj[x, z]=3
                     Otherwise:map_obj[x, z]=0
-                End Case
-            End If
+                EndCase
+            EndIf
 		Next
 	Next
 
@@ -77,16 +78,18 @@ Def CreateDarchTerrain()
             Next
         Next
     Next
-End Def
+EndDef
 
 Def DeleteTerrain()
     DeleteShape terrain%
-End Def
+EndDef
 
 Def CheckCollision:Int(sq_x:Int,sq_z:Int,y:Float,scale_y:Float)
-    h#=dheight_cons[sq_x,sq_z]/4*scale_y
-    If (y-1.0)<=h# Return 1
+    If (sq_x >= 1 And sq_x <= terrainsize And sq_z >= 1 And sq_z <= terrainsize) Then
+        h#=dheight_cons[sq_x,sq_z]/4*scale_y
+        If (y-1.0)<=h# Return 1
+    EndIf
     Return 0
-End Def
+EndDef
 
 

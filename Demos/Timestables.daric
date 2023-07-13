@@ -1,0 +1,18 @@
+mode 1000,1000,Windowed Or Banked
+r=ScreenWidth()/2.1
+cx=ScreenWidth()/2:cy=ScreenHeight()/2:n=150.0:s=360.0/n
+t=1.0
+cr=0
+Repeat
+   cls
+   circle cx-1,cy,r
+   for i=1 to n
+      a1=s*i:a2=s*i*t
+      ra1=rad(a1):ra2=rad(a2)
+      inkhsv cr,255,255
+      line cx+sin(ra1)*r,cy+cos(ra1)*r,cx+sin(ra2)*r,cy+cos(ra2)*r
+      cr+=1:cr=cr MOD 360
+   next
+   t+=0.01
+   Flip
+Until WaitKey(0) Or AppCloseRequested()

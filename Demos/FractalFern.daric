@@ -3,8 +3,8 @@ If @Main Then
 
     x=0.0:y=0.0:nextX=0.0:nextY=0.0
     Origin ScreenWidth()/2,0
-    SetFg 144,238,144
-    SetAlpha 24
+    Ink 144,238,144
+    Alpha 24
     s=Min(ScreenWidth(), ScreenHeight())/10.0
     T=Timer()
     For I=1 To 1000000
@@ -18,8 +18,8 @@ If @Main Then
         y = nextY
         Plot x*s,ScreenHeight()-y*s
     Next
-    SetAlpha 255:SetFg 255,255,255:Print Timer()-T With "Took %f seconds"
+    Alpha 255:Ink 255,255,255:Print Timer()-T With "Took %f seconds"
     Repeat Until WaitKey(0) Or AppCloseRequested()
-End If
+EndIf
 
 

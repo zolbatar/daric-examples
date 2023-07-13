@@ -11,11 +11,11 @@ view=0
 Dim sine:Float[360]
 
 If @Main Then
-    Mode -1,-1,Banked
+    Mode -1,-1,Fullscreen Or Banked
     'Mode 1600,1200,Windowed Or Banked
     'Mode 1280,1024,Windowed Or Banked
     Start()
-End If
+EndIf
 
 Def Start()
     InitPerlin()
@@ -34,7 +34,7 @@ Def Start()
     Next
 
     DoRender()
-End Def
+EndDef
 
 Def DoRender()
     Ambient 0.6, 0.6, 0.6
@@ -47,7 +47,7 @@ Def DoRender()
         Case view Of
             When 0: rx=Sin(Rad(y))*alt*2.5:rz=Cos(Rad(y))*alt*2.5:Camera x,alt,z, 0,1,0, x+rx,0,z+rz
             When 1: Camera x,alt*5,z, 0,1,1, x,0,z
-        End Case
+        EndCase
         'Translate water,0,sine[cycle]*0.0025,0
         Sky()
     	Render
@@ -80,11 +80,11 @@ Def DoRender()
                     MoveSideways(dx)
                     MoveForward(dy)
                     last_x=mx:last_y=my
-                End If
-			End If
+                EndIf
+			EndIf
 		Else
 			dragging=0
-		End If
+		EndIf
 
         If KeyDown(KEY_UP) MoveForward(alt / -20)
         If KeyDown(KEY_DOWN) MoveForward(alt / 20)
@@ -107,50 +107,50 @@ Def DoRender()
         If KeyPress(KEY_N) view=0:Perspective 30,0.1,1000.0
         If KeyPress(KEY_M) view=1:Orthographic -terrainsize*scale,terrainsize*scale,-terrainsize*scale,terrainsize*scale,-100.0,100.0
     Until KeyDown(KEY_ESCAPE) Or AppCloseRequested()
-End Def
+EndDef
 
 Def CreateAll()
     CreateTerrainShape()
     CreateWater()
     CreateBox()
     CreateObjects()
-End Def
+EndDef
 
 Def MoveForward(v:Float)
     rx=Sin(Rad(y))*v
     rz=Cos(Rad(y))*v
     x=x-rx
     z=z-rz
-End Def
+EndDef
 
 Def MoveSideways(v:Float)
     rx=Sin(Rad(y+90))*v
     rz=Cos(Rad(y+90))*v
     x=x-rx
     z=z-rz
-End Def
+EndDef
 
 Def Sky()
     w=ScreenWidth():h=ScreenHeight()
     level=6.0
     For Y=0 To h
-        SetBg &0 * level,&04 * level,&10 * level
+        Paper &0 * level,&04 * level,&10 * level
         RectangleFilled 0, Y, w, Y+3
         level=level-0.005
     Next
-End Def
+EndDef
 
 Def Lines()
     w=ScreenWidth():h=ScreenHeight()
     hh=Int((h-1)/2)*2
-    SetFg 0 ,0 ,0
+    Ink 0 ,0 ,0
     For Y=0 To hh // 2 Step 4
-        SetAlpha 80
+        Alpha 80
         Line 0,Y,w-1,Y
         Line 0,Y+1,w-1,Y+1
-        SetAlpha 160
+        Alpha 160
         Line 0,Y+2,w-1,Y+2
         Line 0,Y+3,w-1,Y+3
     Next
-    SetAlpha 255
-End Def
+    Alpha 255
+EndDef

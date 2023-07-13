@@ -8,13 +8,14 @@ These are multiLine comments
 
 }#
 
-Const constant=100
+testno=1
+Const constant=100          ' Constants are faster than regular variable as they are optimised away, but are NOT literals
 Const ccf=12.5
 Dim a1d:Int[5]
-Dim a2di:Int[5,5]
+a2di=Array Int[5,5]         ' This alternate syntax is okay if the variable already exists
 Dim a2df:Float[5,5]
-Dim a3d:Int[5,5,5]
-Dim ta1$:String[2]
+a3d=Array Int[5,5,5]
+Dim ta1$ AS String[2]
 Dim ta2$:String[2, 3]
 
 a1d[3]=123:a2di[2,3]=456:a3d[1,2,3]=789
@@ -26,30 +27,30 @@ Data        123.50,80
 Record Coordinate
     x:Float
     y:Float
-End Record
+EndRecord
 Record Compound
     i:Int
     f:Float
     s:String
     xy:Coordinate
-End Record
-Dim myrecord:Coordinate(x=12.45)
+EndRecord
+myrecord = new Coordinate x=12.45
 myrecord.y=100
 Dim myrecordarray:Coordinate[100]
 myrecordarray[10].x=123
 
 If @Main Then
+'    Mode -1,-1,Fullscreen
     Mode 1280,768,Windowed
     Tests
-End If
+EndIf
 
 Def Tests()
-    Print "Daric Test Suite"
-    Print "----------------"
+    Print "Daric 1.5 Test Suite"
+    Print "--------------------"
     Print
     Print Sys "Writing to console"
 
-    Arrays()
     Boolean()
     Chrono()
     Comparison()
@@ -59,199 +60,220 @@ Def Tests()
     PrintFormatting()
     Strings()
     SwapVars()
-    Records()
     Variables()
     TestData()
     NestedCalling()
     TestReturnInOtherwise()
-    Collections()
     Functions()
+    Records()
+    CopyRecord()
+    AdvancedRecords()
+    Looping()
+    Arrays()
+    Collections()
+    Sorting()
+    TestGoto()
     Print "All tests passed. Press a key to quit."
     GetKey()
-End Def
+EndDef
 
-Def Arrays
+Def Arrays()
  	Print "::Arrays::"
  	SIZ%=6
  	Dim AA:Int[SIZ%]
  	AA[1] = 10
  	AA[6] = 15
- 	Print "Index 1            = ";:If AA[1] = 10 Pass() Else Fail()
- 	Print "Index 6            = ";:If AA[6] = 15 Pass() Else Fail()
+ 	Print "Index 1                      = ";:If AA[1] = 10 Pass() Else Fail()
+ 	Print "Index 6                      = ";:If AA[6] = 15 Pass() Else Fail()
+
+    ' FOR IN syntax - primitives
+    tot=0
+    For a In AA
+        tot+=a
+    Next
+ 	Print "FOR IN (Primitives)          = ";:If tot=25 Pass() Else Fail()
+
+    ' FOR IN syntax - records
+    Dim AAA:Coordinate[6]
+ 	AAA[1].x = 10
+ 	AAA[6].x = 15
+    tot=0
+    For al In AAA
+        tot+=al.x
+    Next
+ 	Print "FOR IN (Records)             = ";:If tot=25 Pass() Else Fail()
+
  	a1d[2] = 321
- 	Print "Global             = ";:If a1d[3] = 123 And a1d[2] = 321 Pass() Else Fail()
+ 	Print "Global                       = ";:If a1d[3] = 123 And a1d[2] = 321 Pass() Else Fail()
     a2df[3,2] = 654.1
- 	Print "Global (2d)        = ";:If a2di[2,3] = 456 And a2df[3,2] = 654.1 Pass() Else Fail()
+ 	Print "Global (2d)                  = ";:If a2di[2,3] = 456 And a2df[3,2] = 654.1 Pass() Else Fail()
     a2df[3,2] = 650
- 	Print "Global (Type conv.)= ";:If a2df[3,2] = 650 Pass() Else Fail()
+ 	Print "Global (Type conv.)          = ";:If a2df[3,2] = 650 Pass() Else Fail()
  	ta1$[1] = "Test"
  	ta1$[2] = ta1$[1]
- 	Print "String arrays      = ";:If ta1$[2] = "Test" Pass() Else Fail()
- 	Print "Size Of 1D array   = ";:If Size ta1$ = 2 Pass() Else Fail()
-    Print Size(ta2$)
- 	Print "Size Of 2D array   = ";:If Size(ta2$) = 6 Pass() Else Fail()
+ 	Print "String arrays                = ";:If ta1$[2] = "Test" Pass() Else Fail()
+ 	Print "Size Of 1D array             = ";:If Size(ta1$) = 2 and Size(ta1$,1) = 2 Pass() Else Fail()
+ 	Print "Size Of 2D array             = ";:If Size(ta2$,2) = 3 Pass() Else Fail()
  	ta2$[1, 1] = "Test"
  	ta2$[2, 2] = ta2$[1, 1]
- 	Print "2D arrays          = ";:If ta2$[2, 2] = "Test" Pass() Else Fail()
+ 	Print "2D arrays                    = ";:If ta2$[2, 2] = "Test" Pass() Else Fail()
  	Print
-End Def
+EndDef
 
-Def Boolean
+Def Boolean()
     Print "::Boolean::"
-    Print "Or                 = ";:If ((&F0 OR &F0) = &F0) And ((&F0 OR &0F) = &FF) Pass() Else Fail()
-    Print "Eor                = ";:If ((1 Eor 1) = 0) And ((1 Eor 0) = 1) And ((0 Eor 0) = 0) Pass() Else Fail()
-    Print "And                = ";:If ((&F0 And &F0) = &F0) And ((&F0 And &0F) = &0) Pass() Else Fail()
-    Print "Not                = ";:If Not 1 = 0 Pass() Else Fail()
-    Print "Complement         = ";:If ~1 = -2 Pass() Else Fail()
-    Print "True               = ";:If True Pass() Else Fail()
-    Print "False              = ";:If Not False Pass() Else Fail()
+    Print "Or                           = ";:If ((&F0 OR &F0) = &F0) And ((&F0 OR &0F) = &FF) Pass() Else Fail()
+    Print "Eor                          = ";:If ((1 Eor 1) = 0) And ((1 Eor 0) = 1) And ((0 Eor 0) = 0) Pass() Else Fail()
+    Print "And                          = ";:If ((&F0 And &F0) = &F0) And ((&F0 And &0F) = &0) Pass() Else Fail()
+    Print "Not                          = ";:If Not 1 = 0 Pass() Else Fail()
+    Print "Complement                   = ";:If ~1 = -2 Pass() Else Fail()
+    Print "True                         = ";:If True Pass() Else Fail()
+    Print "False                        = ";:If Not False Pass() Else Fail()
     Print
-End Def
+EndDef
 
-Def Comparison
+Def Comparison()
     Print "::Comparison::"
-    Print "Min =              = ";:If Min(2,5)=2 Pass() Else Fail()
-    Print "Max =              = ";:If Max(2,5)=5 Pass() Else Fail()
-    Print "Int =              = ";:If 5 = 5 Pass() Else Fail()
-    Print "Int <>             = ";:If 5 <> 6 Pass() Else Fail()
-    Print "Int <              = ";:If 5 < 10 Pass() Else Fail()
-    Print "Int <= (<)         = ";:If 4 <= 5 Pass() Else Fail()
-    Print "Int <= (=)         = ";:If 5 <= 5 Pass() Else Fail()
-    Print "Int >              = ";:If 10 > 5 Pass() Else Fail()
-    Print "Int >= (>)         = ";:If 10 >= 5 Pass() Else Fail()
-    Print "Int >= (>=)        = ";:If 5 >= 5 Pass() Else Fail()
-    Print "Float =            = ";:If 5.0 = 5.0 Pass() Else Fail()
-    Print "Float <>           = ";:If 5.0 <> 6.0 Pass() Else Fail()
-    Print "Float <            = ";:If 5.0 < 10.0 Pass() Else Fail()
-    Print "Float <= (<)       = ";:If 4.0 <= 5.0 Pass() Else Fail()
-    Print "Float <= (=)       = ";:If 5.0 <= 5.0 Pass() Else Fail()
-    Print "Float >            = ";:If 10.0 > 5.0 Pass() Else Fail()
-    Print "Float >= (>)       = ";:If 10.0 >= 5.0 Pass() Else Fail()
-    Print "Float >= (>=)      = ";:If 5.0 >= 5.0 Pass() Else Fail()
-    Print "String =           = ";:If "Fred" = "Fred" Pass() Else Fail()
-    Print "String <>          = ";:If "Fred" <> "fred" Pass() Else Fail()
-    Print "String <           = ";:If "Fred" < "fred" Pass() Else Fail()
-    Print "String <= (<)      = ";:If "Fred" <= "fred" Pass() Else Fail()
-    Print "String <= (=)      = ";:If "Fred" <= "Fred" Pass() Else Fail()
-    Print "String >           = ";:If "fred" > "Fred" Pass() Else Fail()
-    Print "String >= (>)      = ";:If "fred" >= "Fred" Pass() Else Fail()
-    Print "String >= (>=)     = ";:If "Fred" >= "Fred" Pass() Else Fail()
+    Print "Min =                        = ";:If Min(2,5)=2 Pass() Else Fail()
+    Print "Max =                        = ";:If Max(2,5)=5 Pass() Else Fail()
+    Print "Int =                        = ";:If 5 = 5 Pass() Else Fail()
+    Print "Int <>                       = ";:If 5 <> 6 Pass() Else Fail()
+    Print "Int <                        = ";:If 5 < 10 Pass() Else Fail()
+    Print "Int <= (<)                   = ";:If 4 <= 5 Pass() Else Fail()
+    Print "Int <= (=)                   = ";:If 5 <= 5 Pass() Else Fail()
+    Print "Int >                        = ";:If 10 > 5 Pass() Else Fail()
+    Print "Int >= (>)                   = ";:If 10 >= 5 Pass() Else Fail()
+    Print "Int >= (>=)                  = ";:If 5 >= 5 Pass() Else Fail()
+    Print "Float =                      = ";:If 5.0 = 5.0 Pass() Else Fail()
+    Print "Float <>                     = ";:If 5.0 <> 6.0 Pass() Else Fail()
+    Print "Float <                      = ";:If 5.0 < 10.0 Pass() Else Fail()
+    Print "Float <= (<)                 = ";:If 4.0 <= 5.0 Pass() Else Fail()
+    Print "Float <= (=)                 = ";:If 5.0 <= 5.0 Pass() Else Fail()
+    Print "Float >                      = ";:If 10.0 > 5.0 Pass() Else Fail()
+    Print "Float >= (>)                 = ";:If 10.0 >= 5.0 Pass() Else Fail()
+    Print "Float >= (>=)                = ";:If 5.0 >= 5.0 Pass() Else Fail()
+    Print "String =                     = ";:If "Fred" = "Fred" Pass() Else Fail()
+    Print "String <>                    = ";:If "Fred" <> "fred" Pass() Else Fail()
+    Print "String <                     = ";:If "Fred" < "fred" Pass() Else Fail()
+    Print "String <= (<)                = ";:If "Fred" <= "fred" Pass() Else Fail()
+    Print "String <= (=)                = ";:If "Fred" <= "Fred" Pass() Else Fail()
+    Print "String >                     = ";:If "fred" > "Fred" Pass() Else Fail()
+    Print "String >= (>)                = ";:If "fred" >= "Fred" Pass() Else Fail()
+    Print "String >= (>=)               = ";:If "Fred" >= "Fred" Pass() Else Fail()
     Print
-End Def
+EndDef
 
-Def Conversion
+Def Conversion()
     Print "::Conversion::"
-    Print "10 + 15.5          = ";:If 10 + 15.5 = 25.5 Pass() Else Fail()
+    Print "10 + 15.5                    = ";:If 10 + 15.5 = 25.5 Pass() Else Fail()
     Print
-End Def
+EndDef
 
-Def Maths
+Def Maths()
     Print "::Maths::"
-    Print "- (Unary)          = ";:If 2 - -2 = 4 Pass() Else Fail()
-    A=2:Print "- (Unary Var)      = ";:If -A = -2 Pass() Else Fail()
-    Print "- (Int)            = ";:If 10 - 8 = 2 Pass() Else Fail()
-    Print "+ (Int)            = ";:If 10 + 8 = 18 Pass() Else Fail()
-    Print "* (Int)            = ";:If 10 * 8 = 80 Pass() Else Fail()
-    Print "^ (Int)            = ";:If 2 ^ 3 = 8 Pass() Else Fail()
-    Print "Mod (Int)          = ";:If 11 Mod 5 = 1 Pass() Else Fail()
-    Print "Div (Int)          = ";:If 11 Div 5 = 2 Pass() Else Fail()
-    Print "Abs (Int)          = ";:If Abs(-10) = 10 Pass() Else Fail()
-    Print "- (Float)          = ";:If 10.5 - 8.25 = 2.25 Pass() Else Fail()
-    Print "+ (Float)          = ";:If 10.4 + 8.1 = 18.5 Pass() Else Fail()
-    Print "* (Float)          = ";:If 2.5 * 4.5 = 11.25 Pass() Else Fail()
-    Print "/ (Float)          = ";:If 8.4 / 4.2 = 2.0 Pass() Else Fail()
-    Print "Floor              = ";:If Floor(12.8) = 12.0 Pass() Else Fail()
-    Print "Round              = ";:If Round(12.8) = 13.0 Pass() Else Fail()
-    Print "Ln                 = ";:If Int(Ln(16) * 100.0) = 277 Pass() Else Fail()
-    Print "Log                = ";:If Int(Log(16) * 100.0) = 120 Pass() Else Fail()
-    Print "Exp                = ";:If Int(Exp(1) * 100.0) = 271 Pass() Else Fail()
-    Print "Atn                = ";:If Int(Atn(3) * 100.0) = 124 Pass() Else Fail()
-    Print "Tan                = ";:If Int(Tan(3) * 100.0) = -14 Pass() Else Fail()
-    Print "Sin                = ";:If Int(Sin(3) * 100.0) = 14 Pass() Else Fail()
-    Print "Cos                = ";:If Int(Cos(3) * 100.0) = -98 Pass() Else Fail()
-    Print "Acs                = ";:If Int(Acs(0.5) * 100.0) = 104 Pass() Else Fail()
-    Print "Asn                = ";:If Int(Asn(0.5) * 100.0) = 52 Pass() Else Fail()
-    Print "Rad                = ";:If Int(Rad(90) * 100.0) = 157 Pass() Else Fail()
-    Print "Deg                = ";:If Int(Deg(1.5)) = 85 Pass() Else Fail()
-    Print "Pi                 = ";:If Int(Pi*100) = 314 Pass() Else Fail()
-    Print "Sgn (-)            = ";:If Sgn(-10) = -1 Pass() Else Fail()
-    Print "Sgn                = ";:If Sgn(0) = 0 Pass() Else Fail()
-    Print "Sgn (+)            = ";:If Sgn(10) = 1 Pass() Else Fail()
-    Print "Precedence         = ";:If 2+3*4 = 14 Pass() Else Fail()
-    Print "Parentheses        = ";:If (2+3)*4 = 20 Pass() Else Fail()
+    Print "- (Unary)                    = ";:If 2 - -2 = 4 Pass() Else Fail()
+    A=2:Print "- (Unary Var)                = ";:If -A = -2 Pass() Else Fail()
+    Print "- (Int)                      = ";:If 10 - 8 = 2 Pass() Else Fail()
+    Print "+ (Int)                      = ";:If 10 + 8 = 18 Pass() Else Fail()
+    Print "* (Int)                      = ";:If 10 * 8 = 80 Pass() Else Fail()
+    Print "^ (Int)                      = ";:If 2 ^ 3 = 8 Pass() Else Fail()
+    Print "Mod (Int)                    = ";:If 11 Mod 5 = 1 Pass() Else Fail()
+    Print "Div (Int)                    = ";:If 11 Div 5 = 2 Pass() Else Fail()
+    Print "Abs (Int)                    = ";:If Abs(-10) = 10 Pass() Else Fail()
+    Print "- (Float)                    = ";:If 10.5 - 8.25 = 2.25 Pass() Else Fail()
+    Print "+ (Float)                    = ";:If 10.4 + 8.1 = 18.5 Pass() Else Fail()
+    Print "* (Float)                    = ";:If 2.5 * 4.5 = 11.25 Pass() Else Fail()
+    Print "/ (Float)                    = ";:If 8.4 / 4.2 = 2.0 Pass() Else Fail()
+    Print "Floor                        = ";:If Floor(12.8) = 12.0 Pass() Else Fail()
+    Print "Round                        = ";:If Round(12.8) = 13.0 Pass() Else Fail()
+    Print "Ln                           = ";:If Int(Ln(16) * 100.0) = 277 Pass() Else Fail()
+    Print "Log                          = ";:If Int(Log(16) * 100.0) = 120 Pass() Else Fail()
+    Print "Exp                          = ";:If Int(Exp(1) * 100.0) = 271 Pass() Else Fail()
+    Print "Atn                          = ";:If Int(Atn(3) * 100.0) = 124 Pass() Else Fail()
+    Print "Tan                          = ";:If Int(Tan(3) * 100.0) = -14 Pass() Else Fail()
+    Print "Sin                          = ";:If Int(Sin(3) * 100.0) = 14 Pass() Else Fail()
+    Print "Cos                          = ";:If Int(Cos(3) * 100.0) = -98 Pass() Else Fail()
+    Print "Acs                          = ";:If Int(Acs(0.5) * 100.0) = 104 Pass() Else Fail()
+    Print "Asn                          = ";:If Int(Asn(0.5) * 100.0) = 52 Pass() Else Fail()
+    Print "Rad                          = ";:If Int(Rad(90) * 100.0) = 157 Pass() Else Fail()
+    Print "Deg                          = ";:If Int(Deg(1.5)) = 85 Pass() Else Fail()
+    Print "Pi                           = ";:If Int(Pi*100) = 314 Pass() Else Fail()
+    Print "Sgn (-)                      = ";:If Sgn(-10) = -1 Pass() Else Fail()
+    Print "Sgn                          = ";:If Sgn(0) = 0 Pass() Else Fail()
+    Print "Sgn (+)                      = ";:If Sgn(10) = 1 Pass() Else Fail()
+    Print "Precedence                   = ";:If 2+3*4 = 14 Pass() Else Fail()
+    Print "Parentheses                  = ";:If (2+3)*4 = 20 Pass() Else Fail()
     Print
-End Def
+EndDef
 
-Def NestedCalling
+Def NestedCalling()
 	Print "::Nested Calling::"
     Nested1()
     Return
-End Def
+EndDef
 
-Def Nested1
+Def Nested1()
     Nested2()
     Return
-End Def
+EndDef
 
-Def Nested2
-    Print "Nested DEFs        = ";:Pass()
-End Def
+Def Nested2()
+    Print "Nested procedures            = ";:Pass()
+EndDef
 
-Def Numbers
+Def Numbers()
     Print "::Numbers::"
-    Print "Hex                = ";:If &40 = 64 Pass() Else Fail()
-    Print "Binary             = ";:If %100 = 4 Pass() Else Fail()
+    Print "Hex                          = ";:If &40 = 64 Pass() Else Fail()
+    Print "Binary                       = ";:If %100 = 4 Pass() Else Fail()
     Print
-End Def
+EndDef
 
-Def RetValues
-    Print "::Other::"
-    Print "Returning Int      = ";:If RetInteger(10)=110 Pass() Else Fail()
-    Print "Returning Float    = ";:If RetFloat()=146.45 Pass() Else Fail()
-    Print "Returning String   = ";:If RetString()="ff" Pass() Else Fail()
+Def RetValues()
+    Print "::Returning Simple Values::"
+    Print "Returning Int                = ";:If RetInteger(10)=110 Pass() Else Fail()
+    Print "Returning Float              = ";:If RetFloat()=146.45 Pass() Else Fail()
+    Print "Returning String             = ";:If RetString()="ff" Pass() Else Fail()
     Print
-End Def
+EndDef
 
 Def RetInteger:Int(x)
 	Return x+100
-End Def
+EndDef
 
-Def RetFloat:Float
-	Return 146.45
-End Def
+Def RetFloat:Float() = 146.45:EndDef
 
-Def RetString:String
+Def RetString:String()
 	Return "ff"
-End Def
+EndDef
 
-Def Empty
-End Def
+Def EmptyProc()
+EndDef
 
-Def PrintFormatting
+Def PrintFormatting()
     Print "::Print Formatting::"
     Print Sys 123.456 With "[[%9.6f]]"
     Print Sys "Hello, world!" "Test: %s": Rem Optional WITH
     Print
-End Def
+EndDef
 
-Def Strings
+Def Strings()
     Print "::Strings::"
-    Print "Asc                = ";:If Asc("Fred") = 70 And Asc("") = -1 Pass() Else Fail()
-    Print "Chr                = ";:If Chr(65) = "A" Pass() Else Fail()
-    Print "Instr              = ";:If Instr("Test this this String", "this", 1) = 6 Pass() Else Fail()
-    Print "Instr (with start) = ";:If Instr("Test this this String", "this", 8) = 11 Pass() Else Fail()
-    Print "Left               = ";:If Left("A test String", 6) = "A test" Pass() Else Fail()
-    Print "Mid                = ";:If Mid("A test String", 3, 4) = "test" Pass() Else Fail()
-    Print "Right              = ";:If Right("A test String", 6) = "String" Pass() Else Fail()
-    Print "Len                = ";:If Len("A test String") = 13 Pass() Else Fail()
-    Print "Len                = ";:If Len("£a") = 2 Pass() Else Fail()
-    Print "String to Float    = ";:If Float("10.5") = 10.5 Pass() Else Fail()
-    Print "Float to String    = ";:If String(10.5) = "10.500000" Pass() Else Fail()
-    Print "Float to formatted = ";:If String(10.5 With "[[%9.6f]]") = "[[10.500000]]" Pass() Else Fail()
+    Print "Asc                          = ";:If Asc("Fred") = 70 And Asc("") = -1 Pass() Else Fail()
+    Print "Chr                          = ";:If Chr(65) = "A" Pass() Else Fail()
+    Print "Instr                        = ";:If Instr("Test this this String", "this", 1) = 6 Pass() Else Fail()
+    Print "Instr (with start)           = ";:If Instr("Test this this String", "this", 8) = 11 Pass() Else Fail()
+    Print "Left                         = ";:If Left("A test String", 6) = "A test" Pass() Else Fail()
+    Print "Mid                          = ";:If Mid("A test String", 3, 4) = "test" Pass() Else Fail()
+    Print "Right                        = ";:If Right("A test String", 6) = "String" Pass() Else Fail()
+    Print "Len                          = ";:If Len("A test String") = 13 Pass() Else Fail()
+    Print "Len                          = ";:If Len("£a") = 2 Pass() Else Fail()
+    Print "String to Float              = ";:If Float("10.5") = 10.5 Pass() Else Fail()
+    Print "Float to String              = ";:If String(10.5) = "10.500000" Pass() Else Fail()
+    Print "Float to formatted           = ";:If String(10.5 With "[[%9.6f]]") = "[[10.500000]]" Pass() Else Fail()
     Print
-End Def
+EndDef
 
-Def SwapVars
+Def SwapVars()
 	Print "::Swap::"
 	swpa=1:swpb=2
 	swpf1=123.2:swpf2=456.2
@@ -260,11 +282,11 @@ Def SwapVars
 	Swap swpf1,swpf2
 	Swap swps1$,swps2$
 	Swap myrecord.y, myrecord.x
-	Print "Swap Integer       = ";:If swpa=2 And swpb=1 Pass() Else Fail()
-	Print "Swap Float         = ";:If swpf1=456.2 And swpf2=123.2 Pass() Else Fail()
-	Print "Swap String        = ";:If swps1$="22" And swps2$="11" Pass() Else Fail()
+	Print "Swap Integer                 = ";:If swpa=2 And swpb=1 Pass() Else Fail()
+	Print "Swap Float                   = ";:If swpf1=456.2 And swpf2=123.2 Pass() Else Fail()
+	Print "Swap String                  = ";:If swps1$="22" And swps2$="11" Pass() Else Fail()
 	Print
-End Def
+EndDef
 
 Def Variables()
     A%=0:F=10:G=0
@@ -274,166 +296,177 @@ Def Variables()
  	Let H=99.9
 
     Print "::Variables::"
-    Print "Local Integer (0)  = ";:If A%=0 Pass() Else Fail()
-    Print "Local Float (0)    = ";:If B#=0.0 Pass() Else Fail()
-    Print "Local String (BLnk)= ";:If D$="" Pass() Else Fail()
-    Print "Local Integer      = ";:If F=10 Pass() Else Fail()
-    Print "Local Float        = ";:If C=123.45 Pass() Else Fail()
-    Print "Local String       = ";:If E="Test" Pass() Else Fail()
-    Print "constants          = ";:If constant=100 And ccf=12.5 Pass() Else Fail()
-    Print "Implicit LET       = ";:If G=100 Pass() Else Fail()
-    Print "Explicit LET       = ";:If H=99.9 Pass() Else Fail()
+    Print "Local Integer (0)            = ";:If A%=0 Pass() Else Fail()
+    Print "Local Float (0)              = ";:If B#=0.0 Pass() Else Fail()
+    Print "Local String (Blank)         = ";:If D$="" Pass() Else Fail()
+    Print "Local Integer                = ";:If F=10 Pass() Else Fail()
+    Print "Local Float                  = ";:If C=123.45 Pass() Else Fail()
+    Print "Local String                 = ";:If E="Test" Pass() Else Fail()
+    Print "Constants                    = ";:If constant=100 And ccf=12.5 Pass() Else Fail()
+    Print "Implicit LET                 = ";:If G=100 Pass() Else Fail()
+    Print "Explicit LET                 = ";:If H=99.9 Pass() Else Fail()
  	Print
-End Def
+EndDef
 
-Def Chrono
+Def Chrono()
 	Print "::Chrono::"
-	Print "Timer              = ";:If Timer() >= 0 Pass() Else Fail()
-	Print "Time               = ";:If Len(Time()) > 0 Pass() Else Fail()
-	Print "Date               = ";:If Len(Date()) > 0 Pass() Else Fail()
+	Print "Timer                        = ";:If Timer() >= 0 Pass() Else Fail()
+	Print "Time                         = ";:If Len(Time()) > 0 Pass() Else Fail()
+	Print "Date                         = ";:If Len(Date()) > 0 Pass() Else Fail()
 	Print
-End Def
+EndDef
 
 Def SendParameter(  A:Int,
                     B:Float,
                     C$:String)
-	Print "Send parameter%    = ";:If A = 25 Pass() Else Fail()
-	Print "Send parameter#    = ";:If B = 123.1 Pass() Else Fail()
-	Print "Send parameter$    = ";:If C$ = "Test" Pass() Else Fail()
-End Def
+	Print "Send parameter (int)         = ";:If A = 25 Pass() Else Fail()
+	Print "Send parameter (float)       = ";:If B = 123.1 Pass() Else Fail()
+	Print "Send parameter (string)      = ";:If C$ = "Test" Pass() Else Fail()
+EndDef
 
-Def Functions
-	Print "::Functions::"
+Def Functions()
 	RetValues()
+	Print "::Functions::"
  	SendParameter(15+10,123.1,"Test")
     AA=100:B="Old value"
     Dim AB:Int[10]
     RefInt(AA)
-	Print "Int by reference   = ";:If AA = 250 Pass() Else Fail()
+	Print "Int by reference             = ";:If AA = 250 Pass() Else Fail()
     RefInt(AB[5])
-	Print "Int by ref. array  = ";:If AB[5] = 250 Pass() Else Fail()
+	Print "Int by reference array       = ";:If AB[5] = 250 Pass() Else Fail()
     RefInt(a1d[5])
-	Print "Int by g.ref. array= ";:If a1d[5] = 250 Pass() Else Fail()
+	Print "Int by global reference array= ";:If a1d[5] = 250 Pass() Else Fail()
     RefString(B)
-	Print "String by ref.     = ";:If B = "New value" Pass() Else Fail()
-    Dim locrec:Coordinate(x=12.456)
+	Print "String by refererence        = ";:If B = "New value" Pass() Else Fail()
+    locrec = new Coordinate x=12.456
     TestRec(locrec) 
-	Print "Record by ref.     = ";:If locrec.y = 111.22 Pass() Else Fail()
+	Print "Record by reference          = ";:If locrec.y = 111.22 Pass() Else Fail()
     TestRecNested1(locrec)
-	Print "Record by ref. nest= ";:If locrec.y = 333.22 Pass() Else Fail()
-
+	Print "Record by reference nested   = ";:If locrec.y = 333.22 Pass() Else Fail()
     Dim locarray:Coordinate[5]
     TestRecArray(locarray[2])
-	Print "Record by ref. arr = ";:If locarray[2].y = 222.44 Pass() Else Fail()
+	Print "Record by reference array    = ";:If locarray[2].y = 222.44 Pass() Else Fail()
+
+    rt = TestReturnComplex()
+	Print "Return complex               = ";:If rt[5] = 100 Pass() Else Fail()
+
 	Print
-End Def
+EndDef
 
-Def TestRecArray(ByRef A:Coordinate)
+Def TestRecArray(Ref A:Coordinate)
     A.y = 222.44
-End Def
+EndDef
 
-Def RefInt(ByRef A:Int)
+Def RefInt(Ref A:Int)
     A=500
     RefIntNested(A)
-End Def
+EndDef
 
-Def RefIntNested(ByRef A:Int)
+Def RefIntNested(Ref A:Int)
     A=250
-End Def
+EndDef
 
-Def RefString(ByRef A:String)
+Def RefString(Ref A:String)
     RefStringNested(A)
-End Def
+EndDef
 
-Def RefStringNested(ByRef A:String)
+Def RefStringNested(Ref A:String)
     A="New value"
-End Def
+EndDef
 
-Def TestRec(ByRef A:Coordinate)
+Def TestRec(Ref A:Coordinate)
     A.y = 111.22
-End Def
+EndDef
 
-Def TestRecNested1(ByRef A:Coordinate)
+Def TestRecNested1(Ref A:Coordinate)
     TestRecNested2(A)
-End Def
+EndDef
 
-Def TestRecNested2(ByRef A:Coordinate)
+Def TestRecNested2(Ref A:Coordinate)
     A.y = 333.22
-End Def
+EndDef
 
-Def Records
+Def Records()
 	Print "::Records::"
-    Dim myrecordl:Compound(i=101,f=123.45,s="test")
+    myrecordl = new Compound i=101,f=123.45,s="test"
     myrecordl.xy.y=165.32
     Dim myrecordarray2:Coordinate[10]
     myrecordarray2[5].y=345
- 	Print "Load field (1)     = ";: If myrecordl.i=101 And myrecordl.f=123.45 And myrecordl.s="test" Pass() Else Fail()
-	Print "Load field (2)     = ";: If myrecordl.xy.y=165.32 Pass() Else Fail()
-	Print "Load field (3)     = ";: If myrecord.y=12.45 And myrecord.x=100.0 Pass() Else Fail(): Rem Swapped earlier
-	Print "Load field (4)     = ";: If myrecordarray[10].x=123 Pass() Else Fail()
-	Print "Load field (5)     = ";: If myrecordarray2[5].y=345 Pass() Else Fail()
-	Print "Size Of type array = ";: If Size(myrecordarray2) = 10 Pass() Else Fail()
+    Print "Load field (1)               = ";: If myrecordl.i=101 And myrecordl.f=123.45 And myrecordl.s="test" Pass() Else Fail()
+    Print "Load field (2)               = ";: If myrecordl.xy.y=165.32 Pass() Else Fail()
+	Print "Load field (3)               = ";: If myrecord.y=12.45 And myrecord.x=100.0 Pass() Else Fail(): Rem Swapped earlier
+	Print "Load field (4)               = ";: If myrecordarray[10].x=123 Pass() Else Fail()
+	Print "Load field (5)               = ";: If myrecordarray2[5].y=345 Pass() Else Fail()
+	Print "Size Of type array           = ";: If Size(myrecordarray2,1) = 10 Pass() Else Fail()
 	Print
-End Def
+EndDef
 
-Def Looping
+Def Looping()
 	Print "::Looping::"
-	Print "One Line If        = ";:If 1 = 1 Pass() Else Fail()
-	Print "MultiLine If       = ";
+	Print "One Line If                  = ";:If 1 = 1 Pass() Else Fail()
+	Print "MultiLine If                 = ";
 	If 1 = 1 Then
 		Pass()
 	Else
 		Fail()
-	End If
+	EndIf
+    I=2
+	Print "ElseIf                       = ";
+    If I=1 Then
+        Fail()
+    ElseIf I=2
+        Pass()
+    Else
+        Fail()
+    Endif 
 
 	I% = 0
 	Repeat
 		I% = I% + 1
 	Until I% = 10
-	Print "Repeat             = ";:If I% = 10 Pass() Else Fail()
+	Print "Repeat                       = ";:If I% = 10 Pass() Else Fail()
 
 	I% = 0
 	While I% < 10
 		I% = I% + 1
-	End While
-	Print "While              = ";:If I% = 10 Pass() Else Fail()
+	EndWhile
+	Print "While                        = ";:If I% = 10 Pass() Else Fail()
 
 	I% = 0
 	For J% = 1 To 1
-        Print "A"
 		I% = I% + 1
     Next
-	Print "For (Int/1 Iter)   = ";:If I% = 1 Pass() Else Fail()
+	Print "For (Int/1 Iter)             = ";:If I% = 1 Pass() Else Fail()
 
 	I% = 0
 	For J% = 0 To 9
 		I% = I% + 1
 	Next
-	Print "For (Int)          = ";:If I% = 10 Pass() Else Fail()
+	Print "For (Int)                    = ";:If I% = 10 Pass() Else Fail()
 
 	I% = 0
 	For J% = 0 To 11 Step 2
 		I% = I% + 1
 	Next
-	Print "For + Step (Int)   = ";:If I% = 6 Pass() Else Fail()
+	Print "For + Step (Int)             = ";:If I% = 6 Pass() Else Fail()
 
 	I% = 0
 	For J% = 9 To 0 Step -1
 		I% = I% + 1
 	Next
-	Print "For - (Int)        = ";:If I% = 10 Pass() Else Fail()
+	Print "For - (Int)                  = ";:If I% = 10 Pass() Else Fail()
 
 	I% = 0
 	For J# = 0.0 To 9.0
 		I% = I% + 1
 	Next
-	Print "For (Float)        = ";:If I% = 10 Pass() Else Fail()
+	Print "For (Float)                  = ";:If I% = 10 Pass() Else Fail()
 
 	I% = 0
 	For J# = 0.0 To 10.0 Step 2.0
 		I% = I% + 1
 	Next
-	Print "For + Step (Float) = ";:If I% = 6 Pass() Else Fail()
+	Print "For + Step (Float)           = ";:If I% = 6 Pass() Else Fail()
 
 	I%=0
 	For N=0 To 9
@@ -441,158 +474,418 @@ Def Looping
         I%=I%+1
         Next
     Next
-	Print "Nested For         = ";:If I% = 100 Pass() Else Fail()
+	Print "Nested For                   = ";:If I% = 100 Pass() Else Fail()
 
-	Print "Case               = ";
+	Print "Case                         = ";
 	I%=1
 	Case I% Of
 		When 0, 1, 2: Pass()
 		When 3: Fail()
 		Otherwise Fail()
-	End Case
+	EndCase
 
-	Print "Case (Not first)   = ";
+	Print "Case (Not first)             = ";
 	I%=2
 	Case I% Of
 		When 0,1: Fail()
 		When 2: Pass()
 		Otherwise Fail()
-	End Case
+	EndCase
 
-	Print "Case (Otherwise)   = ";
+	Print "Case (Otherwise)             = ";
 	I%=4
 	Case I% Of
 		When 0, 1, 2: Fail()
 		When 3: Fail()
 		Otherwise Pass()
-	End Case
+	EndCase
 
-	Print "Case (String)      = ";
+	Print "Case (String)                = ";
 	A$="B"
     Case A$ Of
  		When "A":Fail()
 	 	When "B":Pass()
 		Otherwise Fail()
-	End Case
+	EndCase
     Print
-End Def
 
-Def TestData
+	Print "Exit                         = ";
+    For I=1 To 100
+        If I >= 50 Exit
+    Next
+    If I>50 Fail() Else Pass()
+
+    Print "Continue                     = ";
+    total=0
+    For I=1 To 100
+        If I >= 50 Continue
+        total+=I
+    Next
+    If total<>1225 Fail() Else Pass()
+EndDef
+
+Def TestData()
 	Print "::Data::"
 	Read a1,a2,a3
-	Print "Data (Int)         = ";:If a1=1 And a2=2 And a3=3 Pass() Else Fail()
+	Print "Data (Int)                   = ";:If a1=1 And a2=2 And a3=3 Pass() Else Fail()
 	Restore "Label"
 	ReadF f1
     b1:Byte=0
     ReadB b1
-	Print "DataLabel          = ";:If f1=123.50 And b1=80 Pass() Else Fail()
+	Print "DataLabel                    = ";:If f1=123.50 And b1=80 Pass() Else Fail()
 	Print
-End Def
+EndDef
 
-Def TestReturnInOtherwise
+Def TestReturnInOtherwise()
     B$="5"
-	Print "Return inside Def  = ";:
+	Print "Return inside Case           = ";:
     Case B$ Of
         When "1","2","3","4":Fail()
         Otherwise:Pass():Print:Return
-    End Case
+    EndCase
 	Fail()
-End Def
+EndDef
+
+Def TestReturnComplex:Int[]()
+    Dim a[10]
+    a[5]=100
+    =a
+EndDef
+
+Record Comp
+    aa1: List Of Coordinate
+    aa2: List
+EndRecord
+
+Def TestRemove:Int(Ref f:Coordinate)
+    = f.x > 10  
+EndDef
 
 Def Collections()
-	Print "::Collections::"
-    Dim a1:List[Coordinate]
-    Dim b1:Queue[Int]
-    Dim c1:Stack[String]
-    Dim d1:Set[Int]
-    Dim e1:Map[String,Coordinate]
-    Dim f1:Vector[Int]
-
-    ' Sizes
-    Print "Size (List)        = ";:If Size(a1)=0 Pass() Else Fail()
-    Print "Size (Queue)       = ";:If Size(b1)=0 Pass() Else Fail()
-    Print "Size (Stack)       = ";:If Size(c1)=0 Pass() Else Fail()
-    Print "Size (Set)         = ";:If Size(d1)=0 Pass() Else Fail()
-    Print "Size (Map)         = ";:If Size(e1)=0 Pass() Else Fail()
-    Print "Size (Vector)      = ";:If Size(f1)=0 Pass() Else Fail()
-
     ' List
-    Add a1,Dim Coordinate(x=10,y=20)
-    Dim bh:Coordinate(x=12)
+	Print "::Collections - Lists::"
+    a1 = List Coordinate
+    Add a1,new Coordinate x=10,y=20
+    bh=new Coordinate x=12
     bh.y=100.50
     Add a1, bh
-    Get a1[2],bhi 
+    AddTail a1,new Coordinate x=25
+    bhi=Head a1
     PassByList(a1)
-    Print "Push+Pop (List)    = ";:If bhi.x=12 And Size(a1)=3 Pass() Else Fail()
+    Print "Push+Pop (List)              = ";:If bhi.x=12 And Head(a1).x=50 And Size(a1)=2 Pass() Else Fail()
+    Clear a1
+    Print "Clear (List)                 = ";:If Size(a1)=0 Pass() Else Fail()
+
+    ' List (in record)
+    cc = new Comp
+    add cc.aa2,100
+    add cc.aa2,200
+    abc=new Coordinate x=100
+    add cc.aa1, abc
+    add cc.aa1, new Coordinate x=200
+    add cc.aa1, new Coordinate x=300
+    tot=0
+    For a In cc.aa1
+        tot += a.x
+    Next
+    Print "List of Record (In Record)   = ";:If tot=600 Pass() Else Fail()
+    tot=0
+    For a2 In cc.aa2
+        tot += a2
+    Next
+    Print "List (In Record)             = ";:If tot=300 Pass() Else Fail()
+
+    ' Remove If
+    a1r = List Coordinate
+    Add a1r,new Coordinate x=10,y=20
+    Add a1r,new Coordinate x=25
+    Add a1r,new Coordinate x=150,y=20
+    Remove a1r, TestRemove
+    Print "Remove (List)                = ";:If Size(a1r)=1 Pass() Else Fail()
+
+    Clear a1r
+    Add a1r,new Coordinate x=10,y=20
+    Add a1r,new Coordinate x=25
+    Add a1r,new Coordinate x=150,y=20
+
+    ' Indices on List
+    Print "Indices (List) [1]           = ";:If a1r[2].x = 25 Pass() Else Fail()
+    a1lp = List
+    Add a1lp,100
+    Add a1lp,200
+    Add a1lp,300
+    Add a1lp,400
+    Add a1lp,500
+    Print "Indices (List) [2]           = ";:If a1lp[2] = 200 Pass() Else Fail()
+
+    ' IndexOf
+    Print "IndexOf (List)               = ";:If IndexOf(a1r, f = f.x > 10) = 2 Pass() Else Fail()
+
+    ' Slice
+    a1lps=Slice a1lp,3,5
+    Print "Slice (List)                 = ";:If a1lps[1] = 300 And a1lps[2] = 400 And a1lps[3] = 500 Pass() Else Fail()
+
+    ' Filter & Append
+    Append a1r,Filter a1r, f = f.x > 10
+   'Append a1r,Filter(a1r, f = f.x > 10): Rem equivalent, nicer syntax?
+    Print "Filter & Append (List)       = ";:If Size(a1r)=5 Pass() Else Fail()
+
+    ' RemoveAt
+    RemoveAt a1r,2
+    Print "RemoveAt (List)              = ";:If Size(a1r)=4 Pass() Else Fail()
+    Print
 
     ' Queue
-    Dim yyy:Int[3]
-    yyy[2] = 100
-    Add b1, yyy[2]
-    Take b1,bb1
-    Print "Push+Pop (Queue)   = ";:If bb1=100 And Size(b1)=0 Pass() Else Fail()
+	Print "::Collections - Queues::"
+    b1 = Queue
+    Add b1,100
+    Add b1,200
+    Add b1,300
+    Print "Push+Pop (Queue)             = ";:If Take(b1)=100 And Size(b1)=2 Pass() Else Fail()
+    Print
 
     ' Stack
+	Print "::Collections - Stacks::"
+    c1 = Stack of String
+    Add c1,"Welcome"
     Add c1,"Hi"+"Hi"
-    Print "Push+Pop (Stack)   = ";:If c1="HiHi" And Size(c1)=0 Pass() Else Fail()
+    Print "Push+Pop (Stack)             = ";:If Take(c1)="HiHi" And Size(c1)=1 Pass() Else Fail()
+    Print
 
     ' Vector
+	Print "::Collections - Vectors::"
+    f1 = Vector
     For I=1 To 10
-        Add f1, I
+        f1[I]=I
     Next
-    Print "Place/Size (Vector)= ";:If Size(f1)=10 Pass() Else Fail()
-    xb=f1[5]
-    Print "Take (Vector)      = ";:If xb=5 Pass() Else Fail()
+    Print "Size (Vector)                = ";:If Size(f1)=10 Pass() Else Fail()
+    Print "Check (Vector)               = ";:If f1[5]=5 Pass() Else Fail()
+    tot=0
+    For f2 In f1
+        tot += f2
+    Next
+    Print "Vector (In Record)           = ";:If tot=55 Pass() Else Fail()
+    Clear f1
+    Print "Clear (Vector)               = ";:If Size(f1)=0 Pass() Else Fail()
 
-    ' Remove entry from vector
-    Drop f1[5]
-    Print "Clear (Vector)     = ";:If Size(f1)=9 Pass() Else Fail()
+    a1rv = vector Coordinate
+    a1rv[1]=new Coordinate x=10,y=20
+    a1rv[2]=new Coordinate x=25
+    a1rv[3]=new Coordinate x=150,y=20
+    a1rv[4]=new Coordinate x=250,y=40
+    a1rv[5]=new Coordinate x=400,y=30
+    a1rv2=Filter a1rv, f = f.x > 10
+    Print "Filter (Vector)              = ";:If Size(a1rv2)=4 Pass() Else Fail()
+
+    ' IndexOf
+    Print "IndexOf (Vector)             = ";:If IndexOf(a1rv, f = f.x > 10) = 2 Pass() Else Fail()
+
+    ' Slice
+    a1rv3=Slice(a1rv,3,5)
+    Print "Slice (Vector)               = ";:If a1rv3[1].x = 150 And a1rv3[2].x = 250 And a1rv3[3].x = 400 Pass() Else Fail()
+    Print
 
     ' Set
+	Print "::Collections - Sets/Primitives::"
+    d1 = IntSet
     Add d1,10
     Add d1,10
     Add d1,15
-    Print "Has (Set+)         = ";:If d1[10]=1 Pass() Else Fail()
-    Print "Has (Set-)         = ";:If d1[20]=0 Pass() Else Fail()
-    Print "Ints (Set)         = ";:If Size(d1)=2 Pass() Else Fail()
-    Drop d1[10]
-    Drop d1[15]
-    Print "Clear (Set)        = ";:If Size(d1)=0 Pass() Else Fail()
-    
-    ' Map
-    Dim mm:Coordinate()
-    mm.x=10
-    mm.y=100.0
-    Add e1["Hello"],mm
-    Get e1["Hello"],bhh2
-    Print "Map                = ";:If bhh2.x=10 And bhh2.y=100.0 Pass() Else Fail()
-    Print "Has (Map+)         = ";:If e1["Hello"]=1 Pass() Else Fail()
-    Print "Has (Map-)         = ";:If e1["Hell"]=0 Pass() Else Fail()
-    Drop e1["Hello"]
-    Print "Clear (Map)        = ";:If Size(e1)=0 Pass() Else Fail()
-
-    ' Clear
-    Clear f1
-    Print "Clear              = ";:If Size(f1)=0 Pass() Else Fail()
+    Print "Size (IntSet)                = ";:If Size(d1)=2 Pass() Else Fail()
+    Print "HasKey (IntSet+)             = ";:If HasKey(d1,10) Pass() Else Fail()
+    Print "HasKey (IntSet-)             = ";:If Not HasKey(d1,20) Pass() Else Fail()
+    RemoveKey d1,10
+    RemoveKey d1,20
+    Print "RemoveKey (IntSet)           = ";:If Size(d1)=1 Pass() Else Fail()
+    Clear d1
+    Print "Clear (IntSet)               = ";:If Size(d1)=0 Pass() Else Fail()
+    d1s = StringSet
+    Add d1s,"10"
+    Add d1s,"10"
+    Add d1s,"15"
+    Print "Size (StringSet)             = ";:If Size(d1s)=2 Pass() Else Fail()
+    Print "HasKey (StringSet+)          = ";:If HasKey(d1s,"10") Pass() Else Fail()
+    Print "HasKey (StringSet-)          = ";:If Not HasKey(d1s,"20") Pass() Else Fail()
+    RemoveKey d1s,"10"
+    RemoveKey d1s,"20"
+    Print "RemoveKey (StringSet)        = ";:If Size(d1s)=1 Pass() Else Fail()
+    Clear d1s
+    Print "Clear (StringSet)            = ";:If Size(d1s)=0 Pass() Else Fail()
     Print
-End Def
 
-Def PassByList(ByRef x:List[Coordinate])
+    ' Map
+	Print "::Collections - Maps/Primitives::"
+    d1a=StringMap Of Int
+    Add d1a,"100",199
+    Add d1a,"100",150
+    Add d1a,"200",299
+    Print "Size (StringMap)             = ";:If Size(d1a)=2 Pass() Else Fail()
+    Print "HasKey (StringMap+)          = ";:If HasKey(d1a,"100") Pass() Else Fail()
+    Print "HasKey (StringMap-)          = ";:If Not HasKey(d1a,"250") Pass() Else Fail()
+    Print "GetForKey (StringMap)        = ";:If GetForKey(d1a,"100")=150 Pass() Else Fail()
+    RemoveKey d1a,"100"
+    Print "RemoveKey (StringMap)        = ";:If Size(d1a)=1 Pass() Else Fail()
+    Clear d1a
+    Print "Clear (StringMap)            = ";:If Size(d1a)=0 Pass() Else Fail()
+    d1b=IntMap
+    Add d1b,100,199
+    Add d1b,100,150
+    Add d1b,200,299
+    Print "Size (IntMap)                = ";:If Size(d1b)=2 Pass() Else Fail()
+    Print "HasKey (IntMap+)             = ";:If HasKey(d1b,100) Pass() Else Fail()
+    Print "HasKey (IntMap-)             = ";:If Not HasKey(d1b,250) Pass() Else Fail()
+    Print "GetForKey (IntMap)           = ";:If GetForKey(d1b,100)=150 Pass() Else Fail()
+    RemoveKey d1b,100
+    Print "RemoveKey (IntMap)           = ";:If Size(d1b)=1 Pass() Else Fail()
+    Clear d1b
+    Print "Clear (IntMap)               = ";:If Size(d1b)=0 Pass() Else Fail()
+    Print
+
+    ' Map
+	Print "::Collections - Maps/Records::"
+    d1c=StringMap Of Coordinate
+    Add d1c,"100",new Coordinate x=100
+    Add d1c,"100",new Coordinate x=150
+    Add d1c,"200",new Coordinate x=299
+    Print "Size (StringMap/Record)      = ";:If Size(d1c)=2 Pass() Else Fail()
+    Print "HasKey (StringMap+/Record)   = ";:If HasKey(d1c,"100") Pass() Else Fail()
+    Print "HasKey (StringMap-/Record)   = ";:If Not HasKey(d1c,"250") Pass() Else Fail()
+    Print "GetForKey (StringMap/Record) = ";:If GetForKey(d1c,"100").x=150 Pass() Else Fail()
+    RemoveKey d1c,"100"
+    Print "RemoveKey (StringMap/Record) = ";:If Size(d1c)=1 Pass() Else Fail()
+    Clear d1c
+    Print "Clear (StringMap/Record)     = ";:If Size(d1c)=0 Pass() Else Fail()
+    Print
+EndDef
+
+Def PassByList(Ref x:List Coordinate)
     PassByListNest(x)
-End Def
+EndDef
 
-Def PassByListNest(ByRef x:List[Coordinate])
-    Add x,Dim Coordinate(x=50,y=70)
-End Def
+Def PassByListNest(Ref x:List Coordinate)
+    Add x,new Coordinate x=50,y=70
+EndDef
+
+Def CopyRecord()
+    aa = new Coordinate x=333.56,y=2345.56
+    Copy aa To b
+    b.x=346.66
+    Print "Copy Record                  = ";:If aa.x=333.56 And b.x=346.66 Pass() Else Fail()
+EndDef
 
 Def Pass()
-    Print "PASS!"
-End Def
+    Ink 0,255,0
+    Print "PASS!";
+    Ink 255,255,255
+    Print " (Test #";:Print testno;:Print ")"
+    testno+=1
+EndDef
 
 Def Fail()
-    Print "!! FAILED TEST !!"
+    Ink 0,255,0
+    Print "!! FAILED TEST !! Quitting ";
+    Ink 255,255,255
+    Print " (Test #";:Print testno;:Print ")"
     GetChar
-    Quit
-End Def
+    End
+EndDef
 
+RECORD position
+    x:Float, y:Float
+EndRecord
 
+RECORD item
+    name$:String
+    weight:Float
+EndRecord
+
+RECORD entity 
+    pos:position
+    dest:position
+    inventory:item[5]
+    health[10]
+    score
+    nickname$:String
+EndRecord
+
+Def AdvancedRecords()
+    Print "Complex Records              = ";
+    b=new entity score=20,nickname$="hero"
+    b.inventory[1].name$="sword"
+    b.inventory[2].weight=12.34:b.pos.x=123.78:b.dest.y=543.54:b.health[1]=54
+
+    IF B.NICKNAME$ <> "hero" FAIL()
+    IF B.SCORE <> 20 FAIL()
+    IF B.POS.X <> 123.78 FAIL()
+    IF B.DEST.Y <> 543.54 FAIL()
+    IF B.HEALTH[1] <> 54 FAIL()
+    IF B.INVENTORY[2].WEIGHT <> 12.34 FAIL()
+    IF B.INVENTORY[1].NAME$ <> "sword" FAIL()
+    PASS()
+
+    Print "Record Assign                = ";
+    c=new Coordinate x=250.50:d=c:If c.x <> 250.50 Fail()
+    Pass()
+
+    PRINT "Record Re-assign             = ";
+    A = new ENTITY:A.POS.X=250
+    A2 = new ENTITY:A2.POS.X=200
+    B=A:IF B.POS.X <> 250 FAIL()
+    B=A2:IF B.POS.X <> 200 FAIL()
+    PASS()
+
+    print "Record Set SubRecord         = ";
+    a.pos = new position x=300:if a.pos.x <> 300 fail()
+    pass()
+
+    PRINT "Record Set/Re-assign Array   = ";
+    DIM ARR AS ENTITY[10]
+    ARR[1] = new ENTITY
+    ARR[1].POS.X=250
+    B=ARR[1]:B.POS=new POSITION X=300
+    IF B.POS.X <> 300 FAIL()
+    PASS()
+
+    Print
+EndDef
+
+Record someobj aa:String endrecord 
+Def Sorting()
+	Print "::Sorting::"
+    Dim a[10]
+    For I=1 To 10
+        a[I]=RND(1000)
+    Next
+    Sort a
+    Print "Sort (Array)                 = ";:Pass()
+
+    b=Vector of float
+    For I=1 To 10
+        a[I]=RNDF(1000.0)
+    Next
+    Sort b
+    Print "Sort (Vector)                = ";:Pass()
+
+    alr = vector OF someobj
+    alr[1].aa="fgfdgd"
+    alr[2].aa="r84jdjd"
+    alr[3].aa="8564gdd"
+    alr[4].aa="qrjshs"
+    alr[5].aa="mbsgsy"
+    sort alr, SortLambda
+    Print "Sort (Record/String)         = ";:If alr[1].aa="8564gdd" And alr[5].aa="r84jdjd" Pass() Else Fail()
+    Print
+EndDef
+
+Def SortLambda:Int(ref r1:someobj, ref r2:someobj)
+    return r1.aa >= r2.aa
+EndDef
+
+Def TestGoto()
+    Print "Goto (With label)            = ";:
+    GOTO #Label
+    Fail()
+
+    #label:
+    Pass()
+EndDef

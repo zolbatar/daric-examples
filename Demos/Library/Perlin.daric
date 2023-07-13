@@ -5,24 +5,23 @@ Dim hash:Int[256]
 
 Def InitPerlin()
 	For I=1 To 256
-		Read hash[I]
+		read hash[I]
 	Next
 	seed=0
-End Def
-
+EndDef
 
 Def Noise2DInt:Int(x:Int, y:Int)
 	tmp=hash[((y + seed) MOD 256)+1]
 	Return hash[((tmp + x) Mod 256)+1]
-End Def
+EndDef
 
 Def LinInter:Float(x:Float, y:Float, s:Float)
 	Return x + s * (y - x)
-End Def
+EndDef
 
 Def SmoothInter:Float(x:Float, y:Float, s:Float)
 	Return LinInter(x, y, s * s * (3 - 2*s))
-End Def
+EndDef
 
 Def Noise2D:Float(x:Float, y:Float)
 	x_int:Int = x
@@ -36,7 +35,7 @@ Def Noise2D:Float(x:Float, y:Float)
 	low = SmoothInter(s, t, x_frac)
 	high = SmoothInter(u, v, x_frac)
 	Return SmoothInter(low, high, y_frac)
-End Def
+EndDef
 
 Def Perlin2D:Float(x:Int, y:Int, freq:Float, depth:Int)
 	xa=x * freq
@@ -52,7 +51,7 @@ Def Perlin2D:Float(x:Int, y:Int, freq:Float, depth:Int)
 		ya = ya * 2
 	Next
 	Return fin / di
-End Def
+EndDef
 
 Data 151,160,137,91,90,15,131,13,201,95,96,53,194,233,7,225
 Data 140,36,103,30,69,142,8,99,37,240,21,10,23,190,6,148

@@ -1,0 +1,43 @@
+   10 REM > ClockSp 2.10
+   20 REM Calculate CPU clock speed
+   30 PRINT"BBC BASIC CPU Timing Program"
+   40 A%=0:T%=TIME+50:REPEATA%=A%+1:UNTILTIME>T%
+   50 Z%=0:B%=1:C%=100:D%=510:F%=3:F=1/10
+   60 REPEAT:C%=C%*10:D%=D%*10:F%=F%*10:F=F*10:A%=A%DIV10:UNTILA%<50
+   70 Z=Z%:H=Z+0.5:B=B%:S=B:C=C%:T=C+0.5:D=D%:E=D+0.5
+   80 PRINT"Real REPEAT loop    ";:T%=TIME:R=H:REPEATR=R+S:UNTILR>T:T%=TIME-T%:L%=F*42600/T%:PROCp(L%)
+   90 PRINT"Variant REPEAT loop ";:T%=TIME:V=Z:REPEATV=V+B:UNTILV>C:T%=TIME-T%:M%=F*42600/T%:PROCp(M%)
+  100 PRINT"Integer REPEAT loop ";:T%=TIME:I%=Z%:REPEATI%=I%+B%:UNTILI%>C%:T%=TIME-T%:N%=F*24000/T%:PROCp(N%)
+  110 PRINT"Real FOR loop       ";:T%=TIME:FORR=H TO E STEP S:NEXT:T%=TIME-T%:O%=F*51200/T%:PROCp(O%)
+  120 PRINT"Variant FOR loop    ";:T%=TIME:FORV=Z TO D STEP B:NEXT:T%=TIME-T%:P%=F*51000/T%:PROCp(P%)
+  130 PRINT"Integer FOR loop    ";:T%=TIME:FORI%=Z% TO D% STEP B%:NEXT:T%=TIME-T%:Q%=F*17730.7/T%:PROCp(Q%)
+  140 PRINT"Trig/Log test       ";:IFCOS0=0:PRINTSPC4"<none>":R%=0
+  150 IFCOS0<>0:A=1:T%=TIME:FORJ%=1 TO F%:A=TAN(ATN(EXP(LN(SQR(A*A)))))+1:NEXT:T%=TIME-T%:R%=F*68600/T%:PROCp(R%)
+  160 PRINT"String manipulation ";
+  170 T%=TIME:A$="STRINGMANIPULATIONTEST":FORA%=0TOF%*4:A$=RIGHT$(MID$(A$,LENA$/2,LENA$/4+1)+RIGHT$(A$,LENA$/4)+MID$(A$,LENA$/2,2)+LEFT$(A$,LENA$/4)+MID$(A$,LENA$/4,LENA$/4+1),LENA$):NEXT:T%=TIME-T%:S%=F*72750/T%:PROCp(S%)
+  180 PRINT"Procedure call      ";:T%=TIME:FORI%=Z% TO D%:PROCtest:NEXT:T%=TIME-T%:U%=F*80300/T%:PROCp(U%)
+  190 PRINT"GOSUB call          ";:T%=TIME:FORI%=Z% TO D%:GOSUB280:NEXT:T%=TIME-T%:V%=F*85000/T%:PROCp(V%)
+  200 PRINT"Unweighted Average  ";
+  210 IF R%:PROCp((L%+M%+N%+O%+P%+Q%+R%+S%+U%+V%)/(100/10))
+  220 IF R%=0:PROCp((L%+M%+N%+O%+P%+Q%+S%+U%+V%)/(90/10))
+  230 PRINT'"Compared to a 2.00MHz BBC B"
+  240 END
+  250 :
+  260 DEFPROCtest:ENDPROC
+  270 :
+  280 RETURN
+  290 :
+  300 DEFPROCp(T%):PRINTRIGHT$("     "+STR$(T%DIV100),6);".";RIGHT$("0"+STR$(T%),2);"MHz";CHR$8:ENDPROC
+  310 :
+  320 REM This is calibrated against a BBC Model B with no second processor,
+  330 REM running BASIC II and with almost all interupts turned off using:
+  340 REM ?&FE4E=&3F. This gives 2.00MHz.
+  350 :
+  360 REM ClockSp4 is calibrated against 65c12 BASIC IV on a Master.
+  370 :
+  380 REM v2.00 15-Mar-2002 Recalibrates itself for faster systems
+  390 REM v2.01 07-Mar-2006 Corrected error in string test
+  400 REM v2.10 23-Nov-2020 Separate forced real and variant variable tests
+  410 REM R=Real counter, V=Variant counter, I%=Integer counter
+  420 :
+

@@ -5,9 +5,9 @@ Const solid=0
 Const wireframe=1
 
 If @Main Then
-	Mode -1,-1,Banked
+	Mode -1,-1,Fullscreen Or Banked
 	Cubes()
-End If 
+EndIf 
 
 Def Cubes()
 	w=ScreenWidth()
@@ -16,8 +16,8 @@ Def Cubes()
 	cube1=Object(cube_shp, -2, 0, 0, 0, 0, 0, 2, solid)
 	cube2=Object(cube_shp, 2, 0, 0, 0, 0, 0, 2, wireframe)
 	Camera 0,5,10,0,1,0,0,0,0
-	SetFont prop
-	SetFg &FF,&FF,&FF
+	Font prop
+	Ink &FF,&FF,&FF
 	BankedOn
 	For R = 0.0 To 360.0 Step 0.25
 		Cls
@@ -33,19 +33,19 @@ Def Cubes()
 			DeleteShape cube_shp
 			BankedOff
 			Return
-		End If
+		EndIf
 	Next
 	DeleteObject cube1
 	DeleteObject cube2
 	DeleteShape cube_shp
 	GetKey()
 	BankedOff
-End Def
+EndDef
 
 REM ** Create a random RGB colour **
 Def GetRandomColour:Int()
-	Return Colour(Rnd(180)+64,Rnd(180)+64,Rnd(180)+64)
-End Def
+	Return RGB(Rnd(180)+64,Rnd(180)+64,Rnd(180)+64)
+EndDef
 
 Def CreateCube:Int()
 	REM ** Build vertices **
@@ -66,4 +66,4 @@ Def CreateCube:Int()
 	Face 4, 7, 3:Face 4, 3, 0:REM Left
 	Face 1, 2, 6:Face 1, 6, 5:REM Right
 	Return Shape()
-End Def
+EndDef

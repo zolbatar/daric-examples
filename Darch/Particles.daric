@@ -12,7 +12,7 @@ Record Particle
     die%:INT
     shape%:INT
     tt%:INT
-End Record
+EndRecord
 Dim particles:Particle[250]
 Const max_particles%=250
 Const part_variants%=50
@@ -35,27 +35,27 @@ Def CreateParticleCube(col:INT)
 	FaceColour 4, 0, 1, col:FaceColour 5, 1, 4, col:REM Bottom
 	FaceColour 4, 7, 3, col:FaceColour 4, 3, 0, col:REM Left
 	FaceColour 1, 2, 6, col:FaceColour 1, 6, 5, col:REM Right
-End Def
+EndDef
 
 Def InitParticles()
     For I%=1 To part_variants%
-        col%=Colour(Rnd(192)+63,Rnd(192)+63,0)
+        col%=RGB(Rnd(192)+63,Rnd(192)+63,0)
         CreateParticleCube(col%)
         cube_shapes_engines%[I%]=Shape()
 
-        col%=Colour(Rnd(192)+63,Rnd(192)+63,Rnd(192)+63)
+        col%=RGB(Rnd(192)+63,Rnd(192)+63,Rnd(192)+63)
         CreateParticleCube(col%)
         cube_shapes%[I%]=Shape()
     Next
 
-    col%=Colour(255,255,255)
+    col%=RGB(255,255,255)
     CreateParticleCube(col%)
     cube_shapes_gym%=Shape()
 
     For I%=1 To max_particles%
         particles[I%].active%=0
     Next
-End Def
+EndDef
 
 Def CreateRandomParticle(x:FLOAT,y:FLOAT,z:FLOAT,dx:FLOAT,dy:FLOAT,dz:FLOAT,r%:INT,tt%:INT)
     t#=Timer()
@@ -71,14 +71,14 @@ Def CreateRandomParticle(x:FLOAT,y:FLOAT,z:FLOAT,dx:FLOAT,dy:FLOAT,dz:FLOAT,r%:I
             particles[I%].die%=t#+Rnd(r%)+10
             particles[I%].tt%=tt%
             Case tt% OF
-            When 0:particles[I%].shape%=cube_shapes_engines%[Rnd(part_variants%)+1]
-            When 1:particles[I%].shape%=cube_shapes%[Rnd(part_variants%)+1]
+            When 0:particles[I%].shape%=cube_shapes_engines%[Rnd(part_variants%-1)+1]
+            When 1:particles[I%].shape%=cube_shapes%[Rnd(part_variants%-1)+1]
             When 2:particles[I%].shape%=cube_shapes_gym%
-            End Case
+            EndCase
             Return
-        End If
+        EndIf
     Next
-End Def
+EndDef
 
 Def RenderParticles(x:FLOAT,z:FLOAT,tt:FLOAT,height:INT)
     t#=Timer()
@@ -91,7 +91,7 @@ Def RenderParticles(x:FLOAT,z:FLOAT,tt:FLOAT,height:INT)
             When 0:Object(particles[I%].shape%,xx,yy,zz+50, 0,0,0, 0.1, 0)
             When 1:Object(particles[I%].shape%,xx,yy,zz+50, 0,0,0, 0.25, 0)
             Otherwise:Object(particles[I%].shape%,xx,yy,zz+50, 0,0,0, 0.15, 0)
-            End Case
+            EndCase
 
             REM Animate
             particles[I%].y=particles[I%].y+(particles[I%].dy*tt)-(2.5*tt)
@@ -107,7 +107,7 @@ Def RenderParticles(x:FLOAT,z:FLOAT,tt:FLOAT,height:INT)
             REM Kill?
             If particles[I%].die% < t# Then
                 particles[I%].active%=0
-            End If
-        End If
+            EndIf
+        EndIf
     Next
-End Def
+EndDef

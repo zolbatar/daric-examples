@@ -6,7 +6,7 @@ Repeat
 		For x=0 To w
 			R=-R:xr:Float=x+R
 			hh=Sin(xr/28)*64-Sin((xr+jm)/45)*128.0+Sin((y+R)/16.0)*64
-			SetBgHSV hh*1.4,255,255
+			PaperHSV hh*1.4,255,255
 			RectangleFilled x*mm,y*mm,(x+1)*mm,(y+1)*mm
 		Next
 	Next

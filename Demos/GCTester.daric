@@ -1,0 +1,101 @@
+Mode 800,600,Windowed
+Print "1 - Test for 1k"
+Print "2 - Test for 10k"
+Print "3 - Test for 100k"
+Print "4 - Test for 1 million"
+Print "5 - Test for 10 million"
+Print "6 - Test for 100 million"
+Print "7 - Test for 1 billion"
+A=GetChar()
+Case A of 
+    When "1":Run(1000, "1k")
+    When "2":Run(10000, "10k")
+    When "3":Run(100000, "100k")
+    When "4":Run(1000000, "1 million")
+    When "5":Run(10000000, "10 million")
+    When "6":Run(100000000, "100 million")
+    When "7":Run(1000000000, "1 billion")
+EndCase
+End
+
+Def Run(num:Int,nums:string)
+    index=0
+    done=0
+    count=0
+    outstanding=0
+    rate=5000
+    time#=0.0
+    Dim s:String[num]
+    BankedOn
+    Repeat
+        CLS
+        Print "Daric Garbage Collector Stress Tester"
+        Print "-------------------------------------"
+        Print
+        Print Time()
+        Print nums;:Print " string elements in array"
+        Print outstanding;:Print " queued elements to update"
+        Print rate;:Print " new objects per frame"
+        Print Float(count) / (Timer()-time#);:Print " new objects per second"
+        Print "Already updated ";:print count
+        If done=0 Print "Z   - Fill array" Else Print "    - Array filled" 
+        Print "X   - Update 100000 items"
+        Print "C   - Update 10000000 items"
+        Print "V   - Update fastest"
+        Print "B   - Update faster"
+        Print "N   - Update normal"
+        Print "M   - Do garbage collection"
+        Print "Esc - Quit"
+        Print
+        Print "Reserved GC:        ";
+        Print GCStatReserved()
+
+        Print "Committed GC:       ";
+        Print GCStatCommitted()
+
+        Print "Live Size:          ";
+        Print GCStatLive()
+
+        Print "Condemned:          ";
+        Print GCStatCondemned()
+
+        Print "Non-condemned:      ";
+        Print GCStatNotCondemned()
+
+        If KeyPress(KEY_Z) Then
+            Cls
+            For I = 0 to num-1
+                s[I]=String(I)
+            Next 
+            done=1
+        EndIf
+        If KeyPress(KEY_X) Then
+            outstanding+=100000
+            If time#=0 time#=Timer()
+        EndIf
+        If KeyPress(KEY_C) Then
+            outstanding+=10000000
+            If time#=0 time#=Timer()
+        EndIf
+        If KeyPress(KEY_V) rate=500000
+        If KeyPress(KEY_B) rate=50000
+        If KeyPress(KEY_N) rate=5000
+        If KeyPress(KEY_M) GCCollect()
+
+        If outstanding > 0 Then
+            i = rate
+            While outstanding > 0 And i>0 And index < num
+                s[index]=String(count)
+                index+=1
+                count+=1
+                outstanding-=1
+                i-=1
+            EndWhile
+            If index = num
+                index=0
+            EndIf
+        EndIf
+
+        Flip
+    Until KeyPress(KEY_ESCAPE)
+EndDef

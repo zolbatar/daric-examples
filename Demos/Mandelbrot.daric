@@ -1,54 +1,163 @@
-If @Main Then
-    Mode -1,-1,0
-    Mandelbrot()
-End If
+REM Mandelbrot - Daryl Dudey
+REM Made for an unreleased version of Daric (www.dariclang.com)
+REM Remove the async/await and it should be portable to other BASICs
 
-Def Mandelbrot()
-    ITERS=256:XRANGE=-1.5:YRANGE=-1.5:COLS=16
-    ww=ScreenWidth():hh=ScreenHeight()
-    SetSpriteBuffer ScreenWidth(), ScreenHeight()
-    Print "Rendering...please wait"
-    T=Timer()
-    For Y=-hh/2 To hh/2
-        For X=-ww/2 To ww/2
-            CR = (XRANGE + X * 4) / ww
-            CI = (YRANGE + Y * 3) / hh
-            ZM=0.0:ZR=0.0:ZI=0.0:ZR2=0.0:ZI2=0.0:IT=0
-            Repeat
-                Z1 = ZR2 - ZI2 + CR
-                Z2 = 2 * ZR * ZI + CI
-                ZR = Z1
-                ZI = Z2
-                ZR2 = ZR * ZR
-                ZI2 = ZI * ZI
-                ZM = ZR2 + ZI2
-                IT = IT + 1
-            Until IT=ITERS OR ZM>=4
-            c=IT Mod 16
-            Case c OF
-                When 0: SetFg 66, 30, 15
-                When 1: SetFg 25, 7, 26
-                When 2: SetFg 9, 1, 47
-                When 3: SetFg 4, 4, 73
-                When 4: SetFg 0, 7, 100
-                When 5: SetFg 12, 44, 138
-                When 6: SetFg 24, 82, 177
-                When 7: SetFg 57, 125, 209
-                When 8: SetFg 134, 181, 229
-                When 9: SetFg 211, 236, 248
-                When 10: SetFg 241, 233, 191
-                When 11: SetFg 248, 201, 95
-                When 12: SetFg 255, 170, 0
-                When 13: SetFg 204, 128, 0
-                When 14: SetFg 153, 87, 0
-                When 15: SetFg 106, 52, 3
-            End Case
-            SbPlot X+ScreenWidth()/2,Y+ScreenHeight()/2
+'Mode -1,-1,Fullscreen Or Banked
+Mode 1280,900,Windowed Or Banked
+ww=ScreenWidth():hh=ScreenHeight()
+ww2=ww/2:hh2=hh/2
+ITERS=512:M=16.0
+ASPECT=Float(ww)/Float(hh):START=1.5
+XMIN=-START * ASPECT:XMAX=START * ASPECT:YMIN=-START:YMAX=START
+SXMIN=XMIN:SXMAX=XMAX:SYMIN=YMIN:SYMAX=YMAX
+PC10=ww/16
+DX=(XMAX-XMIN)/ww
+DY=(YMAX-YMIN)/hh
+DIM plots[ww,hh]
+DIM iterations:Float[ITERS]
+total=0.0
+
+showgrid=1
+SpriteBuffer ww, hh
+Render()
+sp=CreateSprite()
+DrawSprite sp,0,ww2,hh2,0,1
+Repeat
+    mousex=MouseX():mousey=MouseY()
+
+    ' Zoom rectangle
+    DrawSprite sp,0,ww2,hh2,0,1
+    If showgrid=1 Rectangle mousex-(PC10*ASPECT),mousey-PC10,mousex+(PC10*ASPECT),mousey+PC10
+    Flip
+    
+    ' This is all zoom stuff
+    If MouseState() AND 4 Then
+        Repeat Until NOT (MouseState() AND 4)
+        XDIFF=XMAX-XMIN
+        YDIFF=YMAX-YMIN
+        PCTX=Float(mousex) / Float(ww)
+        PCTY=Float(mousey) / Float(hh)
+        CX=XMIN+(XDIFF * PCTX)
+        CY=YMIN+(YDIFF * PCTY)
+        NXDIFF=XDIFF/8.0
+        NYDIFF=YDIFF/8.0
+        SXMIN=XMIN:SXMAX=XMAX:SYMIN=YMIN:SYMAX=YMAX
+
+        ' New coords
+        NXMIN=CX-(NXDIFF/2)
+        NXMAX=CX+(NXDIFF/2)
+        NYMIN=CY-(NYDIFF/2)
+        NYMAX=CY+(NYDIFF/2)
+
+        ' Animate
+        XMIN=SXMIN:YMIN=SYMIN:XMAX=SXMAX:YMAX=SYMAX
+        DIFFSX1=(NXMIN-SXMIN)/50.0
+        DIFFSX2=(NXMAX-SXMAX)/50.0
+        DIFFSY1=(NYMIN-SYMIN)/50.0
+        DIFFSY2=(NYMAX-SYMAX)/50.0
+        FOR LL=0 TO 49
+            XMIN=SXMIN+(DIFFSX1 * LL)
+            XMAX=SXMAX+(DIFFSX2 * LL)
+            YMIN=SYMIN+(DIFFSY1 * LL)
+            YMAX=SYMAX+(DIFFSY2 * LL)
+            DX=(XMAX-XMIN)/ww:DY=(YMAX-YMIN)/hh
+            Render()
+            sp=CreateSprite()
+            DrawSprite sp,0,ww2,hh2,0,1
+            Flip
+            DeleteSprite sp
+        NEXT
+        XMIN=NXMIN:XMAX=NXMAX:YMIN=NYMIN:YMAX=NYMAX
+        DX=(XMAX-XMIN)/ww:DY=(YMAX-YMIN)/hh
+        Render()
+        sp=CreateSprite()
+    EndIf
+Until AppCloseRequested()
+DeleteSprite sp
+End
+
+Def MandelFinal(MY) 
+    For MX=0 to ww-1
+        KK=plots[MX,MY]
+        If KK=ITERS-1 Then
+            SbPlot MX,MY,0,0,0
+        Else
+            hue=0.0
+            For II=0 To KK
+                hue += iterations[II] / total
+            Next
+            huea=((hue*360.0)^1.2) MOD 360
+            SbPlotHSV MX,MY,huea,255,32.0+hue*223.0 
+        EndIf
+    Next        
+EndDef
+
+Def MandelbrotLine(MY)
+    JY=YMIN+MY*DY
+    For MX=0 to ww-1
+        JX=XMIN+MX*DX
+        K=-1:WX=0.0:WY=0.0
+        Repeat
+            TX = WX * WX - WY * WY + JX
+			TY = 2.0 * WX * WY + JY
+			WX = TX
+			WY = TY
+			R = WX * WX + WY * WY
+            K+=1
+        Until R>M OR K=ITERS-1
+        plots[MX,MY]=K
+    Next
+EndDef
+
+REM This doesnt work, anybody wanna figure out why?
+x0 = -0.512511498387847167:y0 = 0.521295573094847167
+Def JuliaLine(MY)
+    JY=YMIN+MY*DY
+    For MX=0 to ww-1
+        JX=XMIN+MX*DX
+        WX=JX:WY=JY
+        K=0
+        While (WX * WX + WY * WY) <= M And K<ITERS
+            TX = WX * WX - WY * WY + x0
+			WY = 2.0 * WX * WY + Y0
+            WX = TX
+            K+=1
+        EndWhile
+        plots[MX,MY]=K
+    Next
+
+EndDef
+
+Def Render()
+    For Y=0 To hh-1
+        Async MandelbrotLine(Y)
+    Next
+    Await
+
+    ' Clear iterations array
+    For I=0 To ITERS-1
+        iterations[I]=0.0
+    Next
+
+    ' Histogram colouring: pass 2
+    For Y=0 To hh-1
+        For X=0 to ww-1
+            KKK=plots[X,Y]
+            If KKK<>ITERS-1 Then
+                iterations[KKK]+=1.0
+            EndIf
         Next
     Next
-    Cls
-    sp=CreateSprite()
-    DrawSprite sp,0,ScreenWidth()/2,ScreenHeight()/2,0,1
-    SetAlpha 255:SetFg 255,255,255:Print Timer()-T With "Took %f seconds"
-    GetKey()
-End Def
+
+    ' Histogram colouring: pass 3
+    total=0.0
+    For I=0 To ITERS-1
+        total += iterations[I]
+    Next
+
+    ' Histogram colouring: pass 4
+    For Y=0 To hh-1
+        Async MandelFinal(Y)
+    Next
+    Await
+EndDef

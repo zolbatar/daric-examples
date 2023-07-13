@@ -5,19 +5,20 @@ vmin=1000000.0:vmax=-1000000.0:A$=""
 If @Main
     Mode 1280,1024,Windowed
     Load3D()
-End If
+EndIf
 
 Def Load3D()
-    SetFont prop
+    MenuInit()
+    Font prop
     Cls
     Camera 0,5,10,0,1,0,0,0,0
-    Title("Select a 3D Model to Load (Use Keyboard)")
-    Label("1", "Male Head (DARIC importer)", ms+(0*ys),0)
-    Label("2", "Teapot (DARIC importer)", ms+(1*ys),0)
-    Label("3", "911 GT2 Rim", ms+(2*ys),0)
-    Label("4", "Oak Tree", ms+(3*ys),0)
-    Label("5", "Crystal", ms+(4*ys),0)
-    Label("Q", "Back to Welcome", ms+(7*ys),0)
+    Title("Select a 3D Model to load (Use Keyboard)")
+    Label("1", "Male Head (DARIC importer)", 0)
+    Label("2", "Teapot (DARIC importer)", 0)
+    Label("3", "911 GT2 Rim", 0)
+    Label("4", "Oak Tree", 0)
+    Label("5", "Crystal" ,0)
+    Label("Q", "Back to Welcome",0)
     A$=GetChar()
     Case A$ OF
         When "1":file$="Shapes/MaleHead.obj":Camera 0,0,-10,0,1,0,0,0,0
@@ -27,19 +28,20 @@ Def Load3D()
         When "5":file$="Shapes/Crystal.obj"
         When "Q","q":Return
         Otherwise:Return
-    End Case
+    EndCase
 
     Cls
+    MenuReset()
     Title("Select a rendering type (Use Keyboard)")
-    Label("1", "Solid flat shaded", ms+(0*ys),0)
-    Label("2", "Wireframe", ms+(1*ys),0)
-    Label("Q", "Back to Welcome", ms+(4*ys),0)
+    Label("1", "Solid flat shaded" ,0)
+    Label("2", "Wireframe",0)
+    Label("Q", "Back to Welcome",0)
     B$=GetChar()
     Case B$ OF
         When "1","2":obj%=LoadOBJFile(file$,B$)
         When "Q","q":Return
         Otherwise:Return
-    End Case
+    EndCase
     ClearEvents
 
     BankedOn
@@ -52,11 +54,11 @@ Def Load3D()
             BankedOff
             DeleteObject obj%
             Return
-        End If
+        EndIf
     Next
     BankedOff
     DeleteObject obj%
-End Def
+EndDef
 
 Def LoadOBJFile:Int(filename$:String, typ$:String)
     s1$="":s2$="":s3$="":s4$=""
@@ -65,28 +67,28 @@ Def LoadOBJFile:Int(filename$:String, typ$:String)
     sh=0
     Case typ$ OF
         When "2":sh=1
-    End Case
+    EndCase
 
     If A$="3" Then
         obj_shape%=LoadMesh(filename$)
         obj%=Object(obj_shape%, 0, 0, 0, 0, 0, 0, 0.1, sh)
-        Return obj%
-    End If
+        =obj%
+    EndIf
     If A$="4" Then
         obj_shape%=LoadMesh(filename$)
         obj%=Object(obj_shape%, 0, -3, 0, 0, 0, 0, 1.0, sh)
-        Return obj%
-    End If
+        =obj%
+    EndIf
     If A$="5" Then
         obj_shape%=LoadMesh(filename$)
         obj%=Object(obj_shape%, 0, -3, 0, 0, 0, 0, 3.0, sh)
-        Return obj%
-    End If
+        =obj%
+    EndIf
     If A$="6" Then
         obj_shape%=LoadMesh(filename$)
         obj%=Object(obj_shape%, 0, 0, 0, 0, 0, 0, 0.001, sh)
-        Return obj%
-    End If
+        =obj%
+    EndIf
 
     number_of_vertices%=0
     number_of_faces%=0
@@ -96,7 +98,7 @@ Def LoadOBJFile:Int(filename$:String, typ$:String)
     If file%=-1 Then
         Print "Can't open 3D file"
         Return
-    End If
+    EndIf
 
     REM First stage is to parse the file and work out how many vertices and faces we have
     linein$=""
@@ -124,8 +126,8 @@ Def LoadOBJFile:Int(filename$:String, typ$:String)
     Print "Building vertices..."
     linein$=""
     Seek file%,0
-    colour%=Colour(&40,&40,&80)
-    If typ$="4" colour%=Colour(&20,&20,&40)
+    colour%=RGB(&40,&40,&80)
+    If typ$="4" colour%=RGB(&20,&20,&40)
     Repeat
         linein$=SGet(file%)
         If Len(linein$) >= 1 Then
@@ -135,8 +137,8 @@ Def LoadOBJFile:Int(filename$:String, typ$:String)
                 y=Float(s2$) / vmax
                 z=Float(s3$) / vmax
 	            VertexColour x, y, z, colour%
-            End If
-        End If
+            EndIf
+        EndIf
     Until Eof(file%)
 
     REM Now build faces
@@ -160,9 +162,9 @@ Def LoadOBJFile:Int(filename$:String, typ$:String)
                     v4%=Int(s4$)-1
 	                Face v1%, v2%, v3%
 	                Face v1%, v3%, v4%
-                End If
-            End If
-        End If
+                EndIf
+            EndIf
+        EndIf
     Until Eof(file%)
     Close file%
 
@@ -172,7 +174,7 @@ Def LoadOBJFile:Int(filename$:String, typ$:String)
 	If A$="1" obj%=Object(obj_shape%, 0, 1, 0, 0, 0, 0, 1.5, sh)
 	If A$="2" obj%=Object(obj_shape%, 0, -2, 0, 0, 0, 0, 3, sh)
     Return obj%
-End Def
+EndDef
 
 Def ProcessOBJLine(linein$:String)
     s1$="":s2$="":s3$="":s4$=""
@@ -180,10 +182,10 @@ Def ProcessOBJLine(linein$:String)
     Case Left(linein$, 1) OF
         When "v":number_of_vertices%=number_of_vertices%+1
         When "f":Get4OBJValues(linein$, s1$, s2$, s3$, s4$):If Len(s4$)=0 number_of_faces%=number_of_faces%+1 Else number_of_faces%=number_of_faces%+2
-    End Case
-End Def
+    EndCase
+EndDef
 
-Def Get3OBJValues(linein$:String, ByRef s1$:String, ByRef s2$:String, ByRef s3$:String)
+Def Get3OBJValues(linein$:String, Ref s1$:String, Ref s2$:String, Ref s3$:String)
     p1%=Instr(linein$, " ", 1)
     p2%=Instr(linein$, " ", p1% + 1)
     p3%=Instr(linein$, " ", p2% + 1)
@@ -191,9 +193,9 @@ Def Get3OBJValues(linein$:String, ByRef s1$:String, ByRef s2$:String, ByRef s3$:
     s1$=Mid(linein$,p1%+1,p2% - p1%-1)
     s2$=Mid(linein$,p2%+1,p3% - p2%-1)
     s3$=Mid(linein$,p3%+1,p4% - p3%)
-End Def
+EndDef
 
-Def Get4OBJValues(linein$:String, ByRef s1$:String, ByRef s2$:String, ByRef s3$:String, ByRef s4$:String)
+Def Get4OBJValues(linein$:String, Ref s1$:String, Ref s2$:String, Ref s3$:String, Ref s4$:String)
     p1%=Instr(linein$, " ", 1)
     p2%=Instr(linein$, " ", p1% + 1)
     p3%=Instr(linein$, " ", p2% + 1)
@@ -208,8 +210,8 @@ Def Get4OBJValues(linein$:String, ByRef s1$:String, ByRef s2$:String, ByRef s3$:
     Else 
         s3$=Mid(linein$,p3%+1,p4% - p3%-1)
         s4$=Mid(linein$,p4%+1,p5% - p4%)
-    End If
-End Def
+    EndIf
+EndDef
 
 Def NormaliseSize(linein$:String)
     If Len(linein$) < 1 Return
@@ -226,4 +228,4 @@ Def NormaliseSize(linein$:String)
     If x > vmax vmax = x
     If y > vmax vmax = y
     If z > vmax vmax = z
-End Def
+EndDef

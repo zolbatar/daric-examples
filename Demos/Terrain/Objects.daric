@@ -1,28 +1,28 @@
 Option Base 1
 Import "Globs"
 
-Dim objects:Map[String,Int]
-Dim instances:Stack[Int]
+objects=StringMap of Int
+instances=Stack
 
 Def LoadObjects()
-    Add objects["Ship"],LoadMesh("Shapes/Player_Enhanced.obj")
-    Add objects["TreeD"],LoadMesh("Shapes/Low_Poly_Tree_Double.obj")
-    Add objects["TreeT"],LoadMesh("Shapes/Low_Poly_Tree_Triple.obj")
-    Add objects["TreeQ"],LoadMesh("Shapes/Low_Poly_Tree_Quad.obj")
-End Def
+    Add objects,"Ship",LoadMesh("Shapes/Player_Enhanced.obj")
+    Add objects,"TreeD",LoadMesh("Shapes/Low_Poly_Tree_Double.obj")
+    Add objects,"TreeT",LoadMesh("Shapes/Low_Poly_Tree_Triple.obj")
+    Add objects,"TreeQ",LoadMesh("Shapes/Low_Poly_Tree_Quad.obj")
+EndDef
 
 Def CreateObjects()
     While Size(instances) > 0
-        Take instances, id
+        id=Take(instances)
         DeleteObject id
-    End While
+    EndWhile
 
     ' Create some woods/forests
-    Get objects["TreeD"],id1
-    Get objects["TreeT"],id2
-    Get objects["TreeQ"],id3
-    For z = 1 To terrainsize-1 Step 1
-		For x = 1 To terrainsize-1 Step 1
+    id1=GetForKey(objects, "TreeD")
+    id2=GetForKey(objects, "TreeT")
+    id3=GetForKey(objects, "TreeQ")
+    For z = 2 To terrainsize-1 Step 1
+		      For x = 2 To terrainsize-1 Step 1
             h0=dheight[x-1, z-1]
             h1=dheight[x, z-1]
             h2=dheight[x+1, z-1]
@@ -42,13 +42,13 @@ Def CreateObjects()
                     When 0:id=id1
                     When 1:id=id2
                     When 2:id=id3
-                End Case
+                EndCase
                 ox=((x * scale_x) - half_width) * scale
                 oz=((z * scale_z) - half_depth) * scale
                 sizes=0.25+RndF(0.25)
                 oy=h*scale*6.5
                 Add instances, Object(id, ox, oy, oz, 0, 0, 0, scale*sizes, rendermode)
-            End If
+            EndIf
         Next
     Next
 
@@ -69,4 +69,4 @@ Def CreateObjects()
 
  '   Get objects["Poplar"],id
  '   Add instances, Object(id, 0.7, 0.25, 0, 0, 0, 0, 0.025, rendermode)
-End Def
+EndDef

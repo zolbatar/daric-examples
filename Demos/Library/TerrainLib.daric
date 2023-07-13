@@ -4,9 +4,9 @@ Const snowh=0.7
 Const terrainsize=500
 
 Def CreateTerrain:Int(width:Int, depth:Int, rel:Float, type:Int)
-	grass=Colour(&00, &80, &00)
-	rock=Colour(&44, &44, &44)
-	snow=Colour(&EE, &EE, &EE)
+	grass=RGB(&00, &80, &00)
+	rock=RGB(&44, &44, &44)
+	snow=RGB(&EE, &EE, &EE)
 
 	number_of_vertices%=width * depth
 	number_of_faces%=(width-1) * (depth-1) * 2
@@ -54,4 +54,4 @@ Def CreateTerrain:Int(width:Int, depth:Int, rel:Float, type:Int)
     terrain=Shape()
     terrain1=Object(terrain, 0, 0, 0, 0, 0, 0, 0.05, type)
 	Return terrain1
-End Def
+EndDef

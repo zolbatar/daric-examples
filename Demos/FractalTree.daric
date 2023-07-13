@@ -1,14 +1,14 @@
 If @Main Then
-    Mode -1,-1,Banked
+    Mode -1,-1,Fullscreen Or Banked
     s=Min(ScreenWidth(), ScreenHeight())/30.0
-    Print "Move the mouse around to animate!"
+    Print "Move the mouse around to animate, Esc to quit!"
     Repeat
         mx:Float=MouseX():my:Float=MouseY()
         dist=0.7:turn=90*(my*1.5)/ScreenHeight():bias=90*(mx-(ScreenWidth()/2))/ScreenWidth()
         Branch(ScreenWidth()/2,ScreenHeight(),-90,6.8)
         Flip
     Until WaitKey(0) Or AppCloseRequested()
-End If
+EndIf
 
 Def Branch(x,y,angle:Float,dep:Float)
     If dep>=0.15 Then
@@ -17,6 +17,6 @@ Def Branch(x,y,angle:Float,dep:Float)
        Line x,y,dx,dy
        Branch(dx,dy,angle-(turn-bias),dep*dist):
        Branch(dx,dy,angle+(turn+bias),dep*dist)
-    End If
-End Def
+    EndIf
+EndDef
 

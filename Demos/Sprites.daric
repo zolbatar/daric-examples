@@ -1,7 +1,9 @@
+Option Base 1
+
 If @Main Then
-    Mode -1,-1,Banked
+    Mode -1,-1,Fullscreen Or Banked
     Sprites()
-End If  
+EndIf  
 
 Def Sprites()
     SpriteRenderPoint 0
@@ -47,10 +49,10 @@ Def Sprites()
             DeleteSprite ship:DeleteSprite bg
             BankedOff
             Return
-        End If
+        EndIf
     Next
     DeleteSprite ship:DeleteSprite bg
     BankedOff
-End Def
+EndDef
 
 

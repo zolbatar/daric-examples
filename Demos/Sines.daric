@@ -1,13 +1,13 @@
 REM Code courtesy of ZXDunny
 
-Mode -1,-1,Banked
+Mode -1,-1,Fullscreen Or Banked
 
 j=0.0
 Repeat
-    SetBg &40,&40,&40:Cls
+    Paper &40,&40,&40:Cls
     For a=0.0 To 7.0
         For b=0.0 To 7.0
-	        SetFgHSV(((a+b)/2)*51,128,192)
+	        InkHSV(((a+b)/2)*51,128,192)
 	        For i=0.0 To 2*PI Step 0.002
                 Plot x(),y()
             Next
@@ -15,7 +15,7 @@ Repeat
     Next
     i=j
 
-    SetBg 255,255,255
+    Paper 255,255,255
     For a=0 To 7
         For b=0 TO 7
             CircleFilled x(),y(),3
@@ -27,9 +27,9 @@ Until WaitKey(0)
 
 Def x:Float()
     Return 90+180*a+85*SIN((a+1)*i)
-End Def
+EndDef
 
 Def y:Float()
     Return 90+180*b-85*COS((b+1)*i)
-End Def 
+EndDef 
 

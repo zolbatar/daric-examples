@@ -1,24 +1,24 @@
 If @Main Then
-	Mode -1,-1,Banked
+	Mode 1024,768,Windowed Or Banked
 	Sierpinski()
-End If
+EndIf
 
 Def Sierpinski() 
 	BankedOn
 	While Not WaitKey(0)
 		DrawTriangle 8,0,0,1000
 		Flip
-	End While
+	EndWhile
 	BankedOff
-End Def
+EndDef
 
 Def DrawTriangle(l:Int,x:Float,y:Float,s:Float)
 	If l > 0 Then
-		SetFg Rnd(255),Rnd(255),Rnd(255)
+		Ink Rnd(255),Rnd(255),Rnd(255)
 		Triangle x,y,x+s,y,x,y+s
 		s2=s/2
 		DrawTriangle l-1,x,y,s2
 		DrawTriangle l-1,x+s2,y,s2
 		DrawTriangle l-1,x,y+s2,s2
-	End If
-End Def
+	EndIf
+EndDef

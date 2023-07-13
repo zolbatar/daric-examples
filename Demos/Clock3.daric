@@ -1,0 +1,41 @@
+MODE 800,600,WINDOWED
+REM > ClockSp 3.00 (RTR)
+REM Calculate CPU clock speed
+PRINT"BBC BASIC CPU Timing Program"
+A%=0:T%=TIME():REPEAT A%=A%+1:UNTIL TIME()>T%+50:REM 371 on a proper Beeb
+Z=0.0:Z%=0:B=1.0:B%=1:F=1.0/10.0:C=100.0:C%=100:D=510.0:D%=510:F%=3
+REPEAT:C=C*10:C%=C%*10:D=D*10:D%=D%*10:F%=F%*10:F=F*10:A%=A% DIV 10:UNTIL A%<50
+Z=Z+0.5:C=C+0.5:D=D+0.5:TTAL%=0
+PRINT "Really real REPEAT loop ";:T%=TIME():A=Z:REPEAT:A=A+B:UNTIL A>C:T%=TIME()-T%:PROCp(41000,T%):REM 2.06seconds on real Beeb
+PRINT "Integer REPEAT loop     ";:T%=TIME():A%=Z%:REPEAT:A%=A%+B%:UNTIL A%>C%:T%=TIME()-T%:PROCp(23900,T%)
+PRINT "Really real FOR loop    ";:T%=TIME():FOR A=Z TO D STEP B:NEXT:T%=TIME()-T%:PROCp(51200,T%)
+PRINT "Integer FOR loop        ";:T%=TIME():FOR A%=Z% TO D% STEP B%:NEXT:T%=TIME()-T%:PROCp(17800,T%)
+PRINT "Trig/Log test           ";:IF COS(0)=0:PRINT "    <none>"
+IF COS(0)<>0:A=1:T%=TIME():FOR J%=1 TO F%:A=TAN(ATN(EXP(LN(SQR(A*A)))))+1:NEXT:T%=TIME()-T%:PROCp(68800,T%)
+PRINT"String manipulation     ";
+T%=TIME():A$="STRINGMANIPULATIONTEST":FOR A%=0 TO F%*4:A$=RIGHT(MID(A$,LEN(A$)/2,LEN(A$)/4+1)+RIGHT(A$,LEN(A$)/4)+MID(A$,LEN(A$)/2,2)+LEFT(A$,LEN(A$)/4)+MID(A$,LEN(A$)/4,LEN(A$)/4+1),LEN(A$)):NEXT:T%=TIME()-T%:PROCp(72750,T%)
+PRINT"Procedure call          ";:T%=TIME():FOR A%=Z% TO D%:PROCtest():NEXT:T%=TIME()-T%:PROCp(80500,T%)
+PRINT"Unweighted Average      ";:
+V%=TTAL%/7:V$="     "+STRING(V%/100):PRINT RIGHT(V$,9);:PRINT ".";:PRINT RIGHT("0"+STRING(V%),2);:PRINT "MHz":TTAL%=TTAL%+T%
+PRINT:PRINT"Compared with a 2.00MHz BBC B"
+'GetKey()
+
+DEF PROCtest():ENDDEF
+
+DEF PROCp(C%,T%:Float)
+V%=F*C%/T%:V$="     "+STRING(V%/100):PRINT RIGHT(V$,9);:PRINT ".";:PRINT RIGHT("0"+STRING(V%),2);:PRINT "MHz":TTAL%=TTAL%+V%
+ENDDEF
+
+REM This is calibrated against a
+REM BBC model B with no second
+REM processor, running BASIC II
+REM and with almost all interupts
+REM turned off using:
+REM ?&FE4E=&3F
+REM This gives 2.00MHz.
+
+REM Version 2.00 recalibrates
+REM itself for faster systems
+REM 15-Mar-2002
+
+DEF Time:Float():RETURN TIMER()*100.0:ENDDEF

@@ -1,35 +1,48 @@
-Const prop=0
+prop=0
 Const c1=-300
-Const ys=20
+Const ys=40
 ms=100
+label_y=0
 
-Def Label(number$:String, text$:String, y:Int, sel:Int)
+Def MenuInit()
+	prop=LoadFont("Roboto-Regular.ttf", 40)
+EndDef
+
+Def MenuReset()
+	label_y=0
+EndDef
+
+Def Label(number$:String, text$:String, sel:Int)
     w=ScreenWidth():h=ScreenHeight()
-	SetFont prop
+	Font prop
     If sel Then
-    	SetFg &FF,&FF,0
-	    Text w/2+c1-20, y, ">>"
-	End If
+    	Ink &FF,&FF,0
+	    Text w/2+c1-20, ms+(label_y*ys), ">>"
+	EndIf
 
-	SetFg 0,0,&FF
-	Text w/2+c1, y, number$
+	Ink 0,0,&FF
+	Text w/2+c1, ms+(label_y*ys), number$
 
-	SetFg &FF,&FF,&FF
+	Ink &FF,&FF,&FF
 	Text w/2+c1 + 60, -1, text$
-End Def
 
-Def LabelIndent(number$:String, text$:String, y:Int)
+	label_y+=1
+EndDef
+
+Def LabelIndent(number$:String, text$:String)
     w=ScreenWidth():h=ScreenHeight()
-	SetFg 0,0,&80
-	SetFont prop
-	Text w/2+c1+30, y, number$
-	SetFg &80,&80,&80
-	Text w/2+c1 + 60 + 30, -1, text$
-End Def
+	Ink 0,0,&80
+	Font prop
+	Text w/2+c1+30, ms+(label_y*ys), number$
+	Ink &80,&80,&80
+	Text w/2+c1 + 60 + 30, ms+(label_y*ys), text$
+	label_y+=1
+EndDef
 
 Def Title(title$:String)
     w=ScreenWidth():h=ScreenHeight()
-	SetFg &FF,&FF,0
-	SetFont prop
+	Ink &FF,&FF,0
+	Font prop
 	TextCentre w/2, 20, title$
-End Def
+	label_y=0
+EndDef

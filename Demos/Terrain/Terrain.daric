@@ -28,13 +28,13 @@ Def CreateTerrain()
                 If d<0 d=0
                 If d>7 d=7
                 colour=ArchColourTheme1[1+d]
-            End If
-            If v>0.05 And v<=0.25 ' Grass
+            EndIf
+            If v>0.05 And v<=0.25 Then ' Grass
                 d:Int=((v-0.05)/0.25*7)+RndF(1.5)-0.75
                 If d<0 d=0
                 If d>7 d=7
                 colour=ArchColourTheme1[9+d]
-            End If
+            EndIf
             If v>0.25 And v<=0.4 colour=ArchColourTheme1[Rnd(3)+17] ' Rock
             If v>0.4 colour=ArchColourTheme1[Rnd(3)+21] ' Snow
 
@@ -46,7 +46,7 @@ Def CreateTerrain()
             ' Add some totally random colouring to make it interesting
             ration=RndF(0.5)
             ratioo=1.0-ration
-            colour=ArchColour[Rnd(256+1)]
+            colour=ArchColour[Rnd(255)+1]
             cb = (colour And &FF0000) >> 16
             cg = (colour And &FF00) >> 8
             cr = (colour And &FF)
@@ -79,7 +79,7 @@ Def CreateTerrain()
         Next
     Next
     CreateTerrainShape()
-End Def
+EndDef
 
 Def CreateTerrainShape()
     i=0
@@ -88,7 +88,7 @@ Def CreateTerrainShape()
             r=dcolours[x, z].r
             g=dcolours[x, z].g
             b=dcolours[x, z].b
-            colour=Colour(r,g,b)
+            colour=RGB(r,g,b)
 
             ' Triangle 1
             Vertex ((x * scale_x) - half_width, dheight[x, z] * height, (z * scale_z) - half_depth
@@ -109,4 +109,4 @@ Def CreateTerrainShape()
     If terrain <> -1 DeleteObject terrain
     terrain_shape=Shape()
     terrain=Object(terrain_shape, 0, 0, 0, 0, 0, 0, scale, rendermode)
-End Def
+EndDef

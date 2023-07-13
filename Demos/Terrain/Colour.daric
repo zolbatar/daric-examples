@@ -2,4 +2,4 @@ Record Colour
     r:Int
     g:Int
     b:Int
-End Record
+EndRecord

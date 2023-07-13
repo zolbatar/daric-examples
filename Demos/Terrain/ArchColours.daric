@@ -37,36 +37,36 @@ Def CreateArchColours()
         ArchColourTheme1[I+20]=ArchColour[252+I]
     Next
 
-End Def
+EndDef
 
 Def ShowArchColours()
     For Y=0 To 15
         For X=0 To 15
-            SetBgColour ArchColour[Y*16+X+1]
+            PaperC ArchColour[Y*16+X+1]
             RectangleFilled X*48,Y*48,(X+1)*48,(Y+1)*48
         Next
     Next
     Flip
     GetKey()
-End Def
+EndDef
 
 Def ShowThemeColours()
     For I=1 To 8
-        SetBgColour ArchColourTheme1[I]
+        PaperC ArchColourTheme1[I]
         RectangleFilled (I+0)*48,3*48,(I+1)*48,4*48
 
-        SetBgColour ArchColourTheme1[I+8]
+        PaperC ArchColourTheme1[I+8]
         RectangleFilled (I+0)*48,5*48,(I+1)*48,6*48
     Next
 
     For I=1 To 4
-        SetBgColour ArchColourTheme1[I+16]
+        PaperC ArchColourTheme1[I+16]
         RectangleFilled (I+0)*48,7*48,(I+1)*48,8*48
 
-        SetBgColour ArchColourTheme1[I+20]
+        PaperC ArchColourTheme1[I+20]
         RectangleFilled (I+0)*48,9*48,(I+1)*48,10*48
     Next
 
     Flip
     GetKey()
-End Def
+EndDef

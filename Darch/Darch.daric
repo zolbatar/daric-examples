@@ -6,18 +6,19 @@ Import "Objects"
 Import "Particles"
 Import "Render"
 Import "Minimap"
+Import "../Demos/Library/Perlin"
 
 #{
 This code is still messy as it's been ported from a previous version:Daric. It needs type annotations removing and more structure adding.
 }#
 
 If @Main Then
-    Mode -1,-1,0
+    Mode 1024,768,Windowed
     Darch()
-End If
+EndIf
 
 Def Darch()
-    SetBg &0,0,8
+    Paper &0,0,8
     height=20
     InitPerlin()
     Load3DShapes()
@@ -36,8 +37,8 @@ Def Darch()
 
     REM Position and angle
 
-    Dim pos:Vector3D(x=terrainsize/2,y=height,z=terrainsize/2)
-    Dim rot:Vector3D(x=0,y=0,z=0)
+    rot=new Vector3D x=0,y=0,z=0
+    pos=new Vector3D x=terrainsize/2,y=height,z=terrainsize/2
 
     BankedOn
     ltt=Timer():tt=0.0
@@ -61,33 +62,33 @@ Def Darch()
             buttons%=MouseState()
             If (buttons% And 1) = 1 OR KeyDown(KEY_Z) Then
                 FireEngines(cum_part_count,tt,speed)
-            End If
+            EndIf
             If ((buttons% And 4) = 4 OR KeyDown(KEY_X)) And (cum-last_bullet)>0.1 Then
                 FireBullet(cum,rot,pos)
-            End If
+            EndIf
 
             RotateBasedOnMouse(rot,dx,dy,tt)
             CheckVector(pos,rot)
             CalcMapPosition(pos)
-        End If
+        EndIf
 
         REM Have we crashed?
         crash=CheckCollision(sq_x,sq_z,pos.y,height)
         If dead=0 And crash=1 Then
             Crash(pos,dead,speed)
-        End If
+        EndIf
 
         If dead=0 Then
             Animate(rot,pos,tt,speed,limit_x,limit_z,height)
             EngineParticles(rot,pos,cum_part_count,speed,tt,dead)
-        End If
+        EndIf
 
         DoRender(pos,rot,height,tt,dead)
     Until KeyDown(KEY_ESCAPE) Or AppCloseRequested()
     BankedOff
-End Def
+EndDef
 
-Def DoRender(ByRef pos:Vector3D, ByRef rot:Vector3D,height:Int,tt:Float,dead:Int)
+Def DoRender(Ref pos:Vector3D, Ref rot:Vector3D,height:Int,tt:Float,dead:Int)
     REM Terrain
     RenderTerrain(pos.x,pos.z,frac_x,frac_z,sq_x,sq_z,rot.y,height)
     RenderParticles(pos.x,pos.z,tt,height)
@@ -100,8 +101,8 @@ Def DoRender(ByRef pos:Vector3D, ByRef rot:Vector3D,height:Int,tt:Float,dead:Int
 
     Render: REM This copies the 3D buffer to screen
     MiniMap(sq_x,sq_z)
-    SetFg 255,255,255
-    SetFont 0
+    Ink 255,255,255
+    Font 0
     TextCentre ScreenWidth()/2,0,"Frame: "+String(frame) + Chr(10)
     TextCentre ScreenWidth()/2,-1,"Position: "+String(Int(pos.x))+","+String(Int(pos.y))+","+String(Int(pos.z)) + Chr(10)
     TextCentre ScreenWidth()/2,-1,"Rotation: "+String(Int(rot.x))+","+String(Int(rot.y))+","+String(Int(rot.z))
@@ -112,23 +113,23 @@ Def DoRender(ByRef pos:Vector3D, ByRef rot:Vector3D,height:Int,tt:Float,dead:Int
     DeleteTerrain()
 
     frame=frame+1
-End Def
+EndDef
 
-Def FireBullet(cum:FLOAT,ByRef rot:Vector3D,ByRef pos:Vector3D)
+Def FireBullet(cum:FLOAT,Ref rot:Vector3D,Ref pos:Vector3D)
     last_bullet=cum
-    Dim rot_v:Vector3D(x=0,y=0,z=0)
+    rot_v=new Vector3D x=0,y=0,z=0
     Rotation(rot,rot_v,2)
     CreateRandomParticle(pos.x+(rot_v.x/scale_x),pos.y+rot_v.y-0.5,pos.z+(rot_v.z/scale_z),rot_v.x*25,rot_v.y*25,rot_v.z*25,250,2)
-End Def
+EndDef
 
-Def FireEngines(ByRef cum_part_count:FLOAT,tt:FLOAT,ByRef speed:FLOAT)
+Def FireEngines(Ref cum_part_count:FLOAT,tt:FLOAT,Ref speed:FLOAT)
     REM SOUND CHANNEL_NOISE%,0.0,1.0
     cum_part_count=cum_part_count+(10.0*tt)
     speed=speed+30.0*tt
     If speed>20.0 speed=20.0
-End Def
+EndDef
 
-Def Crash(ByRef pos:Vector3D,ByRef dead:INT,ByRef speed:FLOAT)
+Def Crash(Ref pos:Vector3D,Ref dead:INT,Ref speed:FLOAT)
     dead=1
     speed%=0
     For I%=1 To 150
@@ -140,10 +141,10 @@ Def Crash(ByRef pos:Vector3D,ByRef dead:INT,ByRef speed:FLOAT)
         spread_z2=5 * (RndF(1.0)-0.5)
         CreateRandomParticle(pos.x+spread_x,pos.y+spread_y,pos.z+spread_z,spread_x2,spread_y2,spread_z2,500,1)
     Next
-End Def
+EndDef
 
-Def Animate(ByRef rot:Vector3D,ByRef pos:Vector3D,tt:Float,speed:Float,ByRef limit_x:Int,ByRef limit_z:Int,height:Int)
-    Dim rot_v:Vector3D(x=0,y=0,z=0)
+Def Animate(Ref rot:Vector3D,Ref pos:Vector3D,tt:Float,speed:Float,Ref limit_x:Int,Ref limit_z:Int,height:Int)
+    rot_v=new Vector3D x=0,y=0,z=0
     Rotation(rot,rot_v,1)
     AddVector(pos,rot_v,tt * speed)
 
@@ -159,20 +160,20 @@ Def Animate(ByRef rot:Vector3D,ByRef pos:Vector3D,tt:Float,speed:Float,ByRef lim
     If pos.z > limit_z pos.z=limit_z
     If pos.z < 1 pos.z=1
     If pos.y > height/2 pos.y=pos.y-5*tt
-End Def
+EndDef
 
-Def EngineParticles(ByRef rot:Vector3D,ByRef pos:Vector3D,ByRef cum_part_count:Float,speed:Float,tt:Float,dead:Int)
+Def EngineParticles(Ref rot:Vector3D,Ref pos:Vector3D,Ref cum_part_count:Float,speed:Float,tt:Float,dead:Int)
     REM Create particles For engines
     cum_part_count=cum_part_count+speed * tt * 5.0
     c%=Int(Floor(cum_part_count))
     If dead=0 And c% > 1 Then
         cum_part_count=cum_part_count-c%
 
-        Dim rot_v:Vector3D(x=0,y=0,z=0)
-        SetRotate(rot.x,rot.y,rot.z,0,0,1)
-        rot_v.x=GetRotateX()/scale_x
-        rot_v.y=GetRotateY()
-        rot_v.z=GetRotateZ()/scale_z
+        rot_v=new Vector3D x=0,y=0,z=0
+        QuaternionRotate(rot.x,rot.y,rot.z,0,0,1)
+        rot_v.x=QuaternionRotateX()/scale_x
+        rot_v.y=QuaternionRotateY()
+        rot_v.z=QuaternionRotateZ()/scale_z
 
         For I%=1 To c%
             spread_x=rot_v.x*RndF(3.0)
@@ -180,5 +181,5 @@ Def EngineParticles(ByRef rot:Vector3D,ByRef pos:Vector3D,ByRef cum_part_count:F
             spread_z=rot_v.z*RndF(3.0)
             CreateRandomParticle(pos.x-rot_v.x+spread_x,pos.y+rot_v.y+spread_y-0.5,pos.z-rot_v.z+spread_z,0,0,0,100,0)
         Next
-    End If
-End Def
+    EndIf
+EndDef

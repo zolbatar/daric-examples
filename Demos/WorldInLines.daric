@@ -1,23 +1,25 @@
 Import "Library/Menu"
 
-Const prop=0
 Record MapPoint
 	x:Float
 	y:Float
-End Record
+EndRecord
 gCentrex=0.0:gCentrey=0.0:gScale=3.0:gRound=100.0
-Dim pointarray:MapPoint[400368]
+Dim pointarray:MapPoint[400370]
 points=0
 
 If @Main Then
-	Mode -1,-1,Banked
+'	Mode -1,-1,Fullscreen Or Banked
+	Mode 1024,768,Windowed
 	WorldInLines()
-End If
+EndIf
 
 Def WorldInLines()
 	c%=Dir("GIS")
+	Print "Loading";
 	For I%=0 To c%-1
 		p$=DirEntry(I%)
+		Print ".";
 		LoadPolygon(p$)
 	Next
 	BankedOn
@@ -35,17 +37,17 @@ Def WorldInLines()
 				gCentrey=gCentrey-dy/gScale
 				last_x=x:last_y=y
 				render%=1
-			End If
+			EndIf
 		Else
 			dragging%=0
-		End If
+		EndIf
 		If KeyDown(KEY_Z) = 1 gScale=gScale+0.5:render%=1
 		If KeyDown(KEY_X) = 1 gScale=gScale-0.5:render%=1
 		If KeyDown(KEY_P) = 1 WILAnimate()
 		If gScale < 1.0 gScale=1.0:render%=1
 	Until KeyDown(KEY_Q)
 	BankedOff
-End Def
+EndDef
 
 Def WILAnimate()
 	gRound = 0.01
@@ -54,13 +56,13 @@ Def WILAnimate()
 		WILRender()
 	Next
 	gRound=100.0
-End Def
+EndDef
 
 Def WILRender()
 	w=ScreenWidth():h=ScreenHeight()
 	Cls
 	country=80
-	SetFg country/2,country/2,country/2
+	Ink country/2,country/2,country/2
 	lx=0:ly=0
 	For I%=0 To points-1
    		xx=pointarray[I%].x
@@ -86,18 +88,18 @@ Def WILRender()
 			ly=yy
 		Else
 			country=country+1
-			SetFg country/2,country/2,country/2
+			Ink country/2,country/2,country/2
 		    lx=0
 			ly=0
-		End If
+		EndIf
 	Next
-   	SetFg &FF,&FF,0
-   	SetFont prop
+   	Ink &FF,&FF,0
+   	Font prop
 	TextCentre w / 2, 0, "Press left mouse button to drag"+Chr(10)
 	TextCentre w / 2, -1, "z - Zoom In, x - Zoom Out, p - Animate, q - Quit"+Chr(10)
 	TextCentre w / 2, -1, String(points) + "/400370 points"
 	Flip
-End Def
+EndDef
 
 Def LoadPolygon(filename$:String)
 	channel=OpenIn(filename$)
@@ -120,12 +122,12 @@ Def LoadPolygon(filename$:String)
                 pointarray[points].x = Float(s2$)
                 points=points+1
                 skip=0
-			End If
+			EndIf
 		Else
 			Close channel
 			Return
-		End If
-	End While
+		EndIf
+	EndWhile
 	Close channel
-End Def
+EndDef
 

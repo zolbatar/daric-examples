@@ -5,14 +5,14 @@ Import "Library/TerrainLib"
 
 If @Main Then
 	InitPerlin()
-	Mode -1,-1,Banked
+	Mode 800,600,Banked Or Windowed
 	TerrainDemo()
-End If 
+EndIf 
 
 Def TerrainDemo()
 	terrain1=CreateTerrain(terrainsize, terrainsize, 1.0, 0)
 	REM Game Loop
-	SetBg &0,0,8
+	Paper &0,0,8
 	Cls
 	frame=0
 	BankedOn
@@ -21,7 +21,7 @@ Def TerrainDemo()
 		Cls
 		Rotate terrain1, 0, R, 0
 		Render
-		SetFont 0
+		Font 0
 		Text 20,20,"Frame: "+String(frame) + Chr(10)
 		Flip
 		frame=frame+1
@@ -29,9 +29,9 @@ Def TerrainDemo()
 			DeleteObject terrain1
 			BankedOff
             Return
-        End If
+        EndIf
 	Next
 	DeleteObject terrain1
 	BankedOff
 	GetKey()
-End Def
+EndDef

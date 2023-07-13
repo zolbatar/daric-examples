@@ -1,13 +1,13 @@
 OPTION BASE 1
 REM Based on code by Electron Greg (@electron_greg)
 
+N=0
+Dim arr:Float[300]
+
 If @Main Then
     Mode 1280,1024,Windowed
     DeathStar()
-End If
-
-N=0
-Dim a:Float[300]
+EndIf
 
 Def DeathStar()
     Cls
@@ -15,33 +15,33 @@ Def DeathStar()
     ClipOn (ScreenWidth()/2)-640, 0, (ScreenWidth()/2)+640, 950
     Origin (ScreenWidth()-1280)/2,0
     a(640,522,300)
-    For N=115 To 210:c(640,1080-(a[219-N]*7),a[N]*2):Next
-    SetBg 0,0,0:CircleFilled 510,475,160
+    For N=115 To 210:c(640,1080-(arr[219-N]*7),arr[N]*2):Next
+    Paper 0,0,0:CircleFilled 510,475,160
     For N=0 To 176 Step 8:cg(510,475,N):Next
     Origin 0,0
     ClipOff
-    SetBg 20,20,20:RectangleFilled 0,0,ScreenWidth()-1,150
-    SetFg 255,255,200
-    SetFont font:TextCentre ScreenWidth()/2, 0, "DeathStar"
-    SetFont 0:SetFg 255,255,255:TextCentre ScreenWidth()/2, 105, "Inspired by @electron_greg"  
+    Paper 20,20,20:RectangleFilled 0,0,ScreenWidth()-1,150
+    Ink 255,255,200
+    Font font:TextCentre ScreenWidth()/2, 0, "DeathStar"
+    Font 0:Ink 255,255,255:TextCentre ScreenWidth()/2, 105, "Inspired by @electron_greg"  
     Repeat Until WaitKey(0) Or AppCloseRequested()
-End Def
+EndDef
 
 Def c(v:Float,z:Float,r:Float) 
     A=2*PI/360:s=Sin(A):c=Cos(A):x=r:y=0.0
     For w=1 To 360
         B=x*c-y*s:y=x*s+y*c:x=B:q=(((v+x)*1.3)-(z/10.0))+100.0:o=(((z+y)/4.0)*1.24)+(x/3)
-        If c2(w,q,o)=1
+        If c2(w,q,o)=1 Then
             mm=(360-w)/30
             If mm>1 Then
                 For m=1 To mm
                     AA=Rnd(255):If w>250 AA=AA*((290.0-w)/40.0)
-                    SetFg AA,AA,AA:Plot q+RndF(8),1024-o-12
+                    Ink AA,AA,AA:Plot q+RndF(8),1024-o-12
                 Next
-            End If
-        End If
+            EndIf
+        EndIf
     Next
-End Def
+EndDef
 
 Def c2:Int(w,q,o)
     P=Rnd(w)-(N/2)
@@ -49,33 +49,32 @@ Def c2:Int(w,q,o)
     If w<180 Return 0
     If N>148 And N<152 Then
         AA=Rnd(255):If w>250 AA=AA*((290.0-w)/40.0)
-        SetFg 0,AA,0
+        Ink 0,AA,0
         Plot q+12,1024-o-12:Return 0
         Return 0
-    End If
+    EndIf
     Return 1
-End Def
+EndDef
 
 Def a(v:Float,z:Float,r:Float) 
     A=2*PI/300:s=Sin(A):c=Cos(A):x=r:y=0.0
-    For w=1 To 300:B=x*c-y*s:y=x*s+y*c:x=B:a[w]=600-(v+x):Next
-End Def
+    For w=1 To 300:B=x*c-y*s:y=x*s+y*c:x=B:arr[w]=600-(v+x):Next
+EndDef
 
 Def cg(v:Float,z:Float,r:Float)
-    SetFg 255,50,50
+    Ink 255,50,50
     A=2*PI/400:s=Sin(A):c=Cos(A):x=r-25:y=0.0
     For w=1 To 400
         B=x*c-y*s:y=x*s+y*c:x=B
         If N>165 Then
-            SetFg 255,100+Rnd(50),150+Rnd(50)
+            Ink 255,100+Rnd(50),150+Rnd(50)
             If w>0 And w<120+Rnd(30) Plot v+x,z-y
             If w>310+Rnd(30) And w<400 Plot v+x,z-y
         Else
-            If Int(Rnd((218-N))/24)<>1 Then
-            Else
+            If Int(Rnd((218-N))/24)=1 Then
                 If w>0 And w<120+Rnd(30) Plot v+x,z-y
                 If w>310+Rnd(30) And w<400 Plot v+x,z-y
-            End If
-        End If
+            EndIf
+        EndIf
     Next
-End Def
+EndDef

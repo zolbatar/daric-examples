@@ -1,11 +1,11 @@
 If @Main Then
-    Mode -1,-1,Banked
+    Mode -1,-1,Fullscreen Or Banked
     Repeat
         GraphicsSingle()
         Flip
     Until WaitKey(0)
     BankedOff
-End If
+EndIf
 
 Def Graphics2d()
     BankedOn
@@ -14,29 +14,29 @@ Def Graphics2d()
         Flip
     Until WaitKey(0)
     BankedOff
-End Def
+EndDef
 
 Def GraphicsSingle()
     w=ScreenWidth():h=ScreenHeight()
     For I = 1 To 50
-        SetLineWidth Rnd(10)+1
+        LineWidth Rnd(10)+1
 
-        SetFg Rnd(255), Rnd(255), Rnd(255)
+        Ink Rnd(255), Rnd(255), Rnd(255)
         Line Rnd(w), Rnd(h), Rnd(w), Rnd(h)
 
-        SetFg Rnd(255), Rnd(255), Rnd(255)
+        Ink Rnd(255), Rnd(255), Rnd(255)
         TriangleFilled Rnd(w), Rnd(h), Rnd(w), Rnd(h), Rnd(w), Rnd(h)
 
-        SetFg Rnd(255), Rnd(255), Rnd(255)
-        SetBg Rnd(255), Rnd(255), Rnd(255)
+        Ink Rnd(255), Rnd(255), Rnd(255)
+        Paper Rnd(255), Rnd(255), Rnd(255)
         Circle Rnd(w), Rnd(h), Rnd(150)+20
         CircleFilled Rnd(w), Rnd(h), Rnd(150)+20
 
-        COL1=Colour(Rnd(255), Rnd(255), Rnd(255))
-        COL2=Colour(Rnd(255), Rnd(255), Rnd(255))
-        COL3=Colour(Rnd(255), Rnd(255), Rnd(255))
+        COL1=RGB(Rnd(255), Rnd(255), Rnd(255))
+        COL2=RGB(Rnd(255), Rnd(255), Rnd(255))
+        COL3=RGB(Rnd(255), Rnd(255), Rnd(255))
         TriangleShaded Rnd(w), Rnd(h), COL1, Rnd(w), Rnd(h), COL2, Rnd(w), Rnd(h), COL3
     Next
-End Def
+EndDef
 
 

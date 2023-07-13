@@ -1,0 +1,32 @@
+'Import "Library/Menu"
+
+record test
+x#
+EndRecord
+
+If @Main
+'    Mode 1280,1024,Windowed
+    dim a[10]
+    a[5]=234.5
+    print a[5]
+    b = record test x#=100
+    b.x#=100.5
+    Welcome(b)
+print b.x#
+EndIf
+
+Def Welcome(ref b as test)
+'    MenuInit()
+print b.x#
+b.x#=200
+'    print size(c)
+'    print c[1]
+'    Title("Select a category (Use Keyboard)")
+'    Label("1", "2D Graphics",0)
+'    Label("2", "3D Graphics",0)
+'    Label("3", "Sound and Music",0)
+'    Label("4", "Windowed GUI",0)
+'    Label("5", "Benchmarking and Testing",0)
+'    Label("Q", "Quit", 0)
+'    A$=GetChar()
+EndDef
