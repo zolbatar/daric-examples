@@ -4,13 +4,15 @@ If @Main Then
 EndIf
 
 Def GUIControls()
-    Button MainWindow, "button1", 100, 200, 300, 50, "Test", 330, RGB(255,255,255)
-    TextField MainWindow, "a text field", 200, 300, 100, 0, "initial text"
-   Repeat
-       If IsClicked(MainWindow, "button1")
-            Print "Clicked"
-           Print GetTextField(MainWindow, "a text field")
-            DeleteControl MainWindow, "a text field"
-        EndIf
+    button1=Button(MainWindow, "button1", 100, 200, 300, 50, "Test", 330, RGB(255,255,255))
+    'TextField MainWindow, "a text field", 200, 300, 100, 0, "initial text"
+    Repeat
+
+''        If IsClicked(MainWindow, "button1")
+''            Print "Clicked"
+''            Print GetTextField(MainWindow, "a text field")
+''            DeleteControl MainWindow, "a text field"
+''        EndIf
     Until AppCloseRequested()
+    DeleteControl button1
 EndDef

@@ -44,6 +44,27 @@ Repeat
         SXMIN=XMIN:SXMAX=XMAX:SYMIN=YMIN:SYMAX=YMAX
 
         ' New coords
+        XMIN=CX-(NXDIFF/2)
+        XMAX=CX+(NXDIFF/2)
+        YMIN=CY-(NYDIFF/2)
+        YMAX=CY+(NYDIFF/2)
+        DX=(XMAX-XMIN)/ww:DY=(YMAX-YMIN)/hh
+        Render()
+        sp=CreateSprite()
+    EndIf
+    If MouseState() AND 1 Then
+        Repeat Until NOT (MouseState() AND 1)
+        XDIFF=XMAX-XMIN
+        YDIFF=YMAX-YMIN
+        PCTX=Float(mousex) / Float(ww)
+        PCTY=Float(mousey) / Float(hh)
+        CX=XMIN+(XDIFF * PCTX)
+        CY=YMIN+(YDIFF * PCTY)
+        NXDIFF=XDIFF/8.0
+        NYDIFF=YDIFF/8.0
+        SXMIN=XMIN:SXMAX=XMAX:SYMIN=YMIN:SYMAX=YMAX
+
+        ' New coords
         NXMIN=CX-(NXDIFF/2)
         NXMAX=CX+(NXDIFF/2)
         NYMIN=CY-(NYDIFF/2)
@@ -76,7 +97,7 @@ Until AppCloseRequested()
 DeleteSprite sp
 End
 
-Def MandelFinal(MY) 
+Def MandelFinal(MY)
     For MX=0 to ww-1
         KK=plots[MX,MY]
         If KK=ITERS-1 Then
