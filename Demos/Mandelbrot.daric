@@ -21,13 +21,15 @@ showgrid=1
 SpriteBuffer ww, hh
 Render()
 sp=CreateSprite()
-DrawSprite sp,0,ww2,hh2,0,1
 Repeat
     mousex=MouseX():mousey=MouseY()
 
     ' Zoom rectangle
     DrawSprite sp,0,ww2,hh2,0,1
     If showgrid=1 Rectangle mousex-(PC10*ASPECT),mousey-PC10,mousex+(PC10*ASPECT),mousey+PC10
+    Ink 255,255,255
+    Text 0,0,"Left mouse click to zoom"
+    Text 0,20,"Right mouse click to animate zoom"
     Flip
     
     ' This is all zoom stuff
