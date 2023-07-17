@@ -4,7 +4,7 @@ If @Main Then
 EndIf
 
 Def GUIControls()
-    button1=GuiCreateButton(MainWindow, "button1", 100, 200, 300, 50, "Test")
+    button1=GuiCreateButton(MainWindow, 100, 200, 300, 50, "Test")
     GuiBackColour(button1,200,100,60)
     GuiForeColour(button1,0,0,255)
     text1=GuiCreateTextField(MainWindow, 200, 300, 100, 0, "initial text")
